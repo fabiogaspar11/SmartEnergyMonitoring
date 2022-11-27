@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E355E1F0292EF17E0044A4CC /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E1EF292EF17E0044A4CC /* Symbols.swift */; };
+		E355E1F2292EF6C60044A4CC /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E1F1292EF6C60044A4CC /* Theme.swift */; };
+		E355E210292F084F0044A4CC /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E20F292F084F0044A4CC /* Auth.swift */; };
+		E355E212292F08E20044A4CC /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E211292F08E20044A4CC /* UserStats.swift */; };
+		E355E214292F09B10044A4CC /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E213292F09B10044A4CC /* Alerts.swift */; };
+		E355E216292F0A420044A4CC /* Affiliates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E215292F0A420044A4CC /* Affiliates.swift */; };
+		E355E218292F0A710044A4CC /* Divisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E217292F0A710044A4CC /* Divisions.swift */; };
+		E355E21A292F0B0C0044A4CC /* Equipments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E219292F0B0C0044A4CC /* Equipments.swift */; };
+		E355E21C292F0B4D0044A4CC /* Consumptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E21B292F0B4D0044A4CC /* Consumptions.swift */; };
+		E355E21E292F0C920044A4CC /* Observations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E21D292F0C920044A4CC /* Observations.swift */; };
+		E355E220292F0FCD0044A4CC /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E21F292F0FCD0044A4CC /* Users.swift */; };
+		E355E223292F121F0044A4CC /* StaticJSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E222292F121F0044A4CC /* StaticJSONMapper.swift */; };
+		E355E226292F94310044A4CC /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E225292F94310044A4CC /* SessionManager.swift */; };
+		E355E22C292F97CA0044A4CC /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E22B292F97CA0044A4CC /* Buttons.swift */; };
+		E355E22F292FECFE0044A4CC /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E22E292FECFE0044A4CC /* DashboardView.swift */; };
+		E355E231292FEDC70044A4CC /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E230292FEDC70044A4CC /* ARView.swift */; };
+		E355E233292FEDD40044A4CC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E232292FEDD40044A4CC /* SettingsView.swift */; };
+		E3AA53AB28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53AA28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift */; };
+		E3AA53AF28EDC33F00D06A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3AA53AE28EDC33F00D06A7D /* Assets.xcassets */; };
+		E3AA53B228EDC33F00D06A7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3AA53B128EDC33F00D06A7D /* Preview Assets.xcassets */; };
+		E3AA53BD28EDFF7100D06A7D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53BC28EDFF7100D06A7D /* LoginView.swift */; };
+		E3AA53C128EE051200D06A7D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C028EE051200D06A7D /* MainView.swift */; };
+		E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */; };
+		E3D1384D28F704810027F008 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D1384C28F704810027F008 /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E355E1EF292EF17E0044A4CC /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
+		E355E1F1292EF6C60044A4CC /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		E355E20F292F084F0044A4CC /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		E355E211292F08E20044A4CC /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
+		E355E213292F09B10044A4CC /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		E355E215292F0A420044A4CC /* Affiliates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Affiliates.swift; sourceTree = "<group>"; };
+		E355E217292F0A710044A4CC /* Divisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divisions.swift; sourceTree = "<group>"; };
+		E355E219292F0B0C0044A4CC /* Equipments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipments.swift; sourceTree = "<group>"; };
+		E355E21B292F0B4D0044A4CC /* Consumptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consumptions.swift; sourceTree = "<group>"; };
+		E355E21D292F0C920044A4CC /* Observations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observations.swift; sourceTree = "<group>"; };
+		E355E21F292F0FCD0044A4CC /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		E355E222292F121F0044A4CC /* StaticJSONMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticJSONMapper.swift; sourceTree = "<group>"; };
+		E355E225292F94310044A4CC /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		E355E22B292F97CA0044A4CC /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		E355E22E292FECFE0044A4CC /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		E355E230292FEDC70044A4CC /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
+		E355E232292FEDD40044A4CC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E3AA53A728EDC33D00D06A7D /* SmartEnergyMonitoring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartEnergyMonitoring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3AA53AA28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyMonitoringApp.swift; sourceTree = "<group>"; };
+		E3AA53AE28EDC33F00D06A7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E3AA53B128EDC33F00D06A7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E3AA53BC28EDFF7100D06A7D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E3AA53C028EE051200D06A7D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		E3AC43CF28F728EA001AD75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3D1384C28F704810027F008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E3AA53A428EDC33D00D06A7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E355E1EE292EF14E0044A4CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E355E22B292F97CA0044A4CC /* Buttons.swift */,
+				E355E1EF292EF17E0044A4CC /* Symbols.swift */,
+				E355E1F1292EF6C60044A4CC /* Theme.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E355E1F3292EF8870044A4CC /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				E3AA53BC28EDFF7100D06A7D /* LoginView.swift */,
+				E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */,
+				E3AA53C028EE051200D06A7D /* MainView.swift */,
+				E355E230292FEDC70044A4CC /* ARView.swift */,
+				E355E22E292FECFE0044A4CC /* DashboardView.swift */,
+				E355E232292FEDD40044A4CC /* SettingsView.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		E355E20D292F07DD0044A4CC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E355E225292F94310044A4CC /* SessionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E355E20E292F08250044A4CC /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E355E221292F12070044A4CC /* Mapper */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E355E221292F12070044A4CC /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				E355E222292F121F0044A4CC /* StaticJSONMapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		E355E22D292FAFA10044A4CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E355E20F292F084F0044A4CC /* Auth.swift */,
+				E355E211292F08E20044A4CC /* UserStats.swift */,
+				E355E213292F09B10044A4CC /* Alerts.swift */,
+				E355E215292F0A420044A4CC /* Affiliates.swift */,
+				E355E217292F0A710044A4CC /* Divisions.swift */,
+				E355E219292F0B0C0044A4CC /* Equipments.swift */,
+				E355E21B292F0B4D0044A4CC /* Consumptions.swift */,
+				E355E21D292F0C920044A4CC /* Observations.swift */,
+				E355E21F292F0FCD0044A4CC /* Users.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E3AA539E28EDC33D00D06A7D = {
+			isa = PBXGroup;
+			children = (
+				E3AA53A928EDC33D00D06A7D /* SmartEnergyMonitoring */,
+				E3AA53A828EDC33D00D06A7D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E3AA53A828EDC33D00D06A7D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3AA53A728EDC33D00D06A7D /* SmartEnergyMonitoring.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3AA53A928EDC33D00D06A7D /* SmartEnergyMonitoring */ = {
+			isa = PBXGroup;
+			children = (
+				E355E22D292FAFA10044A4CC /* Models */,
+				E355E20D292F07DD0044A4CC /* Managers */,
+				E355E20E292F08250044A4CC /* Base */,
+				E355E1F3292EF8870044A4CC /* Features */,
+				E355E1EE292EF14E0044A4CC /* Resources */,
+				E3AA53AA28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift */,
+				E3D1384C28F704810027F008 /* ContentView.swift */,
+				E3AA53B028EDC33F00D06A7D /* Preview Content */,
+				E3AA53AE28EDC33F00D06A7D /* Assets.xcassets */,
+				E3AC43CF28F728EA001AD75B /* Info.plist */,
+			);
+			path = SmartEnergyMonitoring;
+			sourceTree = "<group>";
+		};
+		E3AA53B028EDC33F00D06A7D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E3AA53B128EDC33F00D06A7D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E3AA53A628EDC33D00D06A7D /* SmartEnergyMonitoring */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3AA53B528EDC33F00D06A7D /* Build configuration list for PBXNativeTarget "SmartEnergyMonitoring" */;
+			buildPhases = (
+				E3AA53A328EDC33D00D06A7D /* Sources */,
+				E3AA53A428EDC33D00D06A7D /* Frameworks */,
+				E3AA53A528EDC33D00D06A7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmartEnergyMonitoring;
+			productName = SmartEnergyMonitoring;
+			productReference = E3AA53A728EDC33D00D06A7D /* SmartEnergyMonitoring.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E3AA539F28EDC33D00D06A7D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					E3AA53A628EDC33D00D06A7D = {
+						CreatedOnToolsVersion = 14.0;
+					};
+				};
+			};
+			buildConfigurationList = E3AA53A228EDC33D00D06A7D /* Build configuration list for PBXProject "SmartEnergyMonitoring" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E3AA539E28EDC33D00D06A7D;
+			productRefGroup = E3AA53A828EDC33D00D06A7D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E3AA53A628EDC33D00D06A7D /* SmartEnergyMonitoring */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E3AA53A528EDC33D00D06A7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3AA53B228EDC33F00D06A7D /* Preview Assets.xcassets in Resources */,
+				E3AA53AF28EDC33F00D06A7D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E3AA53A328EDC33D00D06A7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E355E1F0292EF17E0044A4CC /* Symbols.swift in Sources */,
+				E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */,
+				E355E231292FEDC70044A4CC /* ARView.swift in Sources */,
+				E3AA53C128EE051200D06A7D /* MainView.swift in Sources */,
+				E355E21C292F0B4D0044A4CC /* Consumptions.swift in Sources */,
+				E355E223292F121F0044A4CC /* StaticJSONMapper.swift in Sources */,
+				E3D1384D28F704810027F008 /* ContentView.swift in Sources */,
+				E355E220292F0FCD0044A4CC /* Users.swift in Sources */,
+				E3AA53AB28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift in Sources */,
+				E355E21A292F0B0C0044A4CC /* Equipments.swift in Sources */,
+				E355E21E292F0C920044A4CC /* Observations.swift in Sources */,
+				E355E210292F084F0044A4CC /* Auth.swift in Sources */,
+				E355E214292F09B10044A4CC /* Alerts.swift in Sources */,
+				E355E212292F08E20044A4CC /* UserStats.swift in Sources */,
+				E355E1F2292EF6C60044A4CC /* Theme.swift in Sources */,
+				E355E216292F0A420044A4CC /* Affiliates.swift in Sources */,
+				E355E218292F0A710044A4CC /* Divisions.swift in Sources */,
+				E3AA53BD28EDFF7100D06A7D /* LoginView.swift in Sources */,
+				E355E22F292FECFE0044A4CC /* DashboardView.swift in Sources */,
+				E355E226292F94310044A4CC /* SessionManager.swift in Sources */,
+				E355E22C292F97CA0044A4CC /* Buttons.swift in Sources */,
+				E355E233292FEDD40044A4CC /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E3AA53B328EDC33F00D06A7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E3AA53B428EDC33F00D06A7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E3AA53B628EDC33F00D06A7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SmartEnergyMonitoring/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartEnergyMonitoring/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pt.ipleiria.SmartEnergyMonitoring;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E3AA53B728EDC33F00D06A7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SmartEnergyMonitoring/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartEnergyMonitoring/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pt.ipleiria.SmartEnergyMonitoring;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E3AA53A228EDC33D00D06A7D /* Build configuration list for PBXProject "SmartEnergyMonitoring" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3AA53B328EDC33F00D06A7D /* Debug */,
+				E3AA53B428EDC33F00D06A7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3AA53B528EDC33F00D06A7D /* Build configuration list for PBXNativeTarget "SmartEnergyMonitoring" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3AA53B628EDC33F00D06A7D /* Debug */,
+				E3AA53B728EDC33F00D06A7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E3AA539F28EDC33D00D06A7D /* Project object */;
+}
