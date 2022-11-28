@@ -5,7 +5,7 @@
 //  Created by Fábio Cordeiro Gaspar on 24/11/2022.
 //
 
-import Foundation
+import SwiftUI
 
 final class SessionManager: ObservableObject {
     
@@ -15,8 +15,10 @@ final class SessionManager: ObservableObject {
     }
     
     @Published private(set) var currentState: CurrentState?
+    @Published private(set) var auth: Auth?
     
-    func signIn() {
+    func signIn(_ credentials: [String: String]) {
+        auth = AuthHelper.login(credentials)
         currentState = .loggedIn
     }
     

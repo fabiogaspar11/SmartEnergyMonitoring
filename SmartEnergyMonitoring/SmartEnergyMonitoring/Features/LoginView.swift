@@ -26,6 +26,8 @@ struct LoginView: View {
                     .scaledToFit()
                 Spacer()
                 TextField("Email", text: $email)
+                    .keyboardType(.emailAddress)
+                    .textContentType(.emailAddress)
                     .padding(.horizontal)
                     .font(.title3)
                     .foregroundColor(.orange)
@@ -47,8 +49,15 @@ struct LoginView: View {
                     .shadow(color: .orange, radius: 1)
                     .padding(.top)
                 
-                PrimaryButton(title: "Next →")
-                    .padding(.vertical)
+                Button {
+                    session.signIn([
+                        "username": email,
+                        "password": password
+                    ])
+                } label: {
+                    PrimaryButton(title: "Next →")
+                        .padding(.vertical)
+                }
                 
                 Text("Don't have an account? Register here").foregroundColor(.orange)
                 

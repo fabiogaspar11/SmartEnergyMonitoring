@@ -18,7 +18,6 @@
 		E355E21C292F0B4D0044A4CC /* Consumptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E21B292F0B4D0044A4CC /* Consumptions.swift */; };
 		E355E21E292F0C920044A4CC /* Observations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E21D292F0C920044A4CC /* Observations.swift */; };
 		E355E220292F0FCD0044A4CC /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E21F292F0FCD0044A4CC /* Users.swift */; };
-		E355E223292F121F0044A4CC /* StaticJSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E222292F121F0044A4CC /* StaticJSONMapper.swift */; };
 		E355E226292F94310044A4CC /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E225292F94310044A4CC /* SessionManager.swift */; };
 		E355E22C292F97CA0044A4CC /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E22B292F97CA0044A4CC /* Buttons.swift */; };
 		E355E22F292FECFE0044A4CC /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355E22E292FECFE0044A4CC /* DashboardView.swift */; };
@@ -31,6 +30,9 @@
 		E3AA53C128EE051200D06A7D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C028EE051200D06A7D /* MainView.swift */; };
 		E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */; };
 		E3D1384D28F704810027F008 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D1384C28F704810027F008 /* ContentView.swift */; };
+		EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39BD29342DEA000167FD /* KeychainHelper.swift */; };
+		EFFB39C029343124000167FD /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39BF29343124000167FD /* AuthHelper.swift */; };
+		EFFB39C229344391000167FD /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C129344391000167FD /* APIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +47,6 @@
 		E355E21B292F0B4D0044A4CC /* Consumptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consumptions.swift; sourceTree = "<group>"; };
 		E355E21D292F0C920044A4CC /* Observations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observations.swift; sourceTree = "<group>"; };
 		E355E21F292F0FCD0044A4CC /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
-		E355E222292F121F0044A4CC /* StaticJSONMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticJSONMapper.swift; sourceTree = "<group>"; };
 		E355E225292F94310044A4CC /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		E355E22B292F97CA0044A4CC /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		E355E22E292FECFE0044A4CC /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -60,6 +61,9 @@
 		E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		E3AC43CF28F728EA001AD75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D1384C28F704810027F008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EFFB39BD29342DEA000167FD /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		EFFB39BF29343124000167FD /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
+		EFFB39C129344391000167FD /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,17 +111,9 @@
 		E355E20E292F08250044A4CC /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				E355E221292F12070044A4CC /* Mapper */,
+				EFFB39BC29342DD2000167FD /* Helper */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		E355E221292F12070044A4CC /* Mapper */ = {
-			isa = PBXGroup;
-			children = (
-				E355E222292F121F0044A4CC /* StaticJSONMapper.swift */,
-			);
-			path = Mapper;
 			sourceTree = "<group>";
 		};
 		E355E22D292FAFA10044A4CC /* Models */ = {
@@ -175,6 +171,16 @@
 				E3AA53B128EDC33F00D06A7D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EFFB39BC29342DD2000167FD /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				EFFB39BD29342DEA000167FD /* KeychainHelper.swift */,
+				EFFB39BF29343124000167FD /* AuthHelper.swift */,
+				EFFB39C129344391000167FD /* APIHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,13 +258,14 @@
 				E355E231292FEDC70044A4CC /* ARView.swift in Sources */,
 				E3AA53C128EE051200D06A7D /* MainView.swift in Sources */,
 				E355E21C292F0B4D0044A4CC /* Consumptions.swift in Sources */,
-				E355E223292F121F0044A4CC /* StaticJSONMapper.swift in Sources */,
+				EFFB39C029343124000167FD /* AuthHelper.swift in Sources */,
 				E3D1384D28F704810027F008 /* ContentView.swift in Sources */,
 				E355E220292F0FCD0044A4CC /* Users.swift in Sources */,
 				E3AA53AB28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift in Sources */,
 				E355E21A292F0B0C0044A4CC /* Equipments.swift in Sources */,
 				E355E21E292F0C920044A4CC /* Observations.swift in Sources */,
 				E355E210292F084F0044A4CC /* Auth.swift in Sources */,
+				EFFB39C229344391000167FD /* APIHelper.swift in Sources */,
 				E355E214292F09B10044A4CC /* Alerts.swift in Sources */,
 				E355E212292F08E20044A4CC /* UserStats.swift in Sources */,
 				E355E1F2292EF6C60044A4CC /* Theme.swift in Sources */,
@@ -268,6 +275,7 @@
 				E355E22F292FECFE0044A4CC /* DashboardView.swift in Sources */,
 				E355E226292F94310044A4CC /* SessionManager.swift in Sources */,
 				E355E22C292F97CA0044A4CC /* Buttons.swift in Sources */,
+				EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */,
 				E355E233292FEDD40044A4CC /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
