@@ -26,7 +26,7 @@ final class KeychainHelper {
         // Add data in query to keychain
         let status = SecItemAdd(query, nil)
         
-        if status != errSecSuccess {
+        if status != errSecSuccess && status != errSecDuplicateItem {
             // Print out the error
             print("Error: \(status)")
         }

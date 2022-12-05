@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 final class SessionManager: ObservableObject {
     
     enum CurrentState {
@@ -17,8 +18,9 @@ final class SessionManager: ObservableObject {
     @Published private(set) var currentState: CurrentState?
     @Published private(set) var auth: Auth?
     
-    func signIn(_ credentials: [String: String]) {
-        auth = AuthHelper.login(credentials)
+    func signIn(_ credentials: [String: String]) async throws {
+        
+        auth = try await AuthService.login(credentials: credentials)
         currentState = .loggedIn
     }
     

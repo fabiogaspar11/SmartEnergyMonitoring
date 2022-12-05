@@ -27,6 +27,10 @@ struct RegisterView: View {
             Spacer()
             
             TextField("Email", text: $email)
+                .keyboardType(.emailAddress)
+                .textContentType(.emailAddress)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
                 .padding(.horizontal)
                 .font(.title3)
                 .foregroundColor(.orange)
@@ -70,6 +74,24 @@ struct RegisterView: View {
                 .shadow(color: .orange, radius: 1)
                 
             
+            Button(action: {
+                Task{
+                    do {
+                        try await session.signIn([
+                            "username": email,
+                            "password": password
+                        ])
+                    }
+                    catch APIHelper.RequestError.invalidResponse {
+                        print("Wrong Creds")
+                    }
+                    catch APIHelper.RequestError.decodingError {
+                        print("Problem Decode")
+                    }
+                }
+            }, label: {
+                
+            })
             PrimaryButton(title: "Next →")
                 .padding(.top)
         }
