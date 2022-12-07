@@ -17,6 +17,10 @@ struct ContentView: View {
             MainView()
                 .environmentObject(session)
                 .transition(.opacity)
+        case .register:
+            RegisterView()
+                .environmentObject(session)
+                .transition(.opacity)
         default:
             LoginView()
                 .environmentObject(session)

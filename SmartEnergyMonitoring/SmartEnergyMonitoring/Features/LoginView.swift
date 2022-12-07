@@ -12,6 +12,9 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    @State private var didFail = false
+    @State private var failMessage = ""
+    
     @EnvironmentObject var session: SessionManager
     
     var body: some View {
@@ -59,11 +62,13 @@ struct LoginView: View {
                                 "password": password
                             ])
                         }
-                        catch APIHelper.RequestError.invalidResponse {
-                            print("Wrong Creds")
+                        catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                            failMessage = errorMessage
+                            didFail = true
                         }
-                        catch APIHelper.RequestError.decodingError {
-                            print("Problem Decode")
+                        catch APIHelper.APIError.decodingError {
+                            failMessage = "Decoding Error"
+                            didFail = true
                         }
                     }
                     
@@ -71,10 +76,20 @@ struct LoginView: View {
                     PrimaryButton(title: "Next →")
                         .padding(.vertical)
                 })
+                .alert("Authentication failed", isPresented: $didFail, actions: {
+                    Button("Retry") {
+                        password = ""
+                    }	
+                }, message: {
+                    Text(failMessage)
+                })
                 
-                Text("Don't have an account? Register here").foregroundColor(.orange)
-                
-                
+                Button(action: {
+                    session.register()
+                }, label: {
+                    Text("Don't have an account? Register here").foregroundColor(.orange)
+                })
+    
             }
             .padding()
         }

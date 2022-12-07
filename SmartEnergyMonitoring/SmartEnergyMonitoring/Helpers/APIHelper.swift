@@ -7,18 +7,11 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case badUrl
-    case invalidResponse
-    case decodingError
-    case invalidServerResponse
-    case invalidURL
-}
-
 class APIHelper {
     
-    enum RequestError: Error, LocalizedError {
-        case invalidResponse
+    enum APIError: LocalizedError {
+        case invalidRequestError(String)
+        case transportError(Error)
         case decodingError
     }
     
@@ -38,11 +31,12 @@ class APIHelper {
 
         guard let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200 || httpResponse.statusCode == 201 else {
-            throw RequestError.invalidResponse
+            
+            throw APIError.invalidRequestError("Invalid data!")
         }
             
         guard let result = try? JSONDecoder().decode(T.self, from: data) else {
-            throw RequestError.decodingError
+            throw APIError.decodingError
         }
         
         return(result)

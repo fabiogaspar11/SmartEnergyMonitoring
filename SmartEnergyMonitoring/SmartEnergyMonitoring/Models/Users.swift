@@ -14,11 +14,11 @@ struct User: Codable {
 struct DataClass: Codable {
     let id: Int
     let name, email, birthdate: String
-    let divisions: [Division]
-    let type, energyPrice: String
-    let getStarted, notifications: Int
-    let noActivityStart, noActivityEnd: String
-    let locked: Int
+    let divisions: [Division]?
+    let type, energyPrice: String?
+    let getStarted, notifications: Int?
+    let noActivityStart, noActivityEnd: String?
+    let locked: Int?
 
     enum CodingKeys: String, CodingKey {
         case id, name, email, birthdate, divisions, type

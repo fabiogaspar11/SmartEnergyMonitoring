@@ -25,18 +25,21 @@ struct MainView: View {
                     Symbols.ar
                     Text("AR")
                 }
+                .environmentObject(session)
             
             DashboardView()
                 .tabItem {
                     Symbols.home
                     Text("Home")
                 }
+                .environmentObject(session)
             
             SettingsView()
                 .tabItem {
                     Symbols.settings
                     Text("Settings")
                 }
+                .environmentObject(session)
             
         }
         

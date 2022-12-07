@@ -13,6 +13,9 @@ struct RegisterView: View {
     @State private var password: String = ""
     @State private var birthdate = Date()
     
+    @State private var didFail = false
+    @State private var failMessage = ""
+    
     @EnvironmentObject var session: SessionManager
     
     var body: some View {
@@ -77,23 +80,42 @@ struct RegisterView: View {
             Button(action: {
                 Task{
                     do {
+                        let dateFormatterGet = DateFormatter()
+                        dateFormatterGet.dateFormat = "dd/MM/yyyy"
+                        
+                        let _ = try await UserService.create(parameters: [
+                            "name": name,
+                            "email":email,
+                            "password":password,
+                            "birthdate":dateFormatterGet.string(from: birthdate)
+                        ])
+                        
                         try await session.signIn([
                             "username": email,
                             "password": password
                         ])
                     }
-                    catch APIHelper.RequestError.invalidResponse {
-                        print("Wrong Creds")
+                    catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                        failMessage = errorMessage
+                        didFail = true
                     }
-                    catch APIHelper.RequestError.decodingError {
-                        print("Problem Decode")
+                    catch APIHelper.APIError.decodingError {
+                        failMessage = "Decoding Error"
+                        didFail = true
                     }
                 }
             }, label: {
-                
+                PrimaryButton(title: "Next →")
+                    .padding(.top)
             })
-            PrimaryButton(title: "Next →")
-                .padding(.top)
+            .alert("Registration failed", isPresented: $didFail, actions: {
+                Button("Retry") {
+                    password = ""
+                }
+            }, message: {
+                Text(failMessage)
+            })
+            
         }
         .padding()
     }

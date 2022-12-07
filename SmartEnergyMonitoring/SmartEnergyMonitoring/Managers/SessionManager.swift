@@ -13,6 +13,7 @@ final class SessionManager: ObservableObject {
     enum CurrentState {
         case loggedIn
         case loggedOut
+        case register
     }
     
     @Published private(set) var currentState: CurrentState?
@@ -26,6 +27,10 @@ final class SessionManager: ObservableObject {
     
     func signOut() {
         currentState = .loggedOut
+    }
+    
+    func register() {
+        currentState = .register
     }
     
 }
