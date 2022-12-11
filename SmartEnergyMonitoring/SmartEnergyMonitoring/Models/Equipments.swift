@@ -46,7 +46,7 @@ struct DivisionShort: Codable, Identifiable, Hashable {
     }
 }
 
-struct EquipmentShort: Codable {
+struct EquipmentShort: Codable, Identifiable {
     let id: Int
     let name, consumption, type, activity, division: String
 }

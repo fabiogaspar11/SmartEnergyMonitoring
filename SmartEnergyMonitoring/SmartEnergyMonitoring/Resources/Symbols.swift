@@ -17,4 +17,9 @@ enum Symbols {
     static let bolt = Image(systemName: "bolt.circle")
     static let plus = Image(systemName: "plus.circle")
     static let trash = Image(systemName: "trash")
+    static let trashCircle = Image(systemName: "trash.circle")
+    static let upload = Image(systemName: "square.and.arrow.up.circle")
+    static let help = Image(systemName: "questionmark.circle")
+    static let up = Image(systemName: "arrow.up.forward")
+    static let down = Image(systemName: "arrow.up.backward")
 }

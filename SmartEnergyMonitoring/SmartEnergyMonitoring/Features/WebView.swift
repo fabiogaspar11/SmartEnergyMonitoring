@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct SwiftUIWebView: UIViewRepresentable {
+struct WebView: UIViewRepresentable {
     typealias UIViewType = WKWebView
     
     let webView: WKWebView

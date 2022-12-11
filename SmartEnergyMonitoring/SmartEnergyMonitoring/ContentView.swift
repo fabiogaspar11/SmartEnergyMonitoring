@@ -12,19 +12,29 @@ struct ContentView: View {
     @StateObject private var session = SessionManager()
     
     var body: some View {
-        switch session.currentState {
-        case .loggedIn:
-            MainView()
-                .environmentObject(session)
-                .transition(.opacity)
-        case .register:
-            RegisterView()
-                .environmentObject(session)
-                .transition(.opacity)
-        default:
-            LoginView()
-                .environmentObject(session)
-                .transition(.opacity)
+        VStack {
+            switch session.currentState {
+            case .loggedIn:
+                MainView()
+                    .environmentObject(session)
+                    .transition(.opacity)
+            case .register:
+                RegisterView()
+                    .environmentObject(session)
+                    .transition(.opacity)
+            case .loggedOut:
+                LoginView()
+                    .environmentObject(session)
+                    .transition(.opacity)
+            default:
+                ProgressView()
+                    .scaleEffect(2)
+            }
+        }
+        .onAppear {
+            Task {
+                try await session.rememberLogin()
+            }
         }
     }
 }

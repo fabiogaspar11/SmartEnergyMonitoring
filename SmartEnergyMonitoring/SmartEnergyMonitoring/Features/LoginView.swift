@@ -93,13 +93,7 @@ struct LoginView: View {
             }
             .padding()
         }
-        .onAppear {
-            Task {
-                
-                try await session.rememberLogin()
-                
-            }
-        }
+        
     }
 
 } 

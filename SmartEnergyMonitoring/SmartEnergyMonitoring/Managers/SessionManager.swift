@@ -14,6 +14,7 @@ final class SessionManager: ObservableObject {
         case loggedIn
         case loggedOut
         case register
+        case remember
     }
     
     @Published private(set) var currentState: CurrentState?
@@ -40,8 +41,13 @@ final class SessionManager: ObservableObject {
     }
     
     func rememberLogin() async throws {
+        currentState = .remember
+        
         let data: Data? = KeychainHelper.standard.read(service: "access-token", account: "sem")
-        if (data == nil) { return }
+        if (data == nil) {
+            currentState = .loggedOut
+            return
+        }
         
         accessToken = String(decoding: data!, as: UTF8.self)
         user = try await UserService.fetch(accessToken: accessToken!)

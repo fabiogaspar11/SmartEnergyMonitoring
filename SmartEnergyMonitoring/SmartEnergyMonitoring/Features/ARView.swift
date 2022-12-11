@@ -16,7 +16,7 @@ struct ARView: View {
         ZStack {
                 
             Theme.background.edgesIgnoringSafeArea(.top)
-            SwiftUIWebView(accessToken: session.accessToken!)
+            WebView(accessToken: session.accessToken!)
                 
         }
     }

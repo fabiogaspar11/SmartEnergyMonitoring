@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EnergyView: View {
     
+    @State var showHelpUs = false
+    
     @EnvironmentObject var session: SessionManager
     
     var body: some View {
@@ -26,10 +28,22 @@ struct EnergyView: View {
                 }
                 
             }
-            .navigationTitle("Settings")
+            .navigationTitle("Energy")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showHelpUs = true
+                    }
+                    label: {
+                        Symbols.help
+                        Text("Help Us")
+                    }
+                }
+            }
+            .sheet(isPresented: $showHelpUs) {
+                HelpUsView()
+            }
             .onAppear() {
-                
-                
                 
             }
         }

@@ -32,9 +32,9 @@ struct ConsumptionShort: Codable {
 
 struct ObservationClass: Codable {
     let id, userID, consumptionID: Int
-    let expectedDivisions: [String]
+    let expectedDivisions: [ExpectedDivision]
     let createdAt: Int
-    let equipments: [EquipmentShort]
+    let equipments: [Equipment]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -44,6 +44,11 @@ struct ObservationClass: Codable {
         case createdAt = "created_at"
         case equipments
     }
+}
+
+struct ExpectedDivision: Codable {
+    let id: Int
+    let name: String
 }
 
 typealias Observations = [Observation]

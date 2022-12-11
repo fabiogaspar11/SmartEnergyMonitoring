@@ -15,34 +15,26 @@ struct EquipmentListView: View {
     @State private var didFail = false
     @State private var failMessage = ""
     
-    @State private var showDelete = false
-    @State private var selected: Equipment?
-    
     @EnvironmentObject var session: SessionManager
     
     var body: some View {
         
-        ZStack {
+        NavigationStack {
             
-            Theme.background.edgesIgnoringSafeArea(.top)
-            
-            List {
+            ZStack {
                 
-                ForEach(Array(divisions)) { division in
+                Theme.background.edgesIgnoringSafeArea(.top)
+                
+                List {
                     
-                    Section(division.name) {
+                    ForEach(Array(divisions)) { division in
                         
-                        ForEach(equipments?.data.filter { $0.division == division.id } ?? []) { equipment in
+                        Section(division.name) {
                             
-                            HStack {
-                                Text(equipment.name)
-                                Spacer()
-                                Button {
-                                    selected = equipment
-                                    showDelete = true
-                                } label: {
-                                    Symbols.trash
-                                }
+                            ForEach(equipments?.data.filter { $0.division == division.id } ?? []) { equipment in
+                                
+                                NavigationLink(equipment.name, destination: EquipmentView(equipment: equipment))
+                                
                             }
                             
                         }
@@ -52,55 +44,48 @@ struct EquipmentListView: View {
                 }
                 
             }
-            
-        }
-        .navigationTitle("Equipments")
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button {
-                    showCreate = true
-                }
-                label: {
-                    Symbols.plus
-                    Text("New")
-                }
-            }
-        }
-        .onAppear() {
-            
-            Task {
-                do {
-                    equipments = try await EquipmentService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
-                    
-                    equipments?.data.forEach { equipment in
-                        let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
-                        divisions.insert(division)
+            .navigationTitle("Equipments")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showCreate = true
                     }
-                    
-                }
-                catch APIHelper.APIError.invalidRequestError(let errorMessage) {
-                    failMessage = errorMessage
-                    didFail = true
-                }
-                catch APIHelper.APIError.decodingError {
-                    failMessage = "Decoding Error"
-                    didFail = true
+                    label: {
+                        Symbols.plus
+                        Text("New")
+                    }
                 }
             }
+            .onAppear() {
+                
+                Task {
+                    do {
+                        equipments = try await EquipmentService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
+                        
+                        equipments?.data.forEach { equipment in
+                            let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
+                            divisions.insert(division)
+                        }
+                        
+                    }
+                    catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                        failMessage = errorMessage
+                        didFail = true
+                    }
+                    catch APIHelper.APIError.decodingError {
+                        failMessage = "Decoding Error"
+                        didFail = true
+                    }
+                }
+                
+            }
+            .alert("Data fetch failed", isPresented: $didFail, actions: {
+                Button("Ok") {}
+            }, message: {
+                Text(failMessage)
+            })
             
         }
-        .alert("Data fetch failed", isPresented: $didFail, actions: {
-            Button("Ok") {}
-        }, message: {
-            Text(failMessage)
-        })
-        .alert("Are you sure?", isPresented: $showDelete, actions: {
-            Button("Delete", role: .destructive) {
-                //TODO: remove equipment
-            }
-        }, message: {
-            Text("Delete \(selected?.name ?? "") from my equipments")
-        })
         
     }
 }

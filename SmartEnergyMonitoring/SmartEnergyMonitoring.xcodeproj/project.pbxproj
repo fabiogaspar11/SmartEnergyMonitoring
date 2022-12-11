@@ -30,7 +30,7 @@
 		E3AA53C128EE051200D06A7D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C028EE051200D06A7D /* MainView.swift */; };
 		E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */; };
 		E3D1384D28F704810027F008 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D1384C28F704810027F008 /* ContentView.swift */; };
-		EFDCE0C92940FCF100643F5D /* SwiftUIWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0C82940FCF100643F5D /* SwiftUIWebView.swift */; };
+		EFDCE0C92940FCF100643F5D /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0C82940FCF100643F5D /* WebView.swift */; };
 		EFDCE0CB2942BF4D00643F5D /* DivisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */; };
 		EFDCE0CD2944CB9200643F5D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0CC2944CB9200643F5D /* Card.swift */; };
 		EFDCE0D12945307A00643F5D /* AffiliateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D02945307A00643F5D /* AffiliateService.swift */; };
@@ -41,6 +41,10 @@
 		EFDCE0DB294548B800643F5D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0DA294548B800643F5D /* ProfileView.swift */; };
 		EFDCE0DD294558CF00643F5D /* EquipmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0DC294558CF00643F5D /* EquipmentService.swift */; };
 		EFDCE0DF2945617000643F5D /* EquipmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0DE2945617000643F5D /* EquipmentView.swift */; };
+		EFDCE0E1294588D600643F5D /* HelpUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E0294588D600643F5D /* HelpUsView.swift */; };
+		EFDCE0E329458AAE00643F5D /* ObservationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E229458AAE00643F5D /* ObservationService.swift */; };
+		EFDCE0E5294621DA00643F5D /* UserStatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E4294621DA00643F5D /* UserStatService.swift */; };
+		EFDCE0E7294629AC00643F5D /* ConsumptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E6294629AC00643F5D /* ConsumptionService.swift */; };
 		EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39BD29342DEA000167FD /* KeychainHelper.swift */; };
 		EFFB39C229344391000167FD /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C129344391000167FD /* APIHelper.swift */; };
 		EFFB39C5293D1E9C000167FD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C4293D1E9C000167FD /* AuthService.swift */; };
@@ -73,7 +77,7 @@
 		E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		E3AC43CF28F728EA001AD75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D1384C28F704810027F008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EFDCE0C82940FCF100643F5D /* SwiftUIWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWebView.swift; sourceTree = "<group>"; };
+		EFDCE0C82940FCF100643F5D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionService.swift; sourceTree = "<group>"; };
 		EFDCE0CC2944CB9200643F5D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		EFDCE0D02945307A00643F5D /* AffiliateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateService.swift; sourceTree = "<group>"; };
@@ -84,6 +88,10 @@
 		EFDCE0DA294548B800643F5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EFDCE0DC294558CF00643F5D /* EquipmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentService.swift; sourceTree = "<group>"; };
 		EFDCE0DE2945617000643F5D /* EquipmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentView.swift; sourceTree = "<group>"; };
+		EFDCE0E0294588D600643F5D /* HelpUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpUsView.swift; sourceTree = "<group>"; };
+		EFDCE0E229458AAE00643F5D /* ObservationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationService.swift; sourceTree = "<group>"; };
+		EFDCE0E4294621DA00643F5D /* UserStatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatService.swift; sourceTree = "<group>"; };
+		EFDCE0E6294629AC00643F5D /* ConsumptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumptionService.swift; sourceTree = "<group>"; };
 		EFFB39BD29342DEA000167FD /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		EFFB39C129344391000167FD /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		EFFB39C4293D1E9C000167FD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -127,6 +135,8 @@
 				EFDCE0D82945471F00643F5D /* AffiliateListView.swift */,
 				EFDCE0DA294548B800643F5D /* ProfileView.swift */,
 				EFDCE0DE2945617000643F5D /* EquipmentView.swift */,
+				EFDCE0E0294588D600643F5D /* HelpUsView.swift */,
+				EFDCE0C82940FCF100643F5D /* WebView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -180,7 +190,6 @@
 				E355E20D292F07DD0044A4CC /* Managers */,
 				E355E1F3292EF8870044A4CC /* Features */,
 				E355E1EE292EF14E0044A4CC /* Resources */,
-				EFDCE0C82940FCF100643F5D /* SwiftUIWebView.swift */,
 				E3AA53AA28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift */,
 				E3D1384C28F704810027F008 /* ContentView.swift */,
 				E3AA53B028EDC33F00D06A7D /* Preview Content */,
@@ -215,6 +224,9 @@
 				EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */,
 				EFDCE0D02945307A00643F5D /* AffiliateService.swift */,
 				EFDCE0DC294558CF00643F5D /* EquipmentService.swift */,
+				EFDCE0E229458AAE00643F5D /* ObservationService.swift */,
+				EFDCE0E4294621DA00643F5D /* UserStatService.swift */,
+				EFDCE0E6294629AC00643F5D /* ConsumptionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -295,10 +307,12 @@
 				E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */,
 				E355E231292FEDC70044A4CC /* ARView.swift in Sources */,
 				E3AA53C128EE051200D06A7D /* MainView.swift in Sources */,
-				EFDCE0C92940FCF100643F5D /* SwiftUIWebView.swift in Sources */,
+				EFDCE0C92940FCF100643F5D /* WebView.swift in Sources */,
 				EFDCE0D12945307A00643F5D /* AffiliateService.swift in Sources */,
+				EFDCE0E329458AAE00643F5D /* ObservationService.swift in Sources */,
 				E355E21C292F0B4D0044A4CC /* Consumptions.swift in Sources */,
 				EFDCE0DF2945617000643F5D /* EquipmentView.swift in Sources */,
+				EFDCE0E7294629AC00643F5D /* ConsumptionService.swift in Sources */,
 				E3D1384D28F704810027F008 /* ContentView.swift in Sources */,
 				EFFB39C5293D1E9C000167FD /* AuthService.swift in Sources */,
 				E355E220292F0FCD0044A4CC /* Users.swift in Sources */,
@@ -322,9 +336,11 @@
 				EFDCE0CD2944CB9200643F5D /* Card.swift in Sources */,
 				E355E226292F94310044A4CC /* SessionManager.swift in Sources */,
 				E355E22C292F97CA0044A4CC /* Buttons.swift in Sources */,
+				EFDCE0E1294588D600643F5D /* HelpUsView.swift in Sources */,
 				EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */,
 				EFDCE0D92945471F00643F5D /* AffiliateListView.swift in Sources */,
 				E355E233292FEDD40044A4CC /* SettingsView.swift in Sources */,
+				EFDCE0E5294621DA00643F5D /* UserStatService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
