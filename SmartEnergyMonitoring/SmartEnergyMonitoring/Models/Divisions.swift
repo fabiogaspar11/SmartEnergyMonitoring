@@ -11,7 +11,7 @@ struct Divisions: Codable {
     let data: [Division]
 }
 
-struct Division: Codable {
+struct Division: Codable, Identifiable {
     let id: Int
     let name: String
 }

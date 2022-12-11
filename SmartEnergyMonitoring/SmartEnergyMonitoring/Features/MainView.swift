@@ -20,6 +20,22 @@ struct MainView: View {
             
         TabView {
             
+            DashboardView()
+                .tabItem {
+                    Symbols.home
+                    Text("Home")
+                }
+                .environmentObject(session)
+            
+            
+            EnergyView()
+                .tabItem {
+                    Symbols.bolt
+                    Text("Energy")
+                }
+                .environmentObject(session)
+            
+            
             ARView()
                 .tabItem {
                     Symbols.ar
@@ -27,12 +43,6 @@ struct MainView: View {
                 }
                 .environmentObject(session)
             
-            DashboardView()
-                .tabItem {
-                    Symbols.home
-                    Text("Home")
-                }
-                .environmentObject(session)
             
             SettingsView()
                 .tabItem {

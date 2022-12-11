@@ -11,7 +11,7 @@ struct Equipments: Codable {
     let data: [Equipment]
 }
 
-struct Equipment: Codable {
+struct Equipment: Codable, Identifiable {
     let id, userID: Int
     let name: String
     let division: Int
@@ -34,6 +34,15 @@ struct Equipment: Codable {
         case examples
         case initStatusOn = "init_status_on"
         case notifyWhenPassed = "notify_when_passed"
+    }
+}
+
+struct DivisionShort: Codable, Identifiable, Hashable {
+    let id: Int
+    let name: String
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

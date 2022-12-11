@@ -31,6 +31,16 @@
 		E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */; };
 		E3D1384D28F704810027F008 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D1384C28F704810027F008 /* ContentView.swift */; };
 		EFDCE0C92940FCF100643F5D /* SwiftUIWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0C82940FCF100643F5D /* SwiftUIWebView.swift */; };
+		EFDCE0CB2942BF4D00643F5D /* DivisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */; };
+		EFDCE0CD2944CB9200643F5D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0CC2944CB9200643F5D /* Card.swift */; };
+		EFDCE0D12945307A00643F5D /* AffiliateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D02945307A00643F5D /* AffiliateService.swift */; };
+		EFDCE0D329453B1C00643F5D /* EnergyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D229453B1C00643F5D /* EnergyView.swift */; };
+		EFDCE0D5294546F900643F5D /* DivisionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D4294546F900643F5D /* DivisionListView.swift */; };
+		EFDCE0D72945470D00643F5D /* EquipmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D62945470D00643F5D /* EquipmentListView.swift */; };
+		EFDCE0D92945471F00643F5D /* AffiliateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D82945471F00643F5D /* AffiliateListView.swift */; };
+		EFDCE0DB294548B800643F5D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0DA294548B800643F5D /* ProfileView.swift */; };
+		EFDCE0DD294558CF00643F5D /* EquipmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0DC294558CF00643F5D /* EquipmentService.swift */; };
+		EFDCE0DF2945617000643F5D /* EquipmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0DE2945617000643F5D /* EquipmentView.swift */; };
 		EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39BD29342DEA000167FD /* KeychainHelper.swift */; };
 		EFFB39C229344391000167FD /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C129344391000167FD /* APIHelper.swift */; };
 		EFFB39C5293D1E9C000167FD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C4293D1E9C000167FD /* AuthService.swift */; };
@@ -64,6 +74,16 @@
 		E3AC43CF28F728EA001AD75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D1384C28F704810027F008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFDCE0C82940FCF100643F5D /* SwiftUIWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWebView.swift; sourceTree = "<group>"; };
+		EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionService.swift; sourceTree = "<group>"; };
+		EFDCE0CC2944CB9200643F5D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		EFDCE0D02945307A00643F5D /* AffiliateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateService.swift; sourceTree = "<group>"; };
+		EFDCE0D229453B1C00643F5D /* EnergyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyView.swift; sourceTree = "<group>"; };
+		EFDCE0D4294546F900643F5D /* DivisionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionListView.swift; sourceTree = "<group>"; };
+		EFDCE0D62945470D00643F5D /* EquipmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListView.swift; sourceTree = "<group>"; };
+		EFDCE0D82945471F00643F5D /* AffiliateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateListView.swift; sourceTree = "<group>"; };
+		EFDCE0DA294548B800643F5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		EFDCE0DC294558CF00643F5D /* EquipmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentService.swift; sourceTree = "<group>"; };
+		EFDCE0DE2945617000643F5D /* EquipmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentView.swift; sourceTree = "<group>"; };
 		EFFB39BD29342DEA000167FD /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		EFFB39C129344391000167FD /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		EFFB39C4293D1E9C000167FD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -87,6 +107,7 @@
 				E355E22B292F97CA0044A4CC /* Buttons.swift */,
 				E355E1EF292EF17E0044A4CC /* Symbols.swift */,
 				E355E1F1292EF6C60044A4CC /* Theme.swift */,
+				EFDCE0CC2944CB9200643F5D /* Card.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -100,6 +121,12 @@
 				E355E230292FEDC70044A4CC /* ARView.swift */,
 				E355E22E292FECFE0044A4CC /* DashboardView.swift */,
 				E355E232292FEDD40044A4CC /* SettingsView.swift */,
+				EFDCE0D229453B1C00643F5D /* EnergyView.swift */,
+				EFDCE0D4294546F900643F5D /* DivisionListView.swift */,
+				EFDCE0D62945470D00643F5D /* EquipmentListView.swift */,
+				EFDCE0D82945471F00643F5D /* AffiliateListView.swift */,
+				EFDCE0DA294548B800643F5D /* ProfileView.swift */,
+				EFDCE0DE2945617000643F5D /* EquipmentView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -185,6 +212,9 @@
 			children = (
 				EFFB39C4293D1E9C000167FD /* AuthService.swift */,
 				EFFB39C6293D6B29000167FD /* UserService.swift */,
+				EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */,
+				EFDCE0D02945307A00643F5D /* AffiliateService.swift */,
+				EFDCE0DC294558CF00643F5D /* EquipmentService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -260,30 +290,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				E355E1F0292EF17E0044A4CC /* Symbols.swift in Sources */,
+				EFDCE0D72945470D00643F5D /* EquipmentListView.swift in Sources */,
 				EFFB39C7293D6B29000167FD /* UserService.swift in Sources */,
 				E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */,
 				E355E231292FEDC70044A4CC /* ARView.swift in Sources */,
 				E3AA53C128EE051200D06A7D /* MainView.swift in Sources */,
 				EFDCE0C92940FCF100643F5D /* SwiftUIWebView.swift in Sources */,
+				EFDCE0D12945307A00643F5D /* AffiliateService.swift in Sources */,
 				E355E21C292F0B4D0044A4CC /* Consumptions.swift in Sources */,
+				EFDCE0DF2945617000643F5D /* EquipmentView.swift in Sources */,
 				E3D1384D28F704810027F008 /* ContentView.swift in Sources */,
 				EFFB39C5293D1E9C000167FD /* AuthService.swift in Sources */,
 				E355E220292F0FCD0044A4CC /* Users.swift in Sources */,
 				E3AA53AB28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift in Sources */,
 				E355E21A292F0B0C0044A4CC /* Equipments.swift in Sources */,
 				E355E21E292F0C920044A4CC /* Observations.swift in Sources */,
+				EFDCE0D329453B1C00643F5D /* EnergyView.swift in Sources */,
+				EFDCE0DD294558CF00643F5D /* EquipmentService.swift in Sources */,
 				E355E210292F084F0044A4CC /* Auth.swift in Sources */,
+				EFDCE0D5294546F900643F5D /* DivisionListView.swift in Sources */,
 				EFFB39C229344391000167FD /* APIHelper.swift in Sources */,
 				E355E214292F09B10044A4CC /* Alerts.swift in Sources */,
+				EFDCE0CB2942BF4D00643F5D /* DivisionService.swift in Sources */,
 				E355E212292F08E20044A4CC /* UserStats.swift in Sources */,
 				E355E1F2292EF6C60044A4CC /* Theme.swift in Sources */,
 				E355E216292F0A420044A4CC /* Affiliates.swift in Sources */,
 				E355E218292F0A710044A4CC /* Divisions.swift in Sources */,
 				E3AA53BD28EDFF7100D06A7D /* LoginView.swift in Sources */,
+				EFDCE0DB294548B800643F5D /* ProfileView.swift in Sources */,
 				E355E22F292FECFE0044A4CC /* DashboardView.swift in Sources */,
+				EFDCE0CD2944CB9200643F5D /* Card.swift in Sources */,
 				E355E226292F94310044A4CC /* SessionManager.swift in Sources */,
 				E355E22C292F97CA0044A4CC /* Buttons.swift in Sources */,
 				EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */,
+				EFDCE0D92945471F00643F5D /* AffiliateListView.swift in Sources */,
 				E355E233292FEDD40044A4CC /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

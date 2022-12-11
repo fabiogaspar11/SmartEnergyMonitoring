@@ -8,9 +8,10 @@
 import Foundation
 
 class UserService {
+    
     static func create(parameters: [String: String]) async throws -> User {
         
-        try await APIHelper.request(
+        return try await APIHelper.request(
             url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json"],
@@ -18,5 +19,22 @@ class UserService {
             method: "POST",
             type: User.self
         )
+        
     }
+    
+    static func fetch(accessToken: String) async throws -> User {
+        
+        let authUser = try await APIHelper.request(
+            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/user",
+            headers: ["Accept":"application/json",
+                      "Content-Type":"application/json",
+                      "Authorization":"Bearer \(accessToken)"],
+            method: "GET",
+            type: UserClass.self
+        )
+        
+        return User(data: authUser)
+        
+    }
+    
 }

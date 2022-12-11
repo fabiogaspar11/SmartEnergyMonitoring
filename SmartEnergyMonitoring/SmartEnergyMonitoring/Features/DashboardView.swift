@@ -9,65 +9,119 @@ import SwiftUI
 
 struct DashboardView: View {
     
+    @State private var divisions: Divisions?
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
-    @State var showSheet = false
+    
+    @State private var didFail = false
+    @State private var failMessage = ""
+    
+    @State private var selectedView: Int = 0
+    @State private var affiliates: Affiliates = []
+    
+    @State private var showSwap = false
+    
+    @EnvironmentObject var session: SessionManager
+    
     var body: some View {
-        NavigationView {
+        
+        NavigationStack {
             
             ZStack {
                 
-                Theme.background.edgesIgnoringSafeArea(.top) 
+                Theme.background.edgesIgnoringSafeArea(.top)
                 
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(0...5, id: \.self) { item in
-                            Button {
-                                showSheet.toggle()
-                            } label: {
-                                ZStack {
+                List {
+                    
+                    Section(content: {
+                        
+                        LazyVGrid(columns: columns, spacing: 16) {
+                                
+                            ForEach(divisions?.data ?? []) { division in
+                                Button {
                                     
-                                    Color.white
-                                    
-                                    VStack() {
+                                } label: {
+                                    ZStack {
                                         
-                                        Text("Kitchen")
-                                            .font(.system(size: 22, weight: .bold))
-                                            .foregroundColor(Theme.primary)
-                                            .padding()
+                                        Color.white
                                         
-                                        Text("30 W")
-                                            .font(.system(size: 19, weight: .bold))
-                                            .foregroundColor(Theme.text)
-                                            .padding(.bottom)
+                                        VStack() {
+                                            
+                                            Text(division.name)
+                                                .font(.system(size: 22, weight: .bold))
+                                                .foregroundColor(Theme.primary)
+                                                .padding()
+                                            
+                                            Text("- W")
+                                                .font(.system(size: 19, weight: .bold))
+                                                .foregroundColor(Theme.text)
+                                                .padding(.bottom)
+                                            
+                                        }
+                                        
+                                        HStack {
+                                            Spacer()
+                                            Symbols.arrow.padding()
+                                        }
                                         
                                     }
-                                    
-                                    HStack {
-                                        Spacer()
-                                        Symbols.arrow.padding()
-                                    }
-                                    
+                                    .cornerRadius(10)
                                 }
-                                .cornerRadius(10)
                             }
                         }
-                    }
-                    .sheet(isPresented: $showSheet) {
-                        Text("puta")
-                    }
+                        .padding()
+                        
+                    }, header: {
+                        Text("Divisions")
+                    })
+                    
                 }
-                .padding()
                 
             }
-            .navigationTitle("Dashboard")
-//            .toolbar {
-//                ToolbarItem(placement: .primaryAction) {
-//                    Button {}
-//                    label: {
-//                        Symbols.eye
-//                    }
-//                }
-//            }
+            .navigationTitle("Hi \((session.user?.data.name.components(separatedBy: " ")[0])!)!")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showSwap = true
+                    }
+                    label: {
+                        Symbols.swap
+                        Text("Swap")
+                    }
+                }
+            }
+            .onAppear {
+                
+                Task {
+                    
+                    do {
+                        divisions = try await DivisionService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
+                        
+                        affiliates = try await AffiliateService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
+                        
+                        let me = Affiliate(id: (session.user?.data.id)!, name: (session.user?.data.name)!, email: (session.user?.data.email)!, energyPrice: (session.user?.data.energyPrice)!)
+                        
+                        affiliates.append(me)
+                    }
+                    catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                        failMessage = errorMessage
+                        didFail = true
+                    }
+                    catch APIHelper.APIError.decodingError {
+                        failMessage = "Decoding Error"
+                        didFail = true
+                    }
+                    
+                }
+                
+            }
+            .alert("Data fetch failed", isPresented: $didFail, actions: {
+                Button("Ok") {}
+            }, message: {
+                Text(failMessage)
+            })
+            .alert("Swap Dashboard", isPresented: $showSwap, actions: {
+                Button("Ok") {}
+            }, message: {})
             
         }
     }
