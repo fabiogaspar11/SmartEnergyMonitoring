@@ -12,7 +12,7 @@ class UserService {
     static func create(parameters: [String: String]) async throws -> User {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json"],
             parameters: parameters,
@@ -25,7 +25,7 @@ class UserService {
     static func fetch(accessToken: String) async throws -> User {
         
         let authUser = try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/user",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/user",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],

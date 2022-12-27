@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Charts
 
 struct DashboardView: View {
     
@@ -27,8 +26,6 @@ struct DashboardView: View {
     @State var kWhDifference = 0.0
     @State var priceDifference = 0.0
     
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
-    
     @State private var didFail = false
     @State private var failMessage = ""
     
@@ -40,26 +37,49 @@ struct DashboardView: View {
     @State private var showSwap = false
     @State private var showSwapToolbar = false
     
+    @State private var consumptionData: [ConsumptionData] = []
+    
+    @State private var showObservation: Bool = false
+    
+    @State private var storeFilled: Bool = false
     @EnvironmentObject var session: SessionManager
     
     enum ViewType: CaseIterable {
         case Instant
+        case Hour
         case Day
-        case Month
     }
     
-    struct ConsumptionData: Identifiable {
-        let id = UUID()
-        let consumption: Double
-        let timestamp: Date
-        
-        init(consumption: String, timestamp: Int) {
-            self.consumption = Double(consumption)!
-            self.timestamp = Date(timeIntervalSince1970: Double(timestamp))
+    func fetchGraphInfo() {
+        lastConsumption?.value = "0.00"
+        Task {
+            consumptionsLoading = true
+            switch selectedViewType {
+                
+            case .Instant:
+                consumptions = try await ConsumptionService.fetch(userId: selectedView, accessToken: session.accessToken!)
+                break
+                
+            case .Hour:
+                let consumptionsInterval = try await ConsumptionService.fetchWithInterval(userId: selectedView, accessToken: session.accessToken!, interval: "hour")
+                consumptions = Consumptions(data: consumptionsInterval.map { $0.toConsumption() })
+                break
+                
+            case .Day:
+                let consumptionsInterval = try await ConsumptionService.fetchWithInterval(userId: selectedView, accessToken: session.accessToken!, interval: "day")
+                consumptions = Consumptions(data: consumptionsInterval.map { $0.toConsumption() })
+                break
+                
+            }
+            lastConsumption = consumptions?.data[0]
+            consumptionsLoading = false
+            consumptionData = []
+            consumptions?.data.forEach { consumption in
+                let consumptionData = ConsumptionData(consumption: consumption.value, timestamp: consumption.timestamp)
+                self.consumptionData.append(consumptionData)
+            }
         }
     }
-    
-    @State private var consumptionInstantData: [ConsumptionData] = []
     
     func loadStore() {
         Task {
@@ -75,13 +95,7 @@ struct DashboardView: View {
                 divisionsLoading = false
                 
                 // Fetch Consumptions
-                consumptions = try await ConsumptionService.fetch(userId: selectedView, accessToken: session.accessToken!)
-                lastConsumption = consumptions?.data[0]
-                consumptionsLoading = false
-                consumptions?.data.forEach { consumption in
-                    let consumptionData = ConsumptionData(consumption: consumption.value, timestamp: consumption.timestamp)
-                    consumptionInstantData.append(consumptionData)
-                }
+                fetchGraphInfo()
                 
                 // Fetch Last Observation
                 observation = try await ObservationService.fetchLast(userId: selectedView, accessToken: session.accessToken!)
@@ -127,55 +141,18 @@ struct DashboardView: View {
                         VStack(alignment: .leading) {
                             Picker("Consumption", selection: $selectedViewType) {
                                 Text("Now").tag(ViewType.Instant)
+                                Text("Hour").tag(ViewType.Hour)
                                 Text("Day").tag(ViewType.Day)
-                                Text("Month").tag(ViewType.Month)
                             }
                             .pickerStyle(.segmented)
-                            
-                            switch(selectedViewType) {
-                            case .Instant:
-                                Text("\(lastConsumption?.value ?? "0.00") W")
-                                    .font(.largeTitle.bold())
-                                
-                                if (consumptionsLoading) {
-                                    HStack {
-                                        Spacer()
-                                        ProgressView()
-                                            .padding(.bottom)
-                                        Spacer()
-                                    }
-                                }
-                                else {
-                                    Chart(consumptionInstantData) {
-                                        LineMark(
-                                            x: .value("Time", $0.timestamp),
-                                            y: .value("Power (W)", $0.consumption)
-                                        )
-                                    }
-                                    .frame(height: 260)
-                                }
-                                
-                                
-                            case .Day:
-                                Chart(consumptionInstantData) {
-                                    LineMark(
-                                        x: .value("Time", $0.timestamp),
-                                        y: .value("Power (W)", $0.consumption)
-                                    )
-                                }
-                                .frame(height: 230)
-                            default:
-                                Chart(consumptionInstantData) {
-                                    LineMark(
-                                        x: .value("Time", $0.timestamp),
-                                        y: .value("Power (W)", $0.consumption)
-                                    )
-                                }
-                                .frame(height: 230)
+                            .onChange(of: selectedViewType) { value in
+                                fetchGraphInfo()
                             }
+                            
+                            ConsumptionGraph(lastConsumption: $lastConsumption, consumptionData: $consumptionData, consumptionsLoading: $consumptionsLoading)
+                            
                         }
                     }
-                    
                     
                     Section(content: {
                         if (observationLoading) {
@@ -188,18 +165,20 @@ struct DashboardView: View {
                         else {
                             
                             Button(action: {
-                                
+                                showObservation = true
                             }, label: {
-                                
                                 HStack {
                                     Text("Equipments")
+                                        .foregroundColor(Theme.text)
                                     Spacer()
                                     if (observationLoading) {
                                         ProgressView()
                                     }
                                     else {
                                         Text("\(observation?.observation.equipments.filter{ $0.consumption != "0.00" }.count ?? 0)")
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(.gray)
+                                        Symbols.arrow
+                                            .foregroundStyle(.gray)
                                     }
                                 }
                             })
@@ -208,15 +187,12 @@ struct DashboardView: View {
                         
                     }, header: {
                         HStack {
-                            Text("Energy")
+                            Text("Energy Activity")
                             Spacer()
-                            Button(action: {
-                                
-                            },
-                            label: {
+                            NavigationLink(destination: ObservationListView()) {
                                 Text("Show All")
                                     .font(.system(size: 14))
-                            })
+                            }
                         }
                     }, footer: {
                         
@@ -312,11 +288,12 @@ struct DashboardView: View {
                 }
             }
             .onAppear {
+                if (storeFilled) { return }
+                
                 // Initial Dashboard
                 selectedView = session.user!.data.id
                 
                 Task {
-                    
                     do {
                         // Fetch Affiliates
                         affiliates = try await AffiliateService.fetch(userId: (session.user?.data.id)!, accessToken: session.accessToken!)
@@ -332,11 +309,13 @@ struct DashboardView: View {
                         failMessage = "Decoding Error"
                         didFail = true
                     }
-                    
                 }
                 
                 // Load Store
                 loadStore()
+                
+                storeFilled = true
+
             }
             .alert("Data fetch failed", isPresented: $didFail, actions: {
                 Button("Ok") {}
@@ -352,13 +331,10 @@ struct DashboardView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             }, message: {})
+            .sheet(isPresented: $showObservation) {
+                ObservationView(observation: $observation, divisions: $activeDivisions)
+            }
             
         }
-    }
-}
-
-struct DashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardView()
     }
 }

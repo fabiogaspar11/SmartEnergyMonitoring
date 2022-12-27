@@ -32,16 +32,13 @@ struct EnergyView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
-                        showHelpUs = true
+                        
                     }
                     label: {
                         Symbols.help
                         Text("Help Us")
                     }
                 }
-            }
-            .sheet(isPresented: $showHelpUs) {
-                HelpUsView()
             }
             .onAppear() {
                 

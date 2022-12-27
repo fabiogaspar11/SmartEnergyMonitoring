@@ -12,7 +12,7 @@ class AffiliateService {
     static func fetch(userId: Int, accessToken: String) async throws -> Affiliates {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/affiliates",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/affiliates",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],
@@ -25,7 +25,7 @@ class AffiliateService {
     static func fetchMyAffiliates(userId: Int, accessToken: String) async throws -> Affiliates {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/affiliates/my",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/affiliates/my",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],

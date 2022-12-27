@@ -28,7 +28,6 @@ struct DivisionListView: View {
             List {
                 
                 ForEach(divisions?.data ?? []) { division in
-                    
                     HStack {
                         Text(division.name)
                         Spacer()
@@ -39,7 +38,6 @@ struct DivisionListView: View {
                             Symbols.trash
                         }
                     }
-                    
                 }
                 
             }

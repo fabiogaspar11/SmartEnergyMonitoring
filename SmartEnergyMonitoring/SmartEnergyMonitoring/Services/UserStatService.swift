@@ -12,7 +12,7 @@ class UserStatService {
     static func fetch(userId: Int, accessToken: String) async throws -> UserStats {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/statistics/kwh?months=2",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/statistics/kwh?months=2",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],

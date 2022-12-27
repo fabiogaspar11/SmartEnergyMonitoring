@@ -12,10 +12,12 @@ struct WebView: UIViewRepresentable {
     typealias UIViewType = WKWebView
     
     let webView: WKWebView
+    let accessToken: String
     
     init(accessToken: String) {
+        self.accessToken = accessToken
         webView = WKWebView(frame: .zero)
-        webView.load(URLRequest(url: URL(string: "https://daniel-carreira.github.io/sem-ar?token=\(accessToken)")!))
+        webView.load(URLRequest(url: URL(string: "https://smartenergymonitoring.dei.estg.ipleiria.pt/ar?token=\(accessToken)")!))
     }
     
     func makeUIView(context: Context) -> WKWebView {
@@ -23,5 +25,6 @@ struct WebView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
+        webView.load(URLRequest(url: URL(string: "https://smartenergymonitoring.dei.estg.ipleiria.pt/ar?token=\(accessToken)")!))
     }
 }

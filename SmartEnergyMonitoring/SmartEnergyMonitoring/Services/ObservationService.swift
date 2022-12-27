@@ -12,7 +12,7 @@ class ObservationService {
     static func fetchAll(userId: Int, accessToken: String) async throws -> Observations {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/observations",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/observations",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],
@@ -25,7 +25,7 @@ class ObservationService {
     static func fetchLast(userId: Int, accessToken: String) async throws -> Observation {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/observations/last",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/observations/last",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],

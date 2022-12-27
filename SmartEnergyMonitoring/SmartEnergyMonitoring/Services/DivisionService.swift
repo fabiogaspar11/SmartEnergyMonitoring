@@ -12,7 +12,7 @@ class DivisionService {
     static func fetch(userId: Int, accessToken: String) async throws -> Divisions {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/divisions",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/divisions",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],

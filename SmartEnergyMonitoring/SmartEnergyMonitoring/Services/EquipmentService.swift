@@ -12,7 +12,7 @@ class EquipmentService {
     static func fetch(userId: Int, accessToken: String) async throws -> Equipments {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/equipments",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/equipments",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json",
                       "Authorization":"Bearer \(accessToken)"],

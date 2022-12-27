@@ -11,7 +11,7 @@ class AuthService {
     static func login(credentials: [String: String]) async throws -> Auth {
         
         return try await APIHelper.request(
-            url: "http://smartenergymonitoring.dei.estg.ipleiria.pt/api/login",
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/login",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json"],
             parameters: credentials,
