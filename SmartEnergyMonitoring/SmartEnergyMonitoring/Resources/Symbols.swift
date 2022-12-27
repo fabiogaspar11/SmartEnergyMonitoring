@@ -22,4 +22,8 @@ enum Symbols {
     static let help = Image(systemName: "questionmark.circle")
     static let up = Image(systemName: "arrow.up.forward")
     static let down = Image(systemName: "arrow.up.backward")
+    static let calendar = Image(systemName: "calendar")
+    static let boltFill = Image(systemName: "bolt.fill")
+    static let euro = Image(systemName: "eurosign")
+    static let power = Image(systemName: "poweroutlet.type.f.fill")
 }

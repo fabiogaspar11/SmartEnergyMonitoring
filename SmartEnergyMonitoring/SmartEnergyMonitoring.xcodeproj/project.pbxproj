@@ -45,6 +45,9 @@
 		EFDCE0E329458AAE00643F5D /* ObservationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E229458AAE00643F5D /* ObservationService.swift */; };
 		EFDCE0E5294621DA00643F5D /* UserStatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E4294621DA00643F5D /* UserStatService.swift */; };
 		EFDCE0E7294629AC00643F5D /* ConsumptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E6294629AC00643F5D /* ConsumptionService.swift */; };
+		EFDCE0F0294A1F4300643F5D /* CocoaMQTT in Frameworks */ = {isa = PBXBuildFile; productRef = EFDCE0EF294A1F4300643F5D /* CocoaMQTT */; };
+		EFDCE0F2294A1F4300643F5D /* CocoaMQTTWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = EFDCE0F1294A1F4300643F5D /* CocoaMQTTWebSocket */; };
+		EFDCE0F5295538A700643F5D /* EasySkeleton in Frameworks */ = {isa = PBXBuildFile; productRef = EFDCE0F4295538A700643F5D /* EasySkeleton */; };
 		EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39BD29342DEA000167FD /* KeychainHelper.swift */; };
 		EFFB39C229344391000167FD /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C129344391000167FD /* APIHelper.swift */; };
 		EFFB39C5293D1E9C000167FD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C4293D1E9C000167FD /* AuthService.swift */; };
@@ -103,6 +106,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFDCE0F5295538A700643F5D /* EasySkeleton in Frameworks */,
+				EFDCE0F2294A1F4300643F5D /* CocoaMQTTWebSocket in Frameworks */,
+				EFDCE0F0294A1F4300643F5D /* CocoaMQTT in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +253,11 @@
 			dependencies = (
 			);
 			name = SmartEnergyMonitoring;
+			packageProductDependencies = (
+				EFDCE0EF294A1F4300643F5D /* CocoaMQTT */,
+				EFDCE0F1294A1F4300643F5D /* CocoaMQTTWebSocket */,
+				EFDCE0F4295538A700643F5D /* EasySkeleton */,
+			);
 			productName = SmartEnergyMonitoring;
 			productReference = E3AA53A728EDC33D00D06A7D /* SmartEnergyMonitoring.app */;
 			productType = "com.apple.product-type.application";
@@ -275,6 +286,10 @@
 				Base,
 			);
 			mainGroup = E3AA539E28EDC33D00D06A7D;
+			packageReferences = (
+				EFDCE0EE294A1F4300643F5D /* XCRemoteSwiftPackageReference "CocoaMQTT" */,
+				EFDCE0F3295538A700643F5D /* XCRemoteSwiftPackageReference "EasySkeleton" */,
+			);
 			productRefGroup = E3AA53A828EDC33D00D06A7D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -539,6 +554,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EFDCE0EE294A1F4300643F5D /* XCRemoteSwiftPackageReference "CocoaMQTT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/emqx/CocoaMQTT";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		EFDCE0F3295538A700643F5D /* XCRemoteSwiftPackageReference "EasySkeleton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SpectralDragon/EasySkeleton";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EFDCE0EF294A1F4300643F5D /* CocoaMQTT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFDCE0EE294A1F4300643F5D /* XCRemoteSwiftPackageReference "CocoaMQTT" */;
+			productName = CocoaMQTT;
+		};
+		EFDCE0F1294A1F4300643F5D /* CocoaMQTTWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFDCE0EE294A1F4300643F5D /* XCRemoteSwiftPackageReference "CocoaMQTT" */;
+			productName = CocoaMQTTWebSocket;
+		};
+		EFDCE0F4295538A700643F5D /* EasySkeleton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFDCE0F3295538A700643F5D /* XCRemoteSwiftPackageReference "EasySkeleton" */;
+			productName = EasySkeleton;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E3AA539F28EDC33D00D06A7D /* Project object */;
 }

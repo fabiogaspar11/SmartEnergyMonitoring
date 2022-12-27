@@ -23,7 +23,9 @@ struct DashboardView: View {
     @State var lastConsumption: Consumption?
     
     @State var kWh = 0.0
+    @State var month = ""
     @State var kWhDifference = 0.0
+    @State var priceDifference = 0.0
     
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
     
@@ -33,7 +35,7 @@ struct DashboardView: View {
     @State private var selectedView: Int = 0
     @State private var affiliates: Affiliates = []
     
-    @State private var selectedViewType: ViewType = .Text
+    @State private var selectedViewType: ViewType = .Instant
     
     @State private var showSwap = false
     @State private var showSwapToolbar = false
@@ -41,8 +43,9 @@ struct DashboardView: View {
     @EnvironmentObject var session: SessionManager
     
     enum ViewType: CaseIterable {
-        case Graph
-        case Text
+        case Instant
+        case Day
+        case Month
     }
     
     struct ConsumptionData: Identifiable {
@@ -71,14 +74,6 @@ struct DashboardView: View {
                 divisions = try await DivisionService.fetch(userId: selectedView, accessToken: session.accessToken!)
                 divisionsLoading = false
                 
-                // Fetch Last Observation
-                observation = try await ObservationService.fetchLast(userId: selectedView, accessToken: session.accessToken!)
-                observation?.observation.equipments.filter { $0.consumption != "0.00" }.forEach { equipment in
-                    let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
-                    activeDivisions.insert(division)
-                }
-                observationLoading = false
-                
                 // Fetch Consumptions
                 consumptions = try await ConsumptionService.fetch(userId: selectedView, accessToken: session.accessToken!)
                 lastConsumption = consumptions?.data[0]
@@ -88,11 +83,20 @@ struct DashboardView: View {
                     consumptionInstantData.append(consumptionData)
                 }
                 
+                // Fetch Last Observation
+                observation = try await ObservationService.fetchLast(userId: selectedView, accessToken: session.accessToken!)
+                observation?.observation.equipments.filter { $0.consumption != "0.00" }.forEach { equipment in
+                    let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
+                    activeDivisions.insert(division)
+                }
+                observationLoading = false
+                
                 // Fetch User Stats
                 userStats = try await UserStatService.fetch(userId: selectedView, accessToken: session.accessToken!)
                 kWh = Double((userStats?[0].value)!) ?? 0
-                kWhDifference = Double((userStats?[0].value)!) ?? 0 / Double((userStats?[1].value)!)!
-                kWhDifference = kWhDifference.isNaN ? 0 : kWhDifference
+                month = userStats?[0].timestamp ?? ""
+                kWhDifference = Double((userStats?[0].value)!) ?? 0 - Double((userStats?[1].value)!)!
+                priceDifference = Double((session.user?.data.energyPrice)!)! * kWhDifference
                 userStatsLoading = false
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {
@@ -117,71 +121,61 @@ struct DashboardView: View {
                 
                 List {
                     
-                    Section(content: {
-                        Picker("Consumption", selection: $selectedViewType) {
-                            Text("Text").tag(ViewType.Text)
-                            Text("Graph").tag(ViewType.Graph)
-                        }
-                        .pickerStyle(.segmented)
+                    Section {
                         
-                        switch(selectedViewType) {
-                        case .Graph:
-                            Chart(consumptionInstantData) {
-                                LineMark(
-                                    x: .value("Time", $0.timestamp),
-                                    y: .value("Power (W)", $0.consumption)
-                                )
+                        // Consumption Graph
+                        VStack(alignment: .leading) {
+                            Picker("Consumption", selection: $selectedViewType) {
+                                Text("Now").tag(ViewType.Instant)
+                                Text("Day").tag(ViewType.Day)
+                                Text("Month").tag(ViewType.Month)
                             }
-                            .frame(height: 230)
-                            .chartXAxis(.hidden)
-                        case .Text:
-                            HStack {
-                                Text("Instant")
-                                Spacer()
-                                if (consumptionsLoading) {
-                                    ProgressView()
-                                }
-                                else {
-                                    Text("\(lastConsumption?.value ?? "-") W")
-                                        .foregroundStyle(.secondary)
-                                }
+                            .pickerStyle(.segmented)
+                            
+                            switch(selectedViewType) {
+                            case .Instant:
+                                Text("\(lastConsumption?.value ?? "0.00") W")
+                                    .font(.largeTitle.bold())
                                 
-                            }
-                            VStack {
-                                HStack {
-                                    Text("Monthly")
-                                    Spacer()
-                                    if (userStatsLoading) {
-                                        ProgressView()
-                                    }
-                                    else {
-                                        Text("\( (kWhDifference > 0 ? "+" : "") + String(format: "%.2f", kWhDifference) )%")
-                                            .foregroundColor(kWhDifference > 0 ? .red : .green)
-                                        
-                                        Spacer()
-                                        Text("\(String(format: "%.2f", kWh)) kWh")
-                                            .foregroundStyle(.secondary)
-                                    }
-                                }
-                                if (!userStatsLoading) {
+                                if (consumptionsLoading) {
                                     HStack {
                                         Spacer()
-                                        Text("\(String(format: "%.2f", Double((session.user?.data.energyPrice)!)! * kWh)) €")
-                                            .foregroundStyle(.secondary)
+                                        ProgressView()
+                                            .padding(.bottom)
+                                        Spacer()
                                     }
                                 }
+                                else {
+                                    Chart(consumptionInstantData) {
+                                        LineMark(
+                                            x: .value("Time", $0.timestamp),
+                                            y: .value("Power (W)", $0.consumption)
+                                        )
+                                    }
+                                    .frame(height: 260)
+                                }
+                                
+                                
+                            case .Day:
+                                Chart(consumptionInstantData) {
+                                    LineMark(
+                                        x: .value("Time", $0.timestamp),
+                                        y: .value("Power (W)", $0.consumption)
+                                    )
+                                }
+                                .frame(height: 230)
+                            default:
+                                Chart(consumptionInstantData) {
+                                    LineMark(
+                                        x: .value("Time", $0.timestamp),
+                                        y: .value("Power (W)", $0.consumption)
+                                    )
+                                }
+                                .frame(height: 230)
                             }
-                            
                         }
-                        
-                    }, header: {
-                        Text("Consumption")
-                    }, footer: {
-                        HStack {
-                            Spacer()
-                            Text("Just now")
-                        }
-                    })
+                    }
+                    
                     
                     Section(content: {
                         if (observationLoading) {
@@ -192,22 +186,111 @@ struct DashboardView: View {
                             }
                         }
                         else {
-                            ForEach(observation?.observation.equipments.filter { $0.consumption != "0.00" } ?? []) { equipment in
+                            
+                            Button(action: {
+                                
+                            }, label: {
+                                
                                 HStack {
-                                    Text(equipment.name)
+                                    Text("Equipments")
                                     Spacer()
-                                    Text("\(equipment.consumption) W")
-                                        .foregroundStyle(.secondary)
+                                    if (observationLoading) {
+                                        ProgressView()
+                                    }
+                                    else {
+                                        Text("\(observation?.observation.equipments.filter{ $0.consumption != "0.00" }.count ?? 0)")
+                                            .foregroundStyle(.secondary)
+                                    }
                                 }
-                            }
+                            })
+                            
                         }
                         
                     }, header: {
-                        Text("Energy Disaggregation")
+                        HStack {
+                            Text("Energy")
+                            Spacer()
+                            Button(action: {
+                                
+                            },
+                            label: {
+                                Text("Show All")
+                                    .font(.system(size: 14))
+                            })
+                        }
                     }, footer: {
+                        
+                    })
+                    
+                    
+                    Section(content: {
+                        
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Energy")
+                                HStack {
+                                    // Percentagem Difference
+                                    Text("\(String(format: "%.2f", kWhDifference))")
+                                        .font(.system(size: 15, weight: .bold))
+                                        .foregroundStyle(Theme.textBadge)
+                                        .padding(3)
+                                        .background(kWhDifference > 0 ? .red : (kWhDifference < 0 ? .green : .gray))
+                                        .cornerRadius(5)
+                                    
+                                    // Amount Difference
+                                }
+                            }
+                            Spacer()
+                            if (userStatsLoading) {
+                                ProgressView()
+                            }
+                            else {
+                                Text("\(String(format: "%.2f", kWh)) kWh")
+                                    .foregroundStyle(.secondary)
+
+                            }
+                        }
+                        
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Price")
+                                HStack {
+                                    Text("\(String(format: "%.2f", priceDifference))")
+                                        .font(.system(size: 15, weight: .bold))
+                                        .foregroundStyle(Theme.textBadge)
+                                        .padding(3)
+                                        .background(priceDifference > 0 ? .red : (priceDifference < 0 ? .green : .gray))
+                                        .cornerRadius(5)
+                                }
+                            }
+                            Spacer()
+                            if (userStatsLoading) {
+                                ProgressView()
+                            }
+                            else {
+                                Text("\(String(format: "%.2f", Double((session.user?.data.energyPrice)!)! * kWh)) €")
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        
+                    },
+                    header: {
+                        HStack {
+                            Text("Invoice")
+                            Spacer()
+                            Button(action: {
+                                
+                            },
+                            label: {
+                                Text("Show All")
+                                    .font(.system(size: 14))
+                            })
+                        }
+                    },
+                    footer: {
                         HStack {
                             Spacer()
-                            Text("Just now")
+                            Text(month)
                         }
                     })
                     
