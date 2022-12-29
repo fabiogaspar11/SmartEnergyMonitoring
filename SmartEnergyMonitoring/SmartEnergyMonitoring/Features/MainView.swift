@@ -15,6 +15,7 @@ struct MainView: View {
     @State private var password: String = ""
     
     @EnvironmentObject var session: SessionManager
+    @StateObject var mqtt = MQTTManager.shared()
     
     var body: some View {
             
@@ -26,6 +27,7 @@ struct MainView: View {
                     Text("Home")
                 }
                 .environmentObject(session)
+                .environmentObject(mqtt)
             
             
             EnergyView()
@@ -34,6 +36,7 @@ struct MainView: View {
                     Text("Energy")
                 }
                 .environmentObject(session)
+                .environmentObject(mqtt)
             
             
             ARView()
@@ -52,13 +55,11 @@ struct MainView: View {
                 .environmentObject(session)
             
         }
-        
-    }
-    
-    struct MainView_Previews: PreviewProvider {
-        static var previews: some View {
-            MainView()
-                .environmentObject(SessionManager())
+        .onAppear() {
+            
+            mqtt.initializeMQTT()
+            mqtt.connect()
         }
+        
     }
 }

@@ -42,7 +42,9 @@ struct DashboardView: View {
     @State private var showObservation: Bool = false
     
     @State private var storeFilled: Bool = false
+    
     @EnvironmentObject var session: SessionManager
+    @EnvironmentObject var mqtt: MQTTManager
     
     enum ViewType: CaseIterable {
         case Instant
@@ -313,6 +315,12 @@ struct DashboardView: View {
                 
                 // Load Store
                 loadStore()
+                
+                // Set onMessage
+                mqtt.setMessageCallback(onMessage: { broker, message, id, _ in
+                    print(message)
+                })
+                mqtt.publish(topic: "1/power", message: "test")
                 
                 storeFilled = true
 
