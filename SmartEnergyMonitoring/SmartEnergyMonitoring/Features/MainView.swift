@@ -56,8 +56,7 @@ struct MainView: View {
             
         }
         .onAppear() {
-            
-            mqtt.initializeMQTT()
+            mqtt.initializeMQTT(userID: (session.user?.data.id)!)
             mqtt.connect()
         }
         

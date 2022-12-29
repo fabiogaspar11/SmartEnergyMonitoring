@@ -51,6 +51,7 @@
 		EFF13C97295B58AD005C4FAE /* ObservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C96295B58AD005C4FAE /* ObservationListView.swift */; };
 		EFF13C99295B5EED005C4FAE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C98295B5EED005C4FAE /* Utils.swift */; };
 		EFF13C9B295B6AB4005C4FAE /* MQTTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C9A295B6AB4005C4FAE /* MQTTManager.swift */; };
+		EFF13C9E295DFB12005C4FAE /* MQTTAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C9D295DFB12005C4FAE /* MQTTAppState.swift */; };
 		EFFB39BE29342DEA000167FD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39BD29342DEA000167FD /* KeychainHelper.swift */; };
 		EFFB39C229344391000167FD /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C129344391000167FD /* APIHelper.swift */; };
 		EFFB39C5293D1E9C000167FD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFB39C4293D1E9C000167FD /* AuthService.swift */; };
@@ -101,6 +102,7 @@
 		EFF13C96295B58AD005C4FAE /* ObservationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListView.swift; sourceTree = "<group>"; };
 		EFF13C98295B5EED005C4FAE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		EFF13C9A295B6AB4005C4FAE /* MQTTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTManager.swift; sourceTree = "<group>"; };
+		EFF13C9D295DFB12005C4FAE /* MQTTAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTAppState.swift; sourceTree = "<group>"; };
 		EFFB39BD29342DEA000167FD /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		EFFB39C129344391000167FD /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		EFFB39C4293D1E9C000167FD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				E355E21B292F0B4D0044A4CC /* Consumptions.swift */,
 				E355E21D292F0C920044A4CC /* Observations.swift */,
 				E355E21F292F0FCD0044A4CC /* Users.swift */,
+				EFF13C9D295DFB12005C4FAE /* MQTTAppState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				E355E21E292F0C920044A4CC /* Observations.swift in Sources */,
 				EFDCE0D329453B1C00643F5D /* EnergyView.swift in Sources */,
 				EFDCE0DD294558CF00643F5D /* EquipmentService.swift in Sources */,
+				EFF13C9E295DFB12005C4FAE /* MQTTAppState.swift in Sources */,
 				E355E210292F084F0044A4CC /* Auth.swift in Sources */,
 				EFDCE0D5294546F900643F5D /* DivisionListView.swift in Sources */,
 				EFF13C97295B58AD005C4FAE /* ObservationListView.swift in Sources */,

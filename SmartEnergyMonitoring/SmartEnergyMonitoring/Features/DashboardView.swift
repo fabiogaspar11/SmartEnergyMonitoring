@@ -59,7 +59,8 @@ struct DashboardView: View {
             switch selectedViewType {
                 
             case .Instant:
-                consumptions = try await ConsumptionService.fetch(userId: selectedView, accessToken: session.accessToken!)
+                //consumptions = try await ConsumptionService.fetch(userId: selectedView, accessToken: session.accessToken!)
+                consumptions = nil
                 break
                 
             case .Hour:
@@ -316,11 +317,14 @@ struct DashboardView: View {
                 // Load Store
                 loadStore()
                 
-                // Set onMessage
-                mqtt.setMessageCallback(onMessage: { broker, message, id, _ in
-                    print(message)
+                mqtt.currentAppState.setOnReceive(callback: { topic, payload in
+                    if (topic == "\((session.user?.data.id)!)/power") {
+                        if (selectedViewType == .Instant) {
+                            let timestamp = Int(Date.now.timeIntervalSince1970)
+                            consumptionData.append(ConsumptionData(consumption: payload, timestamp: timestamp))
+                        }
+                    }
                 })
-                mqtt.publish(topic: "1/power", message: "test")
                 
                 storeFilled = true
 
