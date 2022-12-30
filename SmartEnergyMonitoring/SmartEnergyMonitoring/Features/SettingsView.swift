@@ -32,7 +32,6 @@ struct SettingsView: View {
                     NavigationLink("Affiliates", destination: AffiliateListView())
                     
                     Toggle("Notifications", isOn: $notifications)
-                        .tint(Theme.primary)
                     
                     Section("Household") {
                         

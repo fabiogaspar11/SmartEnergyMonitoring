@@ -54,4 +54,9 @@ final class SessionManager: ObservableObject {
         currentState = .loggedIn
     }
     
+    //Aux function to return login view
+    func loginPage() {
+        currentState = .loggedOut
+    }
+    
 }

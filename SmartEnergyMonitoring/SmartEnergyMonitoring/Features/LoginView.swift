@@ -19,7 +19,7 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color(.white).edgesIgnoringSafeArea(.all)
+            Theme.background.edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 Image("logo")
@@ -35,23 +35,21 @@ struct LoginView: View {
                     .autocapitalization(.none)
                     .padding(.horizontal)
                     .font(.title3)
-                    .foregroundColor(.orange)
+                    .foregroundColor(Theme.text)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(.white)
+                    .background(Theme.detailBackground)
                     .cornerRadius(15)
-                    .shadow(color: .orange, radius: 1)
                     .padding(.top)
                 
                 SecureField("Password", text: $password)
                     .padding(.horizontal)
                     .font(.title3)
-                    .foregroundColor(.orange)
+                    .foregroundColor(Theme.text)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(.white)
+                    .background(Theme.detailBackground)
                     .cornerRadius(15)
-                    .shadow(color: .orange, radius: 1)
                     .padding(.top)
                 
                 Button(action: {
@@ -73,7 +71,7 @@ struct LoginView: View {
                     }
                     
                 }, label: {
-                    PrimaryButton(title: "Next →")
+                    PrimaryButton(title: "Log In →")
                         .padding(.vertical)
                 })
                 .alert("Authentication failed", isPresented: $didFail, actions: {
@@ -87,7 +85,7 @@ struct LoginView: View {
                 Button(action: {
                     session.register()
                 }, label: {
-                    Text("Don't have an account? Register here").foregroundColor(.orange)
+                    Text("Don't have an account? Register here").foregroundColor(Theme.primary)
                 })
     
             }

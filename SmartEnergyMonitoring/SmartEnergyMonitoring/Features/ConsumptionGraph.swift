@@ -25,7 +25,7 @@ struct ConsumptionGraph: View {
                 Spacer()
             }
         }
-        else {
+        else if (consumptionData.count > 0) {
             Chart(consumptionData) {
                 LineMark(
                     x: .value("Time", $0.timestamp),

@@ -11,7 +11,7 @@ struct Alerts: Codable {
     let data: [Alert]
 }
 
-struct Alert: Codable {
+struct Alert: Codable, Identifiable {
     let id, userID: Int
     let alert, timestamp: String
 

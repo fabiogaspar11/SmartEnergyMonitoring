@@ -22,10 +22,10 @@ struct RegisterView: View {
         VStack {
             Spacer()
             
-            Text("Hi!")
+            Text("Hi there!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .foregroundColor(.orange)
+                .foregroundColor(Theme.primary)
             
             Spacer()
             
@@ -36,45 +36,41 @@ struct RegisterView: View {
                 .autocapitalization(.none)
                 .padding(.horizontal)
                 .font(.title3)
-                .foregroundColor(.orange)
+                .foregroundColor(Theme.text)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(.white)
+                .background(Theme.detailBackground)
                 .cornerRadius(15)
-                .shadow(color: .orange, radius: 1)
                 .padding(.top)
             
             TextField("Full Name", text: $name)
                 .padding(.horizontal)
                 .font(.title3)
-                .foregroundColor(.orange)
+                .foregroundColor(Theme.text)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(.white)
+                .background(Theme.detailBackground)
                 .cornerRadius(15)
-                .shadow(color: .orange, radius: 1)
                 .padding(.top)
             
             SecureField("Password", text: $password)
                 .padding(.horizontal)
                 .font(.title3)
-                .foregroundColor(.orange)
+                .foregroundColor(Theme.text)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(.white)
+                .background(Theme.detailBackground)
                 .cornerRadius(15)
-                .shadow(color: .orange, radius: 1)
                 .padding(.vertical)
             
             DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
                 .padding(.horizontal)
                 .font(.title3)
-                .foregroundColor(.orange)
+                .foregroundColor(Theme.text)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(.white)
+                .background(Theme.detailBackground)
                 .cornerRadius(15)
-                .shadow(color: .orange, radius: 1)
                 
             
             Button(action: {
@@ -105,7 +101,7 @@ struct RegisterView: View {
                     }
                 }
             }, label: {
-                PrimaryButton(title: "Next →")
+                PrimaryButton(title: "Register →")
                     .padding(.top)
             })
             .alert("Registration failed", isPresented: $didFail, actions: {
@@ -115,6 +111,13 @@ struct RegisterView: View {
             }, message: {
                 Text(failMessage)
             })
+            
+            Button(action: {
+                session.loginPage()
+            }, label: {
+                Text("I have an account! Sign In").foregroundColor(Theme.primary)
+            })
+            .padding(.top)
             
         }
         .padding()

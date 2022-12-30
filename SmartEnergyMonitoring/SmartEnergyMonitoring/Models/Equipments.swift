@@ -21,6 +21,7 @@ struct Equipment: Codable, Identifiable {
     let equipmentTypeID, examples: Int
     let initStatusOn: String?
     let notifyWhenPassed: Int?
+    let socket: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,6 +35,7 @@ struct Equipment: Codable, Identifiable {
         case examples
         case initStatusOn = "init_status_on"
         case notifyWhenPassed = "notify_when_passed"
+        case socket
     }
 }
 

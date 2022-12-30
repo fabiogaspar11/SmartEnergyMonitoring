@@ -40,6 +40,7 @@ struct DashboardView: View {
     @State private var consumptionData: [ConsumptionData] = []
     
     @State private var showObservation: Bool = false
+    @State private var showInvoices: Bool = false
     
     @State private var storeFilled: Bool = false
     
@@ -258,7 +259,7 @@ struct DashboardView: View {
                             Text("Invoice")
                             Spacer()
                             Button(action: {
-                                
+                                showInvoices = true
                             },
                             label: {
                                 Text("Show All")
@@ -276,10 +277,11 @@ struct DashboardView: View {
                 }
                 
             }
-            .navigationTitle("Hi \((session.user?.data.name.components(separatedBy: " ")[0])!)!")
+            //.navigationTitle("Hi \((session.user?.data.name.components(separatedBy: " ")[0])!)!")
+            .navigationTitle("Home")
             .toolbar {
                 if (showSwapToolbar) {
-                    ToolbarItem(placement: .primaryAction) {
+                    ToolbarItem(placement: .navigationBarLeading) {
                         Button {
                             showSwap = true
                         }
@@ -287,6 +289,12 @@ struct DashboardView: View {
                             Symbols.swap
                             Text("Swap")
                         }
+                    }
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    NavigationLink(destination: AlertListView()) {
+                        Symbols.bell
+                        Text("Alerts")
                     }
                 }
             }
@@ -346,7 +354,9 @@ struct DashboardView: View {
             .sheet(isPresented: $showObservation) {
                 ObservationView(observation: $observation, divisions: $activeDivisions)
             }
-            
+            .sheet(isPresented: $showInvoices) {
+                InvoiceListView()
+            }
         }
     }
 }
