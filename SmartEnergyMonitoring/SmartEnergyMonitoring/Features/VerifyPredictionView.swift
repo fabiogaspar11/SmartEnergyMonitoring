@@ -60,6 +60,7 @@ struct VerifyPredictionView: View {
                                     }
                                     Spacer()
                                     Text("\(equipment.consumption) W")
+                                        .foregroundStyle(.secondary)
                                 }
                             }
                         }

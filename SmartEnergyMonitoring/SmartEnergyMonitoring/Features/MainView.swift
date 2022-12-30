@@ -8,17 +8,11 @@
 import SwiftUI
 
 struct MainView: View {
-    let screenHeight = UIScreen.main.bounds.size.height
-    let screenWidth = UIScreen.main.bounds.size.width
-    
-    @State private var email: String = ""
-    @State private var password: String = ""
-    
     @EnvironmentObject var session: SessionManager
     @StateObject var mqtt = MQTTManager.shared()
     
     var body: some View {
-            
+        
         TabView {
             
             DashboardView()

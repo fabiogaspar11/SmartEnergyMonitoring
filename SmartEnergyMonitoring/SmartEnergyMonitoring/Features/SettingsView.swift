@@ -32,24 +32,13 @@ struct SettingsView: View {
                     NavigationLink("Affiliates", destination: AffiliateListView())
                     
                     Toggle("Notifications", isOn: $notifications)
+                        .tint(Theme.primary)
                     
                     Section("Household") {
                         
                         NavigationLink("Divisions", destination: DivisionListView())
                         
                         NavigationLink("Equipments", destination: EquipmentListView())
-                        
-                        VStack {
-                            HStack {
-                                Text("Energy Price")
-                                Spacer()
-                                Text("\(String(format: "%.3f", energyPrice)) € / kWh")
-                                    .foregroundStyle(.secondary)
-                            }
-                            Slider(value: $energyPrice, in: 0...0.5)
-                                .tint(Theme.primary)
-                                .padding()
-                        }
                         
                     }
                     

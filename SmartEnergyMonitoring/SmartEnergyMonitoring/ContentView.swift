@@ -15,9 +15,14 @@ struct ContentView: View {
         VStack {
             switch session.currentState {
             case .loggedIn:
-                MainView()
-                    .environmentObject(session)
-                    .transition(.opacity)
+                if (session.user?.data.type == "C") {
+                    MainView()
+                        .environmentObject(session)
+                        .transition(.opacity)
+                }
+                else if (session.user?.data.type == "A") {
+                    MainAdminView()
+                }
             case .register:
                 RegisterView()
                     .environmentObject(session)

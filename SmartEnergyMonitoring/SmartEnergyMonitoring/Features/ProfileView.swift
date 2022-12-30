@@ -25,7 +25,7 @@ struct ProfileView: View {
             
             List {
                 
-                Section() {
+                Section {
                     
                     HStack {
                         Text("Name")
@@ -45,7 +45,20 @@ struct ProfileView: View {
                         in: ...Date.now,
                         displayedComponents: .date
                     )
-                    
+                }
+                
+                Section("Energy") {
+                    VStack {
+                        HStack {
+                            Text("Price")
+                            Spacer()
+                            Text("\(String(format: "%.3f", energyPrice)) € / kWh")
+                                .foregroundStyle(.secondary)
+                        }
+                        Slider(value: $energyPrice, in: 0...0.5)
+                            .tint(Theme.primary)
+                            .padding()
+                    }
                 }
                 
                 Section("Routine") {
@@ -86,11 +99,5 @@ struct ProfileView: View {
             
         }
         
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }

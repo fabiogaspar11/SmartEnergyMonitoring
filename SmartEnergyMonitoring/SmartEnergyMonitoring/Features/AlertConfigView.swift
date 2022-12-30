@@ -12,7 +12,7 @@ struct AlertConfigView: View {
     @State private var equipmentsLoading = true
     
     @State private var selected: Equipment?
-    @State private var notifyWhenPassed: Int?
+    @State private var notifyWhenPassed: Int = 0
     @State private var toggleNotify: Bool = false
     @State private var showAlertConfig = false
     
@@ -20,6 +20,14 @@ struct AlertConfigView: View {
     @State private var failMessage = ""
     
     @EnvironmentObject var session: SessionManager
+    
+    var intProxy: Binding<Double>{
+        Binding<Double>(get: {
+            return Double(notifyWhenPassed)
+        }, set: {
+            notifyWhenPassed = Int($0)
+        })
+    }
     
     var body: some View {
         NavigationStack {
@@ -105,16 +113,30 @@ struct AlertConfigView: View {
                     
                     Section("Config") {
                         Toggle("Notifications", isOn: $toggleNotify)
+                            .tint(Theme.primary)
+                        if (toggleNotify) {
+                            VStack {
+                                HStack {
+                                    Text("Time")
+                                    Spacer()
+                                    Text("\(notifyWhenPassed) minute(s)")
+                                        .foregroundStyle(.secondary)
+                                }
+                                Slider(value: intProxy, in: 0.0...120.0, step: 1.0)
+                                    .tint(Theme.primary)
+                                    .padding()
+                            }
+                        }
                     }
                     
                     Button("Save") {
                         
                     }
                 }
-            }
-            .onAppear() {
-                notifyWhenPassed = selected?.notifyWhenPassed
-                toggleNotify = notifyWhenPassed != nil
+                .onAppear() {
+                    notifyWhenPassed = selected?.notifyWhenPassed ?? 0
+                    toggleNotify = notifyWhenPassed != 0
+                }
             }
         })
     }
