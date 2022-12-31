@@ -22,6 +22,8 @@ struct ContentView: View {
                 }
                 else if (session.user?.data.type == "A") {
                     MainAdminView()
+                        .environmentObject(session)
+                        .transition(.opacity)
                 }
             case .register:
                 RegisterView()

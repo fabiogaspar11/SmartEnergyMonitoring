@@ -7,11 +7,15 @@
 
 import Foundation
 
+struct Users: Codable {
+    let data: [UserClass]
+}
+
 struct User: Codable {
     let data: UserClass
 }
 
-struct UserClass: Codable {
+struct UserClass: Codable, Identifiable {
     let id: Int
     let name, email, birthdate: String
     let divisions: [Division]?

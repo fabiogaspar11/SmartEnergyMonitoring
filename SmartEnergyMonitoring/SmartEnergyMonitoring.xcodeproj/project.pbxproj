@@ -31,6 +31,18 @@
 		E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */; };
 		E3D1384D28F704810027F008 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D1384C28F704810027F008 /* ContentView.swift */; };
 		EF9B6EAF295F960200A4E02C /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EAE295F960200A4E02C /* ChangePasswordView.swift */; };
+		EF9B6EB3295FA9E600A4E02C /* MainAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EB2295FA9E600A4E02C /* MainAdminView.swift */; };
+		EF9B6EBD295FAE3D00A4E02C /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EBC295FAE3D00A4E02C /* AdminDashboardView.swift */; };
+		EF9B6EBF295FAE5400A4E02C /* AdminSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EBE295FAE5400A4E02C /* AdminSettingsView.swift */; };
+		EF9B6EC1295FB24C00A4E02C /* AdminProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EC0295FB24C00A4E02C /* AdminProfileView.swift */; };
+		EF9B6EC3295FB36B00A4E02C /* AdminUserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EC2295FB36B00A4E02C /* AdminUserListView.swift */; };
+		EF9B6EC5295FB3B700A4E02C /* AdminUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EC4295FB3B700A4E02C /* AdminUserView.swift */; };
+		EF9B6EC7295FB6DE00A4E02C /* AdminEquipmentTypeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EC6295FB6DE00A4E02C /* AdminEquipmentTypeListView.swift */; };
+		EF9B6EC9295FCE0700A4E02C /* EquipmentTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6EC8295FCE0700A4E02C /* EquipmentTypes.swift */; };
+		EF9B6ECB295FCE7B00A4E02C /* EquipmentTypeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ECA295FCE7B00A4E02C /* EquipmentTypeService.swift */; };
+		EF9B6ECD295FD11300A4E02C /* AdminEquipmentTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ECC295FD11300A4E02C /* AdminEquipmentTypeView.swift */; };
+		EF9B6ECF295FD8F000A4E02C /* AdminStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ECE295FD8F000A4E02C /* AdminStats.swift */; };
+		EF9B6ED1295FDA0500A4E02C /* AdminStatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ED0295FDA0500A4E02C /* AdminStatsService.swift */; };
 		EFDCE0C92940FCF100643F5D /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0C82940FCF100643F5D /* WebView.swift */; };
 		EFDCE0CB2942BF4D00643F5D /* DivisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */; };
 		EFDCE0D12945307A00643F5D /* AffiliateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D02945307A00643F5D /* AffiliateService.swift */; };
@@ -47,7 +59,6 @@
 		EFDCE0E7294629AC00643F5D /* ConsumptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0E6294629AC00643F5D /* ConsumptionService.swift */; };
 		EFDCE0F0294A1F4300643F5D /* CocoaMQTT in Frameworks */ = {isa = PBXBuildFile; productRef = EFDCE0EF294A1F4300643F5D /* CocoaMQTT */; };
 		EFDCE0F2294A1F4300643F5D /* CocoaMQTTWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = EFDCE0F1294A1F4300643F5D /* CocoaMQTTWebSocket */; };
-		EFDCE0F5295538A700643F5D /* EasySkeleton in Frameworks */ = {isa = PBXBuildFile; productRef = EFDCE0F4295538A700643F5D /* EasySkeleton */; };
 		EFF13C95295B3C32005C4FAE /* ConsumptionGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C94295B3C32005C4FAE /* ConsumptionGraph.swift */; };
 		EFF13C97295B58AD005C4FAE /* ObservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C96295B58AD005C4FAE /* ObservationListView.swift */; };
 		EFF13C99295B5EED005C4FAE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C98295B5EED005C4FAE /* Utils.swift */; };
@@ -92,6 +103,18 @@
 		E3AC43CF28F728EA001AD75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D1384C28F704810027F008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EF9B6EAE295F960200A4E02C /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		EF9B6EB2295FA9E600A4E02C /* MainAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdminView.swift; sourceTree = "<group>"; };
+		EF9B6EBC295FAE3D00A4E02C /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardView.swift; sourceTree = "<group>"; };
+		EF9B6EBE295FAE5400A4E02C /* AdminSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSettingsView.swift; sourceTree = "<group>"; };
+		EF9B6EC0295FB24C00A4E02C /* AdminProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileView.swift; sourceTree = "<group>"; };
+		EF9B6EC2295FB36B00A4E02C /* AdminUserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserListView.swift; sourceTree = "<group>"; };
+		EF9B6EC4295FB3B700A4E02C /* AdminUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserView.swift; sourceTree = "<group>"; };
+		EF9B6EC6295FB6DE00A4E02C /* AdminEquipmentTypeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEquipmentTypeListView.swift; sourceTree = "<group>"; };
+		EF9B6EC8295FCE0700A4E02C /* EquipmentTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentTypes.swift; sourceTree = "<group>"; };
+		EF9B6ECA295FCE7B00A4E02C /* EquipmentTypeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentTypeService.swift; sourceTree = "<group>"; };
+		EF9B6ECC295FD11300A4E02C /* AdminEquipmentTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEquipmentTypeView.swift; sourceTree = "<group>"; };
+		EF9B6ECE295FD8F000A4E02C /* AdminStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminStats.swift; sourceTree = "<group>"; };
+		EF9B6ED0295FDA0500A4E02C /* AdminStatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminStatsService.swift; sourceTree = "<group>"; };
 		EFDCE0C82940FCF100643F5D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionService.swift; sourceTree = "<group>"; };
 		EFDCE0D02945307A00643F5D /* AffiliateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateService.swift; sourceTree = "<group>"; };
@@ -128,7 +151,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFDCE0F5295538A700643F5D /* EasySkeleton in Frameworks */,
 				EFDCE0F2294A1F4300643F5D /* CocoaMQTTWebSocket in Frameworks */,
 				EFDCE0F0294A1F4300643F5D /* CocoaMQTT in Frameworks */,
 			);
@@ -155,26 +177,6 @@
 				EF9B6EB0295FA7D600A4E02C /* Client */,
 				E3AA53BC28EDFF7100D06A7D /* LoginView.swift */,
 				E3AA53C228EE0D0C00D06A7D /* RegisterView.swift */,
-				E3AA53C028EE051200D06A7D /* MainView.swift */,
-				E355E230292FEDC70044A4CC /* ARView.swift */,
-				E355E22E292FECFE0044A4CC /* DashboardView.swift */,
-				E355E232292FEDD40044A4CC /* SettingsView.swift */,
-				EFDCE0D229453B1C00643F5D /* EnergyView.swift */,
-				EFDCE0D4294546F900643F5D /* DivisionListView.swift */,
-				EFDCE0D62945470D00643F5D /* EquipmentListView.swift */,
-				EFDCE0D82945471F00643F5D /* AffiliateListView.swift */,
-				EFDCE0DA294548B800643F5D /* ProfileView.swift */,
-				EFDCE0DE2945617000643F5D /* EquipmentView.swift */,
-				EFDCE0E0294588D600643F5D /* ObservationView.swift */,
-				EFDCE0C82940FCF100643F5D /* WebView.swift */,
-				EFF13C94295B3C32005C4FAE /* ConsumptionGraph.swift */,
-				EFF13C96295B58AD005C4FAE /* ObservationListView.swift */,
-				EFF13C9F295E6A89005C4FAE /* InvoiceListView.swift */,
-				EFF13CA1295EA225005C4FAE /* VerifyPredictionView.swift */,
-				EFF13CA3295EB1D8005C4FAE /* DataAcquisitionView.swift */,
-				EFF13CA5295F6674005C4FAE /* AlertListView.swift */,
-				EFF13CA9295F7A91005C4FAE /* AlertConfigView.swift */,
-				EF9B6EAE295F960200A4E02C /* ChangePasswordView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -191,16 +193,18 @@
 		E355E22D292FAFA10044A4CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E355E20F292F084F0044A4CC /* Auth.swift */,
-				E355E211292F08E20044A4CC /* UserStats.swift */,
-				E355E213292F09B10044A4CC /* Alerts.swift */,
+				EF9B6ECE295FD8F000A4E02C /* AdminStats.swift */,
 				E355E215292F0A420044A4CC /* Affiliates.swift */,
+				E355E213292F09B10044A4CC /* Alerts.swift */,
+				E355E20F292F084F0044A4CC /* Auth.swift */,
+				E355E21B292F0B4D0044A4CC /* Consumptions.swift */,
 				E355E217292F0A710044A4CC /* Divisions.swift */,
 				E355E219292F0B0C0044A4CC /* Equipments.swift */,
-				E355E21B292F0B4D0044A4CC /* Consumptions.swift */,
+				EF9B6EC8295FCE0700A4E02C /* EquipmentTypes.swift */,
+				EFF13C9D295DFB12005C4FAE /* MQTTAppState.swift */,
 				E355E21D292F0C920044A4CC /* Observations.swift */,
 				E355E21F292F0FCD0044A4CC /* Users.swift */,
-				EFF13C9D295DFB12005C4FAE /* MQTTAppState.swift */,
+				E355E211292F08E20044A4CC /* UserStats.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +254,11 @@
 		EF9B6EB0295FA7D600A4E02C /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				EF9B6EB4295FAA1B00A4E02C /* Home */,
+				EF9B6EB5295FAA8C00A4E02C /* Energy */,
+				EF9B6EB6295FAAA400A4E02C /* AR */,
+				EF9B6EB7295FAAAC00A4E02C /* Settings */,
+				E3AA53C028EE051200D06A7D /* MainView.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -257,8 +266,79 @@
 		EF9B6EB1295FA7FD00A4E02C /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				EF9B6EB8295FAC8E00A4E02C /* Home */,
+				EF9B6EB9295FACD800A4E02C /* Settings */,
+				EF9B6EB2295FA9E600A4E02C /* MainAdminView.swift */,
 			);
 			path = Admin;
+			sourceTree = "<group>";
+		};
+		EF9B6EB4295FAA1B00A4E02C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E355E22E292FECFE0044A4CC /* DashboardView.swift */,
+				EFF13C94295B3C32005C4FAE /* ConsumptionGraph.swift */,
+				EFDCE0E0294588D600643F5D /* ObservationView.swift */,
+				EFF13C96295B58AD005C4FAE /* ObservationListView.swift */,
+				EFF13C9F295E6A89005C4FAE /* InvoiceListView.swift */,
+				EFF13CA5295F6674005C4FAE /* AlertListView.swift */,
+				EFF13CA9295F7A91005C4FAE /* AlertConfigView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EF9B6EB5295FAA8C00A4E02C /* Energy */ = {
+			isa = PBXGroup;
+			children = (
+				EFDCE0D229453B1C00643F5D /* EnergyView.swift */,
+				EFF13CA1295EA225005C4FAE /* VerifyPredictionView.swift */,
+				EFF13CA3295EB1D8005C4FAE /* DataAcquisitionView.swift */,
+			);
+			path = Energy;
+			sourceTree = "<group>";
+		};
+		EF9B6EB6295FAAA400A4E02C /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				E355E230292FEDC70044A4CC /* ARView.swift */,
+				EFDCE0C82940FCF100643F5D /* WebView.swift */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
+		EF9B6EB7295FAAAC00A4E02C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E355E232292FEDD40044A4CC /* SettingsView.swift */,
+				EFDCE0DA294548B800643F5D /* ProfileView.swift */,
+				EFDCE0D82945471F00643F5D /* AffiliateListView.swift */,
+				EFDCE0D62945470D00643F5D /* EquipmentListView.swift */,
+				EFDCE0DE2945617000643F5D /* EquipmentView.swift */,
+				EFDCE0D4294546F900643F5D /* DivisionListView.swift */,
+				EF9B6EAE295F960200A4E02C /* ChangePasswordView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		EF9B6EB8295FAC8E00A4E02C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EF9B6EBC295FAE3D00A4E02C /* AdminDashboardView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EF9B6EB9295FACD800A4E02C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EF9B6EBE295FAE5400A4E02C /* AdminSettingsView.swift */,
+				EF9B6EC0295FB24C00A4E02C /* AdminProfileView.swift */,
+				EF9B6EC2295FB36B00A4E02C /* AdminUserListView.swift */,
+				EF9B6EC4295FB3B700A4E02C /* AdminUserView.swift */,
+				EF9B6EC6295FB6DE00A4E02C /* AdminEquipmentTypeListView.swift */,
+				EF9B6ECC295FD11300A4E02C /* AdminEquipmentTypeView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EFFB39BC29342DD2000167FD /* Helpers */ = {
@@ -273,15 +353,17 @@
 		EFFB39C3293D1E71000167FD /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				EFFB39C4293D1E9C000167FD /* AuthService.swift */,
-				EFFB39C6293D6B29000167FD /* UserService.swift */,
-				EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */,
+				EF9B6ED0295FDA0500A4E02C /* AdminStatsService.swift */,
 				EFDCE0D02945307A00643F5D /* AffiliateService.swift */,
-				EFDCE0DC294558CF00643F5D /* EquipmentService.swift */,
-				EFDCE0E229458AAE00643F5D /* ObservationService.swift */,
-				EFDCE0E4294621DA00643F5D /* UserStatService.swift */,
-				EFDCE0E6294629AC00643F5D /* ConsumptionService.swift */,
 				EFF13CA7295F6945005C4FAE /* AlertService.swift */,
+				EFFB39C4293D1E9C000167FD /* AuthService.swift */,
+				EFDCE0E6294629AC00643F5D /* ConsumptionService.swift */,
+				EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */,
+				EFDCE0DC294558CF00643F5D /* EquipmentService.swift */,
+				EF9B6ECA295FCE7B00A4E02C /* EquipmentTypeService.swift */,
+				EFDCE0E229458AAE00643F5D /* ObservationService.swift */,
+				EFFB39C6293D6B29000167FD /* UserService.swift */,
+				EFDCE0E4294621DA00643F5D /* UserStatService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -305,7 +387,6 @@
 			packageProductDependencies = (
 				EFDCE0EF294A1F4300643F5D /* CocoaMQTT */,
 				EFDCE0F1294A1F4300643F5D /* CocoaMQTTWebSocket */,
-				EFDCE0F4295538A700643F5D /* EasySkeleton */,
 			);
 			productName = SmartEnergyMonitoring;
 			productReference = E3AA53A728EDC33D00D06A7D /* SmartEnergyMonitoring.app */;
@@ -337,7 +418,6 @@
 			mainGroup = E3AA539E28EDC33D00D06A7D;
 			packageReferences = (
 				EFDCE0EE294A1F4300643F5D /* XCRemoteSwiftPackageReference "CocoaMQTT" */,
-				EFDCE0F3295538A700643F5D /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 			);
 			productRefGroup = E3AA53A828EDC33D00D06A7D /* Products */;
 			projectDirPath = "";
@@ -376,26 +456,37 @@
 				EFDCE0E329458AAE00643F5D /* ObservationService.swift in Sources */,
 				E355E21C292F0B4D0044A4CC /* Consumptions.swift in Sources */,
 				EFDCE0DF2945617000643F5D /* EquipmentView.swift in Sources */,
+				EF9B6EBF295FAE5400A4E02C /* AdminSettingsView.swift in Sources */,
 				EFDCE0E7294629AC00643F5D /* ConsumptionService.swift in Sources */,
 				E3D1384D28F704810027F008 /* ContentView.swift in Sources */,
 				EFF13CAA295F7A91005C4FAE /* AlertConfigView.swift in Sources */,
 				EFFB39C5293D1E9C000167FD /* AuthService.swift in Sources */,
+				EF9B6EB3295FA9E600A4E02C /* MainAdminView.swift in Sources */,
+				EF9B6ECD295FD11300A4E02C /* AdminEquipmentTypeView.swift in Sources */,
 				E355E220292F0FCD0044A4CC /* Users.swift in Sources */,
 				E3AA53AB28EDC33D00D06A7D /* SmartEnergyMonitoringApp.swift in Sources */,
+				EF9B6EC9295FCE0700A4E02C /* EquipmentTypes.swift in Sources */,
 				EFF13CA2295EA225005C4FAE /* VerifyPredictionView.swift in Sources */,
 				EFF13CA6295F6674005C4FAE /* AlertListView.swift in Sources */,
 				E355E21A292F0B0C0044A4CC /* Equipments.swift in Sources */,
 				EFF13C99295B5EED005C4FAE /* Utils.swift in Sources */,
 				E355E21E292F0C920044A4CC /* Observations.swift in Sources */,
+				EF9B6EC1295FB24C00A4E02C /* AdminProfileView.swift in Sources */,
+				EF9B6ECF295FD8F000A4E02C /* AdminStats.swift in Sources */,
+				EF9B6EC3295FB36B00A4E02C /* AdminUserListView.swift in Sources */,
 				EFDCE0D329453B1C00643F5D /* EnergyView.swift in Sources */,
 				EFDCE0DD294558CF00643F5D /* EquipmentService.swift in Sources */,
+				EF9B6EBD295FAE3D00A4E02C /* AdminDashboardView.swift in Sources */,
 				EFF13C9E295DFB12005C4FAE /* MQTTAppState.swift in Sources */,
 				E355E210292F084F0044A4CC /* Auth.swift in Sources */,
 				EFF13CA4295EB1D8005C4FAE /* DataAcquisitionView.swift in Sources */,
+				EF9B6ED1295FDA0500A4E02C /* AdminStatsService.swift in Sources */,
 				EFDCE0D5294546F900643F5D /* DivisionListView.swift in Sources */,
 				EFF13C97295B58AD005C4FAE /* ObservationListView.swift in Sources */,
 				EFFB39C229344391000167FD /* APIHelper.swift in Sources */,
+				EF9B6ECB295FCE7B00A4E02C /* EquipmentTypeService.swift in Sources */,
 				EFF13CA0295E6A89005C4FAE /* InvoiceListView.swift in Sources */,
+				EF9B6EC5295FB3B700A4E02C /* AdminUserView.swift in Sources */,
 				E355E214292F09B10044A4CC /* Alerts.swift in Sources */,
 				EFDCE0CB2942BF4D00643F5D /* DivisionService.swift in Sources */,
 				E355E212292F08E20044A4CC /* UserStats.swift in Sources */,
@@ -407,6 +498,7 @@
 				EFF13CA8295F6945005C4FAE /* AlertService.swift in Sources */,
 				EFDCE0DB294548B800643F5D /* ProfileView.swift in Sources */,
 				E355E22F292FECFE0044A4CC /* DashboardView.swift in Sources */,
+				EF9B6EC7295FB6DE00A4E02C /* AdminEquipmentTypeListView.swift in Sources */,
 				EFF13C9B295B6AB4005C4FAE /* MQTTManager.swift in Sources */,
 				E355E226292F94310044A4CC /* SessionManager.swift in Sources */,
 				E355E22C292F97CA0044A4CC /* Buttons.swift in Sources */,
@@ -626,14 +718,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		EFDCE0F3295538A700643F5D /* XCRemoteSwiftPackageReference "EasySkeleton" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SpectralDragon/EasySkeleton";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -646,11 +730,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EFDCE0EE294A1F4300643F5D /* XCRemoteSwiftPackageReference "CocoaMQTT" */;
 			productName = CocoaMQTTWebSocket;
-		};
-		EFDCE0F4295538A700643F5D /* EasySkeleton */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EFDCE0F3295538A700643F5D /* XCRemoteSwiftPackageReference "EasySkeleton" */;
-			productName = EasySkeleton;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

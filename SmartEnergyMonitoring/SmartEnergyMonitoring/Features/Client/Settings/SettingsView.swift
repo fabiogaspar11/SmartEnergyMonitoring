@@ -9,11 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var notifications: Bool = false
-    @State private var birthDate: Date = Date()
-    @State private var wakeTime: Date = Date()
-    @State private var bedTime: Date = Date()
-    @State private var energyPrice: Float = 0.15
-    @State private var name: String = ""
     
     @EnvironmentObject var session: SessionManager
     
@@ -68,20 +63,7 @@ struct SettingsView: View {
             }
             .onAppear() {
                 let user = session.user?.data
-                
-                name = user!.name
                 notifications = user!.notifications == 1
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                birthDate = dateFormatter.date(from: user!.birthdate)!
-                
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                bedTime = dateFormatter.date(from: user!.noActivityStart)!
-                wakeTime = dateFormatter.date(from: user!.noActivityEnd)!
-                
-                energyPrice = Float(user!.energyPrice)!
-                
             }
             
         }

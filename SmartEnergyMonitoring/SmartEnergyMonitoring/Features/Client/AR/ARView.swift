@@ -9,21 +9,12 @@ import SwiftUI
 import WebKit
 
 struct ARView: View {
-    
     @EnvironmentObject var session: SessionManager
     
     var body: some View {
         ZStack {
-                
             Theme.background.edgesIgnoringSafeArea(.top)
             WebView(accessToken: session.accessToken!)
-                
         }
-    }
-}
-
-struct ARView_Previews: PreviewProvider {
-    static var previews: some View {
-        ARView()
     }
 }

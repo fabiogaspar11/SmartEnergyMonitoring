@@ -83,7 +83,7 @@ struct ObservationListView: View {
         }, message: {
             Text(failMessage)
         })
-        .navigationTitle("Observations")
+        .navigationTitle("Energy Activity")
         .sheet(isPresented: $showObservation) {
             ObservationView(observation: $selected, divisions: $activeDivisions)
         }

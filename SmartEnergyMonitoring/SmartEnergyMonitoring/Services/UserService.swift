@@ -37,4 +37,17 @@ class UserService {
         
     }
     
+    static func fetchAll(accessToken: String) async throws -> Users {
+        
+        return try await APIHelper.request(
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users",
+            headers: ["Accept":"application/json",
+                      "Content-Type":"application/json",
+                      "Authorization":"Bearer \(accessToken)"],
+            method: "GET",
+            type: Users.self
+        )
+        
+    }
+    
 }
