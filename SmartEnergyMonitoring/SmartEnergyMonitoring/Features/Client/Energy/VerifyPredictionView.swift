@@ -13,13 +13,37 @@ struct VerifyPredictionView: View {
     
     @State private var divisions: [DivisionShort] = []
     
+    @State private var showActions = true
+    @State private var requestLoading = false
+    
     @State private var didFail = false
     @State private var failMessage = ""
     
     @EnvironmentObject var session: SessionManager
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     func submitManualLabel() -> Void {
-        //TODO: post request
+        Task {
+            do {
+                requestLoading = true
+                var devices: [String: Double] = [:]
+                observation?.observation.equipments.forEach { device in
+                    devices[device.id.description] = Double(device.consumption)!
+                }
+                let timestamp = observation!.consumption.timestamp
+                let body = TrainingExamples(start: timestamp, end: timestamp, equipments: devices)
+                let decoded = try JSONEncoder().encode(body)
+                
+                try await TrainingExamplesService.post(userId: (session.user?.data.id)!, accessToken: session.accessToken!, parameters: decoded)
+                requestLoading = false
+                showActions = false
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+        }
     }
     
     init(observation: Binding<Observation?>, equipments: Binding<Equipments?>) {
@@ -55,7 +79,7 @@ struct VerifyPredictionView: View {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(equipment.name)
-                                        Text("Division: \(equipment.divisionName)")
+                                        Text("\(equipment.divisionName)")
                                             .foregroundStyle(.secondary)
                                     }
                                     Spacer()
@@ -64,19 +88,30 @@ struct VerifyPredictionView: View {
                                 }
                             }
                         }
-                        
-                        Section {
-                            Button("Record →") {
-                                
+                        if (showActions) {
+                            Section {
+                                Button(action: {
+                                    submitManualLabel()
+                                }, label: {
+                                    HStack {
+                                        Text("Correct")
+                                        Spacer()
+                                        if (requestLoading) {
+                                            ProgressView()
+                                        }
+                                    }
+                                })
+                                Button("Wrong", role: .destructive) {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
                             }
                         }
-                        
                     }
                 }
                 
             }
         }
-        .alert("Data fetch failed", isPresented: $didFail, actions: {
+        .alert("Something went wrong!", isPresented: $didFail, actions: {
             Button("Ok") {}
         }, message: {
             Text(failMessage)

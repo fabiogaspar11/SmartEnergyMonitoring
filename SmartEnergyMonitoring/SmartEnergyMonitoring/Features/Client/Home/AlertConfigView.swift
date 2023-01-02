@@ -12,8 +12,6 @@ struct AlertConfigView: View {
     @State private var equipmentsLoading = true
     
     @State private var selected: Equipment?
-    @State private var notifyWhenPassed: Int = 0
-    @State private var toggleNotify: Bool = false
     @State private var showAlertConfig = false
     
     @State private var didFail = false
@@ -21,12 +19,22 @@ struct AlertConfigView: View {
     
     @EnvironmentObject var session: SessionManager
     
-    var intProxy: Binding<Double>{
-        Binding<Double>(get: {
-            return Double(notifyWhenPassed)
-        }, set: {
-            notifyWhenPassed = Int($0)
-        })
+    func fetchEquipments() -> Void {
+        Task {
+            do {
+                equipmentsLoading = true
+                equipments = try await EquipmentService.fetch(userId: (session.user?.data.id)!, accessToken: session.accessToken!)
+                equipmentsLoading = false
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+            catch APIHelper.APIError.decodingError {
+                failMessage = "Decoding Error"
+                didFail = true
+            }
+        }
     }
     
     var body: some View {
@@ -51,7 +59,7 @@ struct AlertConfigView: View {
                                             VStack(alignment: .leading) {
                                                 Text(equipment.name)
                                                     .foregroundColor(Theme.text)
-                                                Text("Division: \(equipment.divisionName)")
+                                                Text("\(equipment.divisionName)")
                                                     .foregroundColor(.gray)
                                             }
                                             Spacer()
@@ -72,21 +80,7 @@ struct AlertConfigView: View {
         }
         .navigationTitle("Configuration")
         .onAppear() {
-            Task {
-                do {
-                    equipmentsLoading = true
-                    equipments = try await EquipmentService.fetch(userId: (session.user?.data.id)!, accessToken: session.accessToken!)
-                    equipmentsLoading = false
-                }
-                catch APIHelper.APIError.invalidRequestError(let errorMessage) {
-                    failMessage = errorMessage
-                    didFail = true
-                }
-                catch APIHelper.APIError.decodingError {
-                    failMessage = "Decoding Error"
-                    didFail = true
-                }
-            }
+            fetchEquipments()
         }
         .alert("Data fetch failed", isPresented: $didFail, actions: {
             Button("Ok") {}
@@ -94,50 +88,7 @@ struct AlertConfigView: View {
             Text(failMessage)
         })
         .sheet(isPresented: $showAlertConfig, content: {
-            VStack {
-                List {
-                    Section("Details") {
-                        HStack {
-                            Text("Name")
-                            Spacer()
-                            Text(selected?.name ?? "")
-                                .foregroundStyle(.secondary)
-                        }
-                        HStack {
-                            Text("Division")
-                            Spacer()
-                            Text(selected?.divisionName ?? "")
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    
-                    Section("Config") {
-                        Toggle("Notifications", isOn: $toggleNotify)
-                            .tint(Theme.primary)
-                        if (toggleNotify) {
-                            VStack {
-                                HStack {
-                                    Text("Time")
-                                    Spacer()
-                                    Text("\(notifyWhenPassed) minute(s)")
-                                        .foregroundStyle(.secondary)
-                                }
-                                Slider(value: intProxy, in: 0.0...120.0, step: 1.0)
-                                    .tint(Theme.primary)
-                                    .padding()
-                            }
-                        }
-                    }
-                    
-                    Button("Save") {
-                        
-                    }
-                }
-                .onAppear() {
-                    notifyWhenPassed = selected?.notifyWhenPassed ?? 0
-                    toggleNotify = notifyWhenPassed != 0
-                }
-            }
+            AlertConfigSheetView(selected: $selected, showAlertConfig: $showAlertConfig)
         })
     }
 }

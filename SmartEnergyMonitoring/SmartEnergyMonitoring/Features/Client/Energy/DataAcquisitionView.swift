@@ -16,6 +16,10 @@ struct DataAcquisitionView: View {
     
     @State private var state: StateView = .First
     
+    @State private var dateEnd: Int = 0
+    @State private var consumption = "0.00"
+    @State private var timer = "0:00"
+    
     @EnvironmentObject var session: SessionManager
     @EnvironmentObject var mqtt: MQTTManager
     
@@ -97,6 +101,8 @@ struct DataAcquisitionView: View {
                             }
                             Button("Next →") {
                                 state = .Third
+                                mqtt.publish(topic: "\(session.user!.data.id)/tare", with: "tare")
+                                timer = "\(time):00"
                             }
                         }
                         else if (state == .Third) {
@@ -107,6 +113,14 @@ struct DataAcquisitionView: View {
                             
                             Button("Begin analysis →") {
                                 state = .Fourth
+                                let date = Calendar.current.date(byAdding: .minute, value: time, to: Date.now)!
+                                dateEnd = Int(date.timeIntervalSince1970)
+                                
+                                mqtt.currentAppState.setOnReceive(callback: { topic, payload in
+                                    if (topic == "\((session.user?.data.id)!)/power") {
+                                        consumption = payload
+                                    }
+                                })
                             }
                         }
                         else if (state == .Fourth) {
@@ -114,13 +128,13 @@ struct DataAcquisitionView: View {
                                 HStack {
                                     Text("Time remaining")
                                     Spacer()
-                                    Text("59 s")
+                                    Text(timer)
                                         .foregroundStyle(.secondary)
                                 }
                                 HStack {
                                     Text("Consumption")
                                     Spacer()
-                                    Text("300 W")
+                                    Text("\(consumption) W")
                                         .foregroundStyle(.secondary)
                                 }
                             }

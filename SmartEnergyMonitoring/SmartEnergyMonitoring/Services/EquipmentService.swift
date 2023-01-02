@@ -22,4 +22,17 @@ class EquipmentService {
         
     }
     
+    static func patchNotification(userId: Int, accessToken: String, equipmentId: Int, parameters: Data) async throws -> Void {
+        
+        return try await APIHelper.request(
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/equipments/\(equipmentId)",
+            headers: ["Accept":"application/json",
+                      "Content-Type":"application/json",
+                      "Authorization":"Bearer \(accessToken)"],
+            parameters: parameters,
+            method: "PATCH"
+        )
+        
+    }
+    
 }

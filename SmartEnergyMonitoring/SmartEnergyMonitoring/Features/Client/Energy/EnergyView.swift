@@ -19,6 +19,8 @@ struct EnergyView: View {
     @State private var didFail = false
     @State private var failMessage = ""
     
+    @State private var filledStore = false
+    
     @EnvironmentObject var session: SessionManager
     
     struct NameValue: Identifiable {
@@ -97,6 +99,8 @@ struct EnergyView: View {
                         
                         todoList = (equipments?.data.filter{ $0.examples == 0 })!
                         doneList = (equipments?.data.filter{ $0.examples > 0 })!
+                        
+                        filledStore = true
                     }
                     catch APIHelper.APIError.invalidRequestError(let errorMessage) {
                         failMessage = errorMessage

@@ -36,11 +36,31 @@ class APIHelper {
         if let response = response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
             throw APIError.invalidRequestError("Invalid data! (Status Code: \(response.statusCode))")
         }
-            
+        
         guard let result = try? JSONDecoder().decode(T.self, from: data) else {
             throw APIError.decodingError
         }
         
         return(result)
+    }
+    
+    static func request(url: String, headers: [String: String] = [:], parameters: Data, method: String) async throws -> Void {
+
+        var request = URLRequest(url: URL(string: url)!)
+        
+        // Method
+        request.httpMethod = method
+        
+        // Headers
+        headers.forEach { request.addValue($0.value, forHTTPHeaderField: $0.key) }
+
+        // Body
+        request.httpBody = parameters
+        
+        let (_, response) = try await URLSession.shared.data(for: request)
+
+        if let response = response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
+            throw APIError.invalidRequestError("Invalid data! (Status Code: \(response.statusCode))")
+        }
     }
 }

@@ -20,8 +20,6 @@ struct ObservationView: View {
         VStack {
             List {
                 Section {
-                    Text("Observation")
-                        .fontWeight(.bold)
                     HStack {
                         Text("Date")
                         Spacer()

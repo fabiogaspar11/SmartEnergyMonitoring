@@ -18,7 +18,7 @@ struct MainView: View {
             DashboardView()
                 .tabItem {
                     Symbols.home
-                    Text("Home")
+                    Text("Dashboard")
                 }
                 .environmentObject(session)
                 .environmentObject(mqtt)

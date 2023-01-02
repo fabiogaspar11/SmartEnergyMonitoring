@@ -113,7 +113,7 @@ struct DashboardView: View {
                 userStats = try await UserStatService.fetch(userId: selectedView, accessToken: session.accessToken!)
                 kWh = Double((userStats?[0].value)!) ?? 0
                 month = userStats?[0].timestamp ?? ""
-                kWhDifference = Double((userStats?[0].value)!) ?? 0 - Double((userStats?[1].value)!)!
+                kWhDifference = Double((userStats?[0].value)!)! - Double((userStats?[1].value)!)!
                 priceDifference = Double((session.user?.data.energyPrice)!)! * kWhDifference
                 userStatsLoading = false
             }
@@ -172,7 +172,7 @@ struct DashboardView: View {
                                 showObservation = true
                             }, label: {
                                 HStack {
-                                    Text("Equipments")
+                                    Text("Equipments ON")
                                         .foregroundColor(Theme.text)
                                     Spacer()
                                     if (observationLoading) {
@@ -278,7 +278,7 @@ struct DashboardView: View {
                 
             }
             //.navigationTitle("Hi \((session.user?.data.name.components(separatedBy: " ")[0])!)!")
-            .navigationTitle("Home")
+            .navigationTitle("Dashboard")
             .toolbar {
                 if (showSwapToolbar) {
                     ToolbarItem(placement: .navigationBarLeading) {

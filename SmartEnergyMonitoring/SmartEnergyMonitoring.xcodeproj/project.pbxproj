@@ -43,6 +43,9 @@
 		EF9B6ECD295FD11300A4E02C /* AdminEquipmentTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ECC295FD11300A4E02C /* AdminEquipmentTypeView.swift */; };
 		EF9B6ECF295FD8F000A4E02C /* AdminStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ECE295FD8F000A4E02C /* AdminStats.swift */; };
 		EF9B6ED1295FDA0500A4E02C /* AdminStatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ED0295FDA0500A4E02C /* AdminStatsService.swift */; };
+		EF9B6ED32962341700A4E02C /* AlertConfigSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ED22962341700A4E02C /* AlertConfigSheetView.swift */; };
+		EF9B6ED529627E0800A4E02C /* TrainingExamplesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ED429627E0800A4E02C /* TrainingExamplesService.swift */; };
+		EF9B6ED7296288D000A4E02C /* TrainingExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6ED6296288D000A4E02C /* TrainingExamples.swift */; };
 		EFDCE0C92940FCF100643F5D /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0C82940FCF100643F5D /* WebView.swift */; };
 		EFDCE0CB2942BF4D00643F5D /* DivisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */; };
 		EFDCE0D12945307A00643F5D /* AffiliateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCE0D02945307A00643F5D /* AffiliateService.swift */; };
@@ -115,6 +118,9 @@
 		EF9B6ECC295FD11300A4E02C /* AdminEquipmentTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEquipmentTypeView.swift; sourceTree = "<group>"; };
 		EF9B6ECE295FD8F000A4E02C /* AdminStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminStats.swift; sourceTree = "<group>"; };
 		EF9B6ED0295FDA0500A4E02C /* AdminStatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminStatsService.swift; sourceTree = "<group>"; };
+		EF9B6ED22962341700A4E02C /* AlertConfigSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConfigSheetView.swift; sourceTree = "<group>"; };
+		EF9B6ED429627E0800A4E02C /* TrainingExamplesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingExamplesService.swift; sourceTree = "<group>"; };
+		EF9B6ED6296288D000A4E02C /* TrainingExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingExamples.swift; sourceTree = "<group>"; };
 		EFDCE0C82940FCF100643F5D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		EFDCE0CA2942BF4D00643F5D /* DivisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionService.swift; sourceTree = "<group>"; };
 		EFDCE0D02945307A00643F5D /* AffiliateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateService.swift; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 				E355E21D292F0C920044A4CC /* Observations.swift */,
 				E355E21F292F0FCD0044A4CC /* Users.swift */,
 				E355E211292F08E20044A4CC /* UserStats.swift */,
+				EF9B6ED6296288D000A4E02C /* TrainingExamples.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +290,7 @@
 				EFF13C9F295E6A89005C4FAE /* InvoiceListView.swift */,
 				EFF13CA5295F6674005C4FAE /* AlertListView.swift */,
 				EFF13CA9295F7A91005C4FAE /* AlertConfigView.swift */,
+				EF9B6ED22962341700A4E02C /* AlertConfigSheetView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -364,6 +372,7 @@
 				EFDCE0E229458AAE00643F5D /* ObservationService.swift */,
 				EFFB39C6293D6B29000167FD /* UserService.swift */,
 				EFDCE0E4294621DA00643F5D /* UserStatService.swift */,
+				EF9B6ED429627E0800A4E02C /* TrainingExamplesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -447,6 +456,7 @@
 			files = (
 				E355E1F0292EF17E0044A4CC /* Symbols.swift in Sources */,
 				EFDCE0D72945470D00643F5D /* EquipmentListView.swift in Sources */,
+				EF9B6ED7296288D000A4E02C /* TrainingExamples.swift in Sources */,
 				EFFB39C7293D6B29000167FD /* UserService.swift in Sources */,
 				E3AA53C328EE0D0C00D06A7D /* RegisterView.swift in Sources */,
 				E355E231292FEDC70044A4CC /* ARView.swift in Sources */,
@@ -468,6 +478,7 @@
 				EF9B6EC9295FCE0700A4E02C /* EquipmentTypes.swift in Sources */,
 				EFF13CA2295EA225005C4FAE /* VerifyPredictionView.swift in Sources */,
 				EFF13CA6295F6674005C4FAE /* AlertListView.swift in Sources */,
+				EF9B6ED32962341700A4E02C /* AlertConfigSheetView.swift in Sources */,
 				E355E21A292F0B0C0044A4CC /* Equipments.swift in Sources */,
 				EFF13C99295B5EED005C4FAE /* Utils.swift in Sources */,
 				E355E21E292F0C920044A4CC /* Observations.swift in Sources */,
@@ -476,6 +487,7 @@
 				EF9B6EC3295FB36B00A4E02C /* AdminUserListView.swift in Sources */,
 				EFDCE0D329453B1C00643F5D /* EnergyView.swift in Sources */,
 				EFDCE0DD294558CF00643F5D /* EquipmentService.swift in Sources */,
+				EF9B6ED529627E0800A4E02C /* TrainingExamplesService.swift in Sources */,
 				EF9B6EBD295FAE3D00A4E02C /* AdminDashboardView.swift in Sources */,
 				EFF13C9E295DFB12005C4FAE /* MQTTAppState.swift in Sources */,
 				E355E210292F084F0044A4CC /* Auth.swift in Sources */,

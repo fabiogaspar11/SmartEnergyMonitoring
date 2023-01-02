@@ -38,21 +38,29 @@ struct ObservationListView: View {
                     
                     List {
                         ForEach(observations ?? [], id: \.consumption.id) { observation in
-                            Button(action: {
-                                selected = observation
-                                selected?.observation.equipments.filter { $0.consumption != "0.00" }.forEach { equipment in
-                                    let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
-                                    activeDivisions.insert(division)
-                                }
-                                showObservation = true
-                            }, label: {
+                            Section(content: {
+                                Button(action: {
+                                    selected = observation
+                                    selected?.observation.equipments.filter { $0.consumption != "0.00" }.forEach { equipment in
+                                        let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
+                                        activeDivisions.insert(division)
+                                    }
+                                    showObservation = true
+                                }, label: {
+                                    HStack {
+                                        Text("Equipments ON")
+                                            .foregroundColor(Theme.text)
+                                        Spacer()
+                                        Text("\(observation.observation.equipments.filter{ $0.consumption != "0.00" }.count)")
+                                            .foregroundStyle(.gray)
+                                        Symbols.arrow
+                                            .foregroundStyle(.gray)
+                                    }
+                                })
+                            }, footer: {
                                 HStack {
-                                    let title = unixTimestampToFormatedString(observation.consumption.timestamp)
-                                    Text(title)
-                                        .foregroundColor(Theme.text)
                                     Spacer()
-                                    Symbols.arrow
-                                        .foregroundStyle(.gray)
+                                    Text(unixTimestampToFormatedString(observation.consumption.timestamp))
                                 }
                             })
                         }
