@@ -8,21 +8,21 @@
 import Foundation
 
 struct Users: Codable {
-    let data: [UserClass]
+    var data: [UserClass]
 }
 
 struct User: Codable {
-    let data: UserClass
+    var data: UserClass
 }
 
 struct UserClass: Codable, Identifiable {
-    let id: Int
-    let name, email, birthdate: String
-    let divisions: [Division]?
-    let type, energyPrice: String
-    let getStarted, notifications: Int
-    let noActivityStart, noActivityEnd: String
-    let locked: Int
+    var id: Int
+    var name, email, birthdate: String
+    var divisions: [Division]?
+    var type, energyPrice: String
+    var getStarted, notifications: Int
+    var noActivityStart, noActivityEnd: String
+    var locked: Int
 
     enum CodingKeys: String, CodingKey {
         case id, name, email, birthdate, divisions, type

@@ -21,6 +21,7 @@ struct SettingsView: View {
                 let data = ["notifications": value]
                 let parameters = try? JSONEncoder().encode(data)
                 try await UserService.patchNotifications(userId: session.user!.data.id, accessToken: session.accessToken!, parameters: parameters!)
+                session.user?.data.notifications = notifications ? 1 : 0
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {
                 failMessage = errorMessage

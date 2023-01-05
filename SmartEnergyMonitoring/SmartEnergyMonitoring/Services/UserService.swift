@@ -9,15 +9,14 @@ import Foundation
 
 class UserService {
     
-    static func create(parameters: [String: String]) async throws -> User {
+    static func create(parameters: Data) async throws -> Void {
         
         return try await APIHelper.request(
             url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users",
             headers: ["Accept":"application/json",
                       "Content-Type":"application/json"],
             parameters: parameters,
-            method: "POST",
-            type: User.self
+            method: "POST"
         )
         
     }

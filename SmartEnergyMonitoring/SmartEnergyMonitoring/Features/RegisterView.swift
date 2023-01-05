@@ -79,12 +79,13 @@ struct RegisterView: View {
                         let dateFormatterGet = DateFormatter()
                         dateFormatterGet.dateFormat = "dd/MM/yyyy"
                         
-                        let _ = try await UserService.create(parameters: [
+                        let encode = try JSONEncoder().encode([
                             "name": name,
                             "email":email,
                             "password":password,
                             "birthdate":dateFormatterGet.string(from: birthdate)
                         ])
+                        try await UserService.create(parameters: encode)
                         
                         try await session.signIn([
                             "username": email,

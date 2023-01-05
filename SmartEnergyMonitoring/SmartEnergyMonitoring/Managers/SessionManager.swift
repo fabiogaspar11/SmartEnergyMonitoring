@@ -19,7 +19,7 @@ final class SessionManager: ObservableObject {
     
     @Published private(set) var currentState: CurrentState?
     @Published private(set) var accessToken: String?
-    @Published private(set) var user: User?
+    @Published var user: User?
     
     func signIn(_ credentials: [String: String]) async throws {
         
