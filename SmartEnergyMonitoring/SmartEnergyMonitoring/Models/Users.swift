@@ -34,3 +34,18 @@ struct UserClass: Codable, Identifiable {
         case locked
     }
 }
+
+struct PutUser: Codable {
+    let name: String
+    let birthdate: String
+    let noActivityStart: String?
+    let noActivityEnd: String?
+    let energyPrice: Float
+    
+    enum CodingKeys: String, CodingKey {
+        case name, birthdate
+        case energyPrice = "energy_price"
+        case noActivityStart = "no_activity_start"
+        case noActivityEnd = "no_activity_end"
+    }
+}

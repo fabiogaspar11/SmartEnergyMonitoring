@@ -37,4 +37,9 @@ enum Symbols {
     static let threeFill = Image(systemName: "3.circle.fill")
     static let fourFill = Image(systemName: "4.circle.fill")
     static let bell = Image(systemName: "bell.circle")
+    static let stop = Image(systemName: "stop.circle")
+    static let play = Image(systemName: "play.circle")
+    static let options = Image(systemName: "ellipsis.circle")
+    static let edit = Image(systemName: "pencil.circle")
+    static let delete = Image(systemName: "trash.circle")
 }

@@ -8,24 +8,32 @@
 import SwiftUI
 
 struct DataAcquisitionView: View {
-    @State private var equipment: Equipment
-    @State private var time: Int = 1
+    @State var equipment: Equipment
+    @State private var time: Int = 1 {
+        didSet {
+            self.timer = "\(time):00"
+            self.countdown = Float(time)
+        }
+    }
     
     @State private var didFail = false
     @State private var failMessage = ""
     
     @State private var state: StateView = .First
     
-    @State private var dateEnd: Int = 0
+    @State private var startDate: Double = 0.0
+    @State private var endDate: Double = 0.0
     @State private var consumption = "0.00"
-    @State private var timer = "0:00"
+    @State private var timer = "0.00"
+    @State private var countdown: Float = 0.0
+    @State private var countdownState: StateCountdown = .ToStart
+    
+    @State private var requestLoading = false
     
     @EnvironmentObject var session: SessionManager
     @EnvironmentObject var mqtt: MQTTManager
     
-    init(equipment: Equipment) {
-        self.equipment = equipment
-    }
+    @Environment(\.dismiss) var dismiss
     
     enum StateView: Int, CaseIterable, Comparable {
         static func < (lhs: DataAcquisitionView.StateView, rhs: DataAcquisitionView.StateView) -> Bool {
@@ -36,6 +44,59 @@ struct DataAcquisitionView: View {
         case Second = 2
         case Third = 3
         case Fourth = 4
+    }
+    
+    enum StateCountdown {
+        case ToStart
+        case Started
+        case Stopped
+        case Finished
+    }
+    
+    func updateCountdown() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            guard countdownState == .Started else { return }
+            
+            // Gets the current date and makes the time difference calculation
+            let diff = endDate - Date.now.timeIntervalSince1970
+            
+            // Checks that the countdown is not <= 0
+            if diff <= 0 {
+                timer = "0:00"
+                countdownState = .Finished
+                return
+            }
+            
+            // Turns the time difference calculation into sensible data and formats it
+            let date = Date(timeIntervalSince1970: diff)
+            let calendar = Calendar.current
+            let minutes = calendar.component(.minute, from: date)
+            let seconds = calendar.component(.second, from: date)
+
+            // Updates the time string with the formatted time
+            self.countdown = Float(minutes)
+            self.timer = String(format:"%d:%02d", minutes, seconds)
+            
+            updateCountdown()
+        }
+    }
+    
+    func submit() -> Void {
+        Task {
+            do {
+                requestLoading = true
+                var body = IndividualTrainingExamples(start: Int(startDate), end: Int(endDate), individual: true, equipments_on: [equipment.id])
+                let decoded = try JSONEncoder().encode(body)
+                try await TrainingExamplesService.post(userId: (session.user?.data.id)!, accessToken: session.accessToken!, parameters: decoded)
+                requestLoading = false
+                dismiss()
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                requestLoading = false
+                failMessage = errorMessage
+                didFail = true
+            }
+        }
     }
     
     var body: some View {
@@ -101,7 +162,7 @@ struct DataAcquisitionView: View {
                             }
                             Button("Next →") {
                                 state = .Third
-                                mqtt.publish(topic: "\(session.user!.data.id)/tare", with: "tare")
+                                mqtt.publish(topic: "\(session.user!.data.id)/tare", with: "")
                                 timer = "\(time):00"
                             }
                         }
@@ -113,8 +174,6 @@ struct DataAcquisitionView: View {
                             
                             Button("Begin analysis →") {
                                 state = .Fourth
-                                let date = Calendar.current.date(byAdding: .minute, value: time, to: Date.now)!
-                                dateEnd = Int(date.timeIntervalSince1970)
                                 
                                 mqtt.currentAppState.setOnReceive(callback: { topic, payload in
                                     if (topic == "\((session.user?.data.id)!)/power") {
@@ -126,7 +185,7 @@ struct DataAcquisitionView: View {
                         else if (state == .Fourth) {
                             Section("Info") {
                                 HStack {
-                                    Text("Time remaining")
+                                    Text("Time")
                                     Spacer()
                                     Text(timer)
                                         .foregroundStyle(.secondary)
@@ -139,29 +198,70 @@ struct DataAcquisitionView: View {
                                 }
                             }
                             
-                            Button(action: {
-                                let timeRemaining = 2
-                                if (timeRemaining > 0) {
-                                    
-                                }
-                            }) {
-                                let timeRemaining = 2
-                                if (timeRemaining > 0) {
-                                    Text("Stop!")
-                                }
-                                else {
-                                    Text("Done!")
-                                }
+                            switch (countdownState) {
+                            case .ToStart:
+                                Button(action: {
+                                    countdownState = .Started
+                                    startDate = Date().timeIntervalSince1970
+                                    let date = Calendar.current.date(byAdding: .minute, value: time, to: Date.now)!
+                                    endDate = date.timeIntervalSince1970
+                                    updateCountdown()
+                                }, label: {
+                                    HStack {
+                                        Symbols.play
+                                        Text("Start")
+                                    }
+                                })
+                                
+                            case .Started:
+                                Button(action: {
+                                    countdownState = .ToStart
+                                    startDate = Date().timeIntervalSince1970
+                                    let date = Calendar.current.date(byAdding: .minute, value: time, to: Date.now)!
+                                    endDate = date.timeIntervalSince1970
+                                    time = time
+                                }, label: {
+                                    HStack {
+                                        Symbols.stop
+                                        Text("Stop")
+                                    }
+                                })
+                            case .Finished:
+                                Button(action: {
+                                    mqtt.publish(topic: "\(session.user!.data.id)/reset", with: "")
+                                    submit()
+                                }, label: {
+                                    HStack {
+                                        Text("Save →")
+                                    }
+                                })
+                            case .Stopped:
+                                EmptyView()
                             }
                         }
                     }
                 }
             }
-        }.alert("Data fetch failed", isPresented: $didFail, actions: {
-            Button("Ok") {}
+        }
+        .navigationTitle("Data Acquisition")
+        .alert("Data post failed", isPresented: $didFail, actions: {
+            Button("Ok") {
+                dismiss()
+            }
         }, message: {
             Text(failMessage)
         })
-        .navigationTitle("Data Acquisition")
+        .overlay(loadingOverlay)
+        
     }
+    
+    @ViewBuilder private var loadingOverlay: some View {
+        if requestLoading {
+            ZStack {
+                Color(white: 0, opacity: 0.75)
+                ProgressView().tint(.white)
+            }
+        }
+    }
+    
 }

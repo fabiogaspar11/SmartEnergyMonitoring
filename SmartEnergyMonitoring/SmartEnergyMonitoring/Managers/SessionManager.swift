@@ -59,4 +59,8 @@ final class SessionManager: ObservableObject {
         currentState = .loggedOut
     }
     
+    func refreshUser() async throws{
+        user = try await UserService.fetch(accessToken: accessToken!)
+    }
+    
 }

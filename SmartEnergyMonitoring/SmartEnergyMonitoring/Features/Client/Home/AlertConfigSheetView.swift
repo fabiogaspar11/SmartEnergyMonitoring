@@ -21,6 +21,8 @@ struct AlertConfigSheetView: View {
     
     @EnvironmentObject var session: SessionManager
     
+    @Environment(\.dismiss) var dismiss
+    
     var intProxy: Binding<Double>{
         Binding<Double>(get: {
             return Double(notifyWhenPassed)
@@ -47,62 +49,64 @@ struct AlertConfigSheetView: View {
     }
     
     var body: some View {
-        VStack {
-            List {
-                Section {
-                    HStack {
-                        Text("Name")
-                        Spacer()
-                        Text(selected?.name ?? "")
-                            .foregroundStyle(.secondary)
-                    }
-                    HStack {
-                        Text("Division")
-                        Spacer()
-                        Text(selected?.divisionName ?? "")
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                
-                Section("Config") {
-                    Toggle("Notifications", isOn: $toggleNotify)
-                        .tint(Theme.primary)
-                    if (toggleNotify) {
-                        VStack {
-                            HStack {
-                                Text("Time")
-                                Spacer()
-                                Text("\(notifyWhenPassed) minute(s)")
-                                    .foregroundStyle(.secondary)
+        NavigationStack {
+            VStack {
+                List {
+                    Section("Equipment") {
+                        HStack {
+                            Text("Name")
+                            Spacer()
+                            Text(selected?.name ?? "")
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack {
+                            Text("Division")
+                            Spacer()
+                            Text(selected?.divisionName ?? "")
+                                .foregroundStyle(.secondary)
+                        }
+                        Toggle("Notifications", isOn: $toggleNotify)
+                            .tint(Theme.primary)
+                        if (toggleNotify) {
+                            VStack {
+                                HStack {
+                                    Text("Time")
+                                    Spacer()
+                                    Text("\(notifyWhenPassed) minute(s)")
+                                        .foregroundStyle(.secondary)
+                                }
+                                Slider(value: intProxy, in: 0.0...120.0, step: 1.0)
+                                    .tint(Theme.primary)
+                                    .padding()
                             }
-                            Slider(value: intProxy, in: 0.0...120.0, step: 1.0)
-                                .tint(Theme.primary)
-                                .padding()
                         }
                     }
                 }
-                Button(action: {
-                    updateNotificationStatus()
-                }, label: {
-                    HStack {
-                        Text("Save")
-                        Spacer()
-                        if (patchLoading) {
-                            ProgressView()
-                        }
-                    }
-                    
-                })
             }
+            .navigationBarTitle("Edit", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Done") {
+                        updateNotificationStatus()
+                        dismiss()
+                    }
+                    .fontWeight(.bold)
+                }
+            }
+            .onAppear() {
+                notifyWhenPassed = selected?.notifyWhenPassed ?? 0
+                toggleNotify = notifyWhenPassed != 0
+            }
+            .alert("Update failed", isPresented: $didFail, actions: {
+                Button("Ok") {}
+            }, message: {
+                Text(failMessage)
+            })
         }
-        .onAppear() {
-            notifyWhenPassed = selected?.notifyWhenPassed ?? 0
-            toggleNotify = notifyWhenPassed != 0
-        }
-        .alert("Update failed", isPresented: $didFail, actions: {
-            Button("Ok") {}
-        }, message: {
-            Text(failMessage)
-        })
     }
 }

@@ -10,7 +10,24 @@ import SwiftUI
 struct SettingsView: View {
     @State private var notifications: Bool = false
     
+    @State private var didFail = false
+    @State private var failMessage = ""
+    
     @EnvironmentObject var session: SessionManager
+    
+    func toggleNotifications(value: Int) -> Void {
+        Task {
+            do {
+                let data = ["notifications": value]
+                let parameters = try? JSONEncoder().encode(data)
+                try await UserService.patchNotifications(userId: session.user!.data.id, accessToken: session.accessToken!, parameters: parameters!)
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+        }
+    }
     
     var body: some View {
         
@@ -27,6 +44,9 @@ struct SettingsView: View {
                     NavigationLink("Affiliates", destination: AffiliateListView())
                     
                     Toggle("Notifications", isOn: $notifications)
+                        .onChange(of: notifications, perform: { newValue in
+                            toggleNotifications(value: newValue ? 1 : 0)
+                        })
                         .tint(Theme.primary)
                     
                     Section("Household") {
@@ -52,7 +72,6 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
-                        // TODO: action
                         session.signOut()
                     }
                     label: {
@@ -61,6 +80,11 @@ struct SettingsView: View {
                     }
                 }
             }
+            .alert("Update failed", isPresented: $didFail, actions: {
+                Button("Ok") { }
+            }, message: {
+                Text(failMessage)
+            })
             .onAppear() {
                 let user = session.user?.data
                 notifications = user!.notifications == 1

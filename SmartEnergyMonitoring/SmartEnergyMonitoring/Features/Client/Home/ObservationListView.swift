@@ -48,7 +48,7 @@ struct ObservationListView: View {
                                     showObservation = true
                                 }, label: {
                                     HStack {
-                                        Text("Equipments ON")
+                                        Text("Devices ON")	
                                             .foregroundColor(Theme.text)
                                         Spacer()
                                         Text("\(observation.observation.equipments.filter{ $0.consumption != "0.00" }.count)")
@@ -91,7 +91,7 @@ struct ObservationListView: View {
         }, message: {
             Text(failMessage)
         })
-        .navigationTitle("Energy Activity")
+        .navigationTitle("Energy Activity List")
         .sheet(isPresented: $showObservation) {
             ObservationView(observation: $selected, divisions: $activeDivisions)
         }

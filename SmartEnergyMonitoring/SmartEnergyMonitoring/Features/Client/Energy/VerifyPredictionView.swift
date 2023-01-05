@@ -13,7 +13,7 @@ struct VerifyPredictionView: View {
     
     @State private var divisions: [DivisionShort] = []
     
-    @State private var showActions = true
+    @State private var showActions = false
     @State private var requestLoading = false
     
     @State private var didFail = false
@@ -21,7 +21,7 @@ struct VerifyPredictionView: View {
     
     @EnvironmentObject var session: SessionManager
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     
     func submitManualLabel() -> Void {
         Task {
@@ -37,7 +37,7 @@ struct VerifyPredictionView: View {
                 
                 try await TrainingExamplesService.post(userId: (session.user?.data.id)!, accessToken: session.accessToken!, parameters: decoded)
                 requestLoading = false
-                showActions = false
+                dismiss()
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {
                 failMessage = errorMessage
@@ -88,24 +88,6 @@ struct VerifyPredictionView: View {
                                 }
                             }
                         }
-                        if (showActions) {
-                            Section {
-                                Button(action: {
-                                    submitManualLabel()
-                                }, label: {
-                                    HStack {
-                                        Text("Correct")
-                                        Spacer()
-                                        if (requestLoading) {
-                                            ProgressView()
-                                        }
-                                    }
-                                })
-                                Button("Wrong", role: .destructive) {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }
                     }
                 }
                 
@@ -116,6 +98,31 @@ struct VerifyPredictionView: View {
         }, message: {
             Text(failMessage)
         })
+        .navigationBarItems(trailing:
+            Button(action: {
+                showActions = true
+            }, label: {
+                HStack {
+                    Symbols.options
+                    Text("Vote")
+                }
+            })
+            .confirmationDialog("Verify prediction", isPresented: $showActions, actions: {
+                Button("Correct") { submitManualLabel() }
+                Button("Wrong", role: .destructive) { dismiss() }
+                Button("Cancel", role: .cancel) { }
+            })
+        )
         .navigationTitle("Verify Prediction")
+        .overlay(loadingOverlay)
+    }
+    
+    @ViewBuilder private var loadingOverlay: some View {
+        if requestLoading {
+            ZStack {
+                Color(white: 0, opacity: 0.75)
+                ProgressView().tint(.white)
+            }
+        }
     }
 }

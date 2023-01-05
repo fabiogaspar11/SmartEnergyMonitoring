@@ -172,7 +172,7 @@ struct DashboardView: View {
                                 showObservation = true
                             }, label: {
                                 HStack {
-                                    Text("Equipments ON")
+                                    Text("Devices ON")
                                         .foregroundColor(Theme.text)
                                     Spacer()
                                     if (observationLoading) {

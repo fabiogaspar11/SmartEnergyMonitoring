@@ -8,8 +8,8 @@
 import Foundation
 
 class TrainingExamplesService {
+    
     static func post(userId: Int, accessToken: String, parameters: Data) async throws -> Void {
-        
         return try await APIHelper.request(
             url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/training-examples",
             headers: ["Accept":"application/json",
@@ -18,6 +18,6 @@ class TrainingExamplesService {
             parameters: parameters,
             method: "POST"
         )
-        
     }
+    
 }

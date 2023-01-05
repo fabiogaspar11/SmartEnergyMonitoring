@@ -18,6 +18,7 @@ struct EquipmentView: View {
     @State private var failMessage = ""
     
     @State private var showDelete = false
+    @State private var showEdit = false
     
     @EnvironmentObject var session: SessionManager
     
@@ -57,12 +58,26 @@ struct EquipmentView: View {
         .navigationTitle(equipment.name)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    showDelete = true
-                }
-                label: {
-                    Symbols.trashCircle
-                    Text("Delete")
+                Menu {
+                    Button {
+                        showEdit = true
+                    }
+                    label: {
+                        Symbols.edit
+                        Text("Edit")
+                    }
+                    Button {
+                        showDelete = true
+                    }
+                    label: {
+                        Symbols.delete
+                        Text("Delete")
+                    }
+                } label: {
+                    HStack {
+                        Symbols.options
+                        Text("Actions")
+                    }
                 }
             }
         }

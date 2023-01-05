@@ -19,6 +19,18 @@ struct AffiliateListView: View {
     
     @EnvironmentObject var session: SessionManager
     
+    func deleteAffiliate(affiliateId: Int) -> Void {
+        Task {
+            do {
+                try await AffiliateService.delete(userId: session.user!.data.id, accessToken: session.accessToken!, affiliateId: affiliateId)
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+        }
+    }
+    
     var body: some View {
         
         ZStack {
@@ -56,6 +68,9 @@ struct AffiliateListView: View {
                 }
             }
         }
+        .sheet(isPresented: $showCreate, content: {
+            AffiliateAddView()
+        })
         .onAppear() {
             
             Task {
@@ -80,17 +95,11 @@ struct AffiliateListView: View {
         })
         .alert("Are you sure?", isPresented: $showDelete, actions: {
             Button("Delete", role: .destructive) {
-                //TODO: remove affiliate
+                deleteAffiliate(affiliateId: selected!.id)
             }
         }, message: {
             Text("Delete \(selected?.email ?? "") from my affiliates")
         })
         
-    }
-}
-
-struct AffiliateListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AffiliateListView()
     }
 }

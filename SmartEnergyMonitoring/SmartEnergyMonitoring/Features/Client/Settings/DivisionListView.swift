@@ -19,6 +19,18 @@ struct DivisionListView: View {
     
     @EnvironmentObject var session: SessionManager
     
+    func deleteDivision(divisionId: Int) -> Void {
+        Task {
+            do {
+                try await DivisionService.delete(userId: session.user!.data.id, accessToken: session.accessToken!, divisionId: divisionId)
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+        }
+    }
+    
     var body: some View {
         
         ZStack {
@@ -79,17 +91,14 @@ struct DivisionListView: View {
         })
         .alert("Are you sure?", isPresented: $showDelete, actions: {
             Button("Delete", role: .destructive) {
-                //TODO: remove division
+                deleteDivision(divisionId: selected!.id)
             }
         }, message: {
             Text("Delete \(selected?.name ?? "") from my divisions")
         })
+        .sheet(isPresented: $showCreate, content: {
+            DivisionCreateView()
+        })
         
-    }
-}
-
-struct DivisionListView_Previews: PreviewProvider {
-    static var previews: some View {
-        DivisionListView()
     }
 }

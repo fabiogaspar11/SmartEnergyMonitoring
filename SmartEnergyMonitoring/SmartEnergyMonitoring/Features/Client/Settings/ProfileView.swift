@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var notifications: Bool = false
-    @State private var birthDate: Date = Date()
-    @State private var wakeTime: Date = Date()
-    @State private var bedTime: Date = Date()
+    @State private var wakeTime: String = ""
+    @State private var bedTime: String = ""
     @State private var energyPrice: Float = 0.15
-    @State private var name: String = ""
+    
+    @State private var showEdit = false
     
     @EnvironmentObject var session: SessionManager
     
@@ -30,74 +29,82 @@ struct ProfileView: View {
                     HStack {
                         Text("Name")
                         Spacer()
-                        Text(name)
+                        Text(session.user!.data.name)
                             .foregroundStyle(.secondary)
                     }
                     HStack {
                         Text("E-mail")
                         Spacer()
-                        Text((session.user?.data.email)!)
+                        Text(session.user!.data.email)
                             .foregroundStyle(.secondary)
                     }
-                    DatePicker(
-                        "Birth Date",
-                        selection: $birthDate,
-                        in: ...Date.now,
-                        displayedComponents: .date
-                    )
+                    HStack {
+                        Text("Birth Date")
+                        Spacer()
+                        Text((session.user?.data.birthdate)!)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 
                 Section("Energy") {
-                    VStack {
-                        HStack {
-                            Text("Price")
-                            Spacer()
-                            Text("\(String(format: "%.3f", energyPrice)) € / kWh")
-                                .foregroundStyle(.secondary)
-                        }
-                        Slider(value: $energyPrice, in: 0...0.5)
-                            .tint(Theme.primary)
-                            .padding()
+                    HStack {
+                        Text("Price")
+                        Spacer()
+                        Text("\(String(format: "%.3f", Float(session.user!.data.energyPrice)!)) € / kWh")
+                            .foregroundStyle(.secondary)
                     }
                 }
                 
                 Section("Routine") {
                     
-                    DatePicker(
-                        "Wake Up Time",
-                        selection: $wakeTime,
-                        in: ...Date.now,
-                        displayedComponents: .hourAndMinute
-                    )
-                    DatePicker(
-                        "Bed Time",
-                        selection: $bedTime,
-                        in: ...Date.now,
-                        displayedComponents: .hourAndMinute
-                    )
+                    HStack {
+                        Text("Wake Up Time")
+                        Spacer()
+                        Text(wakeTime)
+                            .foregroundStyle(.secondary)
+                    }
+                    HStack {
+                        Text("Bed Time")
+                        Spacer()
+                        Text(bedTime)
+                            .foregroundStyle(.secondary)
+                    }
                     
                 }
             }
             
         }
         .navigationTitle("Profile")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {
+                    showEdit = true
+                }, label: {
+                    HStack {
+                        Symbols.edit
+                        Text("Edit")
+                    }
+                })
+            }
+        }
+        .sheet(isPresented: $showEdit, content: {
+            ProfileEditView()
+        })
         .onAppear() {
             let user = session.user?.data
             
-            name = user!.name
-            notifications = user!.notifications == 1
-            
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            birthDate = dateFormatter.date(from: user!.birthdate)!
-            
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            bedTime = dateFormatter.date(from: user!.noActivityStart)!
-            wakeTime = dateFormatter.date(from: user!.noActivityEnd)!
+            let bedTimeDate = dateFormatter.date(from: user!.noActivityEnd)!
+            let wakeTimeDate = dateFormatter.date(from: user!.noActivityStart)!
+            
+            dateFormatter.dateFormat = "HH:mm"
+            
+            bedTime = dateFormatter.string(from: bedTimeDate)
+            wakeTime = dateFormatter.string(from: wakeTimeDate)
             
             energyPrice = Float(user!.energyPrice)!
             
         }
-        
     }
 }
