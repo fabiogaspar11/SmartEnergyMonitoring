@@ -44,7 +44,7 @@ struct EquipmentListView: View {
                 }
                 
             }
-            .navigationTitle("Equipments")
+            .navigationTitle("Devices")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
@@ -56,6 +56,9 @@ struct EquipmentListView: View {
                     }
                 }
             }
+            .sheet(isPresented: $showCreate, content: {
+                EquipmentCreateView()
+            })
             .onAppear() {
                 
                 Task {

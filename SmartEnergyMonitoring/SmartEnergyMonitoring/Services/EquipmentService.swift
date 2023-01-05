@@ -35,7 +35,7 @@ class EquipmentService {
         
     }
     
-    static func create(userId: Int, accessToken: String, equipmentId: Int, parameters: Data) async throws -> Void {
+    static func create(userId: Int, accessToken: String, parameters: Data) async throws -> Void {
         
         return try await APIHelper.request(
             url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/equipments",
@@ -44,6 +44,19 @@ class EquipmentService {
                       "Authorization":"Bearer \(accessToken)"],
             parameters: parameters,
             method: "POST"
+        )
+        
+    }
+    
+    static func update(userId: Int, accessToken: String, equipmentId: Int, parameters: Data) async throws -> Void {
+        
+        return try await APIHelper.request(
+            url: "https://smartenergymonitoring.dei.estg.ipleiria.pt/api/users/\(userId)/equipments/\(equipmentId)",
+            headers: ["Accept":"application/json",
+                      "Content-Type":"application/json",
+                      "Authorization":"Bearer \(accessToken)"],
+            parameters: parameters,
+            method: "PUT"
         )
         
     }

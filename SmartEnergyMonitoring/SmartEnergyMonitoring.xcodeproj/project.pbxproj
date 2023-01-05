@@ -65,6 +65,8 @@
 		EFE0F0FC2966648300CF8720 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0F0FB2966648300CF8720 /* ProfileEditView.swift */; };
 		EFE0F0FE2966860A00CF8720 /* AffiliateAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0F0FD2966860A00CF8720 /* AffiliateAddView.swift */; };
 		EFE0F10029668D8200CF8720 /* DivisionCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0F0FF29668D8200CF8720 /* DivisionCreateView.swift */; };
+		EFE0F102296696E800CF8720 /* EquipmentCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0F101296696E800CF8720 /* EquipmentCreateView.swift */; };
+		EFE0F1042966A31200CF8720 /* EquipmentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0F1032966A31200CF8720 /* EquipmentEditView.swift */; };
 		EFF13C95295B3C32005C4FAE /* ConsumptionGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C94295B3C32005C4FAE /* ConsumptionGraph.swift */; };
 		EFF13C97295B58AD005C4FAE /* ObservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C96295B58AD005C4FAE /* ObservationListView.swift */; };
 		EFF13C99295B5EED005C4FAE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF13C98295B5EED005C4FAE /* Utils.swift */; };
@@ -141,6 +143,8 @@
 		EFE0F0FB2966648300CF8720 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		EFE0F0FD2966860A00CF8720 /* AffiliateAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateAddView.swift; sourceTree = "<group>"; };
 		EFE0F0FF29668D8200CF8720 /* DivisionCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionCreateView.swift; sourceTree = "<group>"; };
+		EFE0F101296696E800CF8720 /* EquipmentCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentCreateView.swift; sourceTree = "<group>"; };
+		EFE0F1032966A31200CF8720 /* EquipmentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentEditView.swift; sourceTree = "<group>"; };
 		EFF13C94295B3C32005C4FAE /* ConsumptionGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumptionGraph.swift; sourceTree = "<group>"; };
 		EFF13C96295B58AD005C4FAE /* ObservationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListView.swift; sourceTree = "<group>"; };
 		EFF13C98295B5EED005C4FAE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 				EFDCE0D82945471F00643F5D /* AffiliateListView.swift */,
 				EFDCE0D62945470D00643F5D /* EquipmentListView.swift */,
 				EFDCE0DE2945617000643F5D /* EquipmentView.swift */,
+				EFE0F101296696E800CF8720 /* EquipmentCreateView.swift */,
+				EFE0F1032966A31200CF8720 /* EquipmentEditView.swift */,
 				EFDCE0D4294546F900643F5D /* DivisionListView.swift */,
 				EF9B6EAE295F960200A4E02C /* ChangePasswordView.swift */,
 				EFE0F0FD2966860A00CF8720 /* AffiliateAddView.swift */,
@@ -518,10 +524,12 @@
 				E355E218292F0A710044A4CC /* Divisions.swift in Sources */,
 				EF9B6EAF295F960200A4E02C /* ChangePasswordView.swift in Sources */,
 				E3AA53BD28EDFF7100D06A7D /* LoginView.swift in Sources */,
+				EFE0F102296696E800CF8720 /* EquipmentCreateView.swift in Sources */,
 				EFF13CA8295F6945005C4FAE /* AlertService.swift in Sources */,
 				EFDCE0DB294548B800643F5D /* ProfileView.swift in Sources */,
 				E355E22F292FECFE0044A4CC /* DashboardView.swift in Sources */,
 				EF9B6EC7295FB6DE00A4E02C /* AdminEquipmentTypeListView.swift in Sources */,
+				EFE0F1042966A31200CF8720 /* EquipmentEditView.swift in Sources */,
 				EFE0F0FE2966860A00CF8720 /* AffiliateAddView.swift in Sources */,
 				EFF13C9B295B6AB4005C4FAE /* MQTTManager.swift in Sources */,
 				E355E226292F94310044A4CC /* SessionManager.swift in Sources */,

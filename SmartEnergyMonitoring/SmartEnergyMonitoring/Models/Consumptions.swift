@@ -31,7 +31,7 @@ struct ConsumptionData: Identifiable {
     let timestamp: Date
     
     init(consumption: String, timestamp: Int) {
-        self.consumption = Double(consumption)!
+        self.consumption = Double(consumption.replacingOccurrences(of: ",", with: ""))!
         self.timestamp = Date(timeIntervalSince1970: Double(timestamp))
     }
 }

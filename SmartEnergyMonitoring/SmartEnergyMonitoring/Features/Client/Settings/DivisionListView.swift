@@ -94,7 +94,7 @@ struct DivisionListView: View {
                 deleteDivision(divisionId: selected!.id)
             }
         }, message: {
-            Text("Delete \(selected?.name ?? "") from my divisions")
+            Text("Delete \(selected?.name ?? "") from your divisions")
         })
         .sheet(isPresented: $showCreate, content: {
             DivisionCreateView()

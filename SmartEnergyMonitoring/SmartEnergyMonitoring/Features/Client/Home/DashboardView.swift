@@ -111,9 +111,11 @@ struct DashboardView: View {
                 
                 // Fetch User Stats
                 userStats = try await UserStatService.fetch(userId: selectedView, accessToken: session.accessToken!)
-                kWh = Double((userStats?[0].value)!) ?? 0
+                kWh = Double(userStats?[0].value.replacingOccurrences(of: ",", with: "") ?? "0")!
                 month = userStats?[0].timestamp ?? ""
-                kWhDifference = Double((userStats?[0].value)!)! - Double((userStats?[1].value)!)!
+                let thisMonth = Double(userStats?[0].value.replacingOccurrences(of: ",", with: "") ?? "0")!
+                let previousMonth = Double(userStats?[1].value.replacingOccurrences(of: ",", with: "") ?? "0")!
+                kWhDifference = thisMonth - previousMonth
                 priceDifference = Double((session.user?.data.energyPrice)!)! * kWhDifference
                 userStatsLoading = false
             }

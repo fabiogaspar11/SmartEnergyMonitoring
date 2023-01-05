@@ -53,7 +53,7 @@ struct SettingsView: View {
                         
                         NavigationLink("Divisions", destination: DivisionListView())
                         
-                        NavigationLink("Equipments", destination: EquipmentListView())
+                        NavigationLink("Devices", destination: EquipmentListView())
                         
                     }
                     

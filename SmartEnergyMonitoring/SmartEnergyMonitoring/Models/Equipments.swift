@@ -13,15 +13,15 @@ struct Equipments: Codable {
 
 struct Equipment: Codable, Identifiable {
     let id, userID: Int
-    let name: String
-    let division: Int
+    var name: String
+    var division: Int
     let divisionName: String
-    let type: Int
-    let typeName, consumption, activity: String
-    let equipmentTypeID, examples: Int
+    var type: Int
+    var typeName, consumption, activity: String
+    var equipmentTypeID, examples: Int
     let initStatusOn: String?
     let notifyWhenPassed: Int?
-    let socket: Int
+    var socket: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -51,4 +51,18 @@ struct DivisionShort: Codable, Identifiable, Hashable {
 struct EquipmentShort: Codable, Identifiable {
     let id: Int
     let name, consumption, type, activity, division: String
+}
+
+struct PostEquipment: Codable {
+    let name, activity: String
+    let consumption, equipmentTypeId, divisionId, standby: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case activity
+        case consumption
+        case standby
+        case divisionId = "division_id"
+        case equipmentTypeId = "equipment_type_id"
+    }
 }

@@ -9,18 +9,28 @@ import SwiftUI
 
 struct EquipmentView: View {
     @State var equipment: Equipment
-    @State var divisions: Divisions?
-    
-    @State var selectedDivision = 0
-    @State var selectedActivity = "Yes"
-    
-    @State private var didFail = false
-    @State private var failMessage = ""
     
     @State private var showDelete = false
     @State private var showEdit = false
     
+    @State private var didFail = false
+    @State private var failMessage = ""
+    
     @EnvironmentObject var session: SessionManager
+    @Environment(\.dismiss) var dismiss
+    
+    func delete() {
+        Task {
+            do {
+                try await EquipmentService.delete(userId: session.user!.data.id, accessToken: session.accessToken!, equipmentId: equipment.id)
+                dismiss()
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+        }
+    }
     
     var body: some View {
         
@@ -36,10 +46,17 @@ struct EquipmentView: View {
                     Text(equipment.name)
                         .foregroundStyle(.secondary)
                 }
-                Picker("Division", selection: $selectedDivision) {
-                    ForEach(divisions?.data ?? []) { division in
-                        Text(division.name).tag(division.id)
-                    }
+                HStack {
+                    Text("Type")
+                    Spacer()
+                    Text(equipment.typeName)
+                        .foregroundStyle(.secondary)
+                }
+                HStack {
+                    Text("Division")
+                    Spacer()
+                    Text(equipment.divisionName)
+                        .foregroundStyle(.secondary)
                 }
                 HStack {
                     Text("Consumption")
@@ -47,11 +64,12 @@ struct EquipmentView: View {
                     Text("\(equipment.consumption) W")
                         .foregroundStyle(.secondary)
                 }
-                Picker("Manual Activation", selection: $selectedActivity) {
-                    Text("Yes").tag("Yes")
-                    Text("No").tag("No")
+                HStack {
+                    Text("Manual Activation")
+                    Spacer()
+                    Text(equipment.activity)
+                        .foregroundStyle(.secondary)
                 }
-                
             }
             
         }
@@ -81,35 +99,15 @@ struct EquipmentView: View {
                 }
             }
         }
-        .onAppear() {
-            
-            Task {
-                do {
-                    selectedDivision = equipment.division
-                    selectedActivity = equipment.activity
-                    divisions = try await DivisionService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
-                    
-                }
-                catch APIHelper.APIError.invalidRequestError(let errorMessage) {
-                    failMessage = errorMessage
-                    didFail = true
-                }
-                catch APIHelper.APIError.decodingError {
-                    failMessage = "Decoding Error"
-                    didFail = true
-                }
-            }
-            
-        }
-        .alert("Data fetch failed", isPresented: $didFail, actions: {
-            Button("Ok") {}
-        }, message: {
-            Text(failMessage)
+        .sheet(isPresented: $showEdit, content: {
+            EquipmentEditView(equipment: equipment)
         })
         .alert("Are you sure?", isPresented: $showDelete, actions: {
             Button("Delete", role: .destructive) {
-                //TODO: remove equipment
+                delete()
             }
+        }, message: {
+            Text("Delete \(equipment.name) from your devices")
         })
         
     }

@@ -64,7 +64,7 @@ struct AffiliateListView: View {
                 }
                 label: {
                     Symbols.plus
-                    Text("New")
+                    Text("Add")
                 }
             }
         }
@@ -98,7 +98,7 @@ struct AffiliateListView: View {
                 deleteAffiliate(affiliateId: selected!.id)
             }
         }, message: {
-            Text("Delete \(selected?.email ?? "") from my affiliates")
+            Text("Delete \(selected?.email ?? "") from your affiliates")
         })
         
     }
