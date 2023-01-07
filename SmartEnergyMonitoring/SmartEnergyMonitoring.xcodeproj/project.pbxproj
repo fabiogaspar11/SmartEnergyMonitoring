@@ -299,8 +299,6 @@
 				EFF13C96295B58AD005C4FAE /* ObservationListView.swift */,
 				EFF13C9F295E6A89005C4FAE /* InvoiceListView.swift */,
 				EFF13CA5295F6674005C4FAE /* AlertListView.swift */,
-				EFF13CA9295F7A91005C4FAE /* AlertConfigView.swift */,
-				EF9B6ED22962341700A4E02C /* AlertConfigSheetView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -331,14 +329,16 @@
 				EFDCE0DA294548B800643F5D /* ProfileView.swift */,
 				EFE0F0FB2966648300CF8720 /* ProfileEditView.swift */,
 				EFDCE0D82945471F00643F5D /* AffiliateListView.swift */,
+				EFE0F0FD2966860A00CF8720 /* AffiliateAddView.swift */,
+				EFF13CA9295F7A91005C4FAE /* AlertConfigView.swift */,
+				EF9B6ED22962341700A4E02C /* AlertConfigSheetView.swift */,
 				EFDCE0D62945470D00643F5D /* EquipmentListView.swift */,
 				EFDCE0DE2945617000643F5D /* EquipmentView.swift */,
 				EFE0F101296696E800CF8720 /* EquipmentCreateView.swift */,
 				EFE0F1032966A31200CF8720 /* EquipmentEditView.swift */,
 				EFDCE0D4294546F900643F5D /* DivisionListView.swift */,
-				EF9B6EAE295F960200A4E02C /* ChangePasswordView.swift */,
-				EFE0F0FD2966860A00CF8720 /* AffiliateAddView.swift */,
 				EFE0F0FF29668D8200CF8720 /* DivisionCreateView.swift */,
+				EF9B6EAE295F960200A4E02C /* ChangePasswordView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";

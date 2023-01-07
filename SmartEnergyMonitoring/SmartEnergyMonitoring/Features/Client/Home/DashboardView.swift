@@ -30,6 +30,7 @@ struct DashboardView: View {
     @State private var failMessage = ""
     
     @State private var selectedView: Int = 0
+    @State private var dashboardName: String = ""
     @State private var affiliates: Affiliates = []
     
     @State private var selectedViewType: ViewType = .Instant
@@ -40,7 +41,6 @@ struct DashboardView: View {
     @State private var consumptionData: [ConsumptionData] = []
     
     @State private var showObservation: Bool = false
-    @State private var showInvoices: Bool = false
     
     @State private var storeFilled: Bool = false
     
@@ -75,7 +75,9 @@ struct DashboardView: View {
                 break
                 
             }
-            lastConsumption = consumptions?.data[0]
+            if (consumptions?.data.count != 0) {
+                lastConsumption = consumptions?.data[0]
+            }
             consumptionsLoading = false
             consumptionData = []
             consumptions?.data.forEach { consumption in
@@ -89,7 +91,9 @@ struct DashboardView: View {
         Task {
             
             do {
+                divisions = nil
                 divisionsLoading = true
+                observation = nil
                 observationLoading = true
                 consumptionsLoading = true
                 userStatsLoading = true
@@ -102,6 +106,7 @@ struct DashboardView: View {
                 fetchGraphInfo()
                 
                 // Fetch Last Observation
+                observation = nil
                 observation = try await ObservationService.fetchLast(userId: selectedView, accessToken: session.accessToken!)
                 observation?.observation.equipments.filter { $0.consumption != "0.00" }.forEach { equipment in
                     let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
@@ -128,6 +133,10 @@ struct DashboardView: View {
                 didFail = true
             }
             
+            divisionsLoading = false
+            observationLoading = false
+            consumptionsLoading = false
+            userStatsLoading = false
         }
     }
     
@@ -160,49 +169,49 @@ struct DashboardView: View {
                         }
                     }
                     
-                    Section(content: {
-                        if (observationLoading) {
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
-                            }
-                        }
-                        else {
-                            
-                            Button(action: {
-                                showObservation = true
-                            }, label: {
+                    if (observationLoading || observation != nil) {
+                        Section(content: {
+                            if (observationLoading) {
                                 HStack {
-                                    Text("Devices ON")
-                                        .foregroundColor(Theme.text)
                                     Spacer()
-                                    if (observationLoading) {
-                                        ProgressView()
-                                    }
-                                    else {
-                                        Text("\(observation?.observation.equipments.filter{ $0.consumption != "0.00" }.count ?? 0)")
-                                            .foregroundStyle(.gray)
-                                        Symbols.arrow
-                                            .foregroundStyle(.gray)
-                                    }
+                                    ProgressView()
+                                    Spacer()
                                 }
-                            })
-                            
-                        }
-                        
-                    }, header: {
-                        HStack {
-                            Text("Energy Activity")
-                            Spacer()
-                            NavigationLink(destination: ObservationListView()) {
-                                Text("Show All")
-                                    .font(.system(size: 14))
                             }
-                        }
-                    }, footer: {
-                        
-                    })
+                            else {
+                                
+                                Button(action: {
+                                    showObservation = true
+                                }, label: {
+                                    HStack {
+                                        Text("Devices ON")
+                                            .foregroundColor(Theme.text)
+                                        Spacer()
+                                        if (observationLoading) {
+                                            ProgressView()
+                                        }
+                                        else {
+                                            Text("\(observation?.observation.equipments.filter{ $0.consumption != "0.00" }.count ?? 0)")
+                                                .foregroundStyle(.gray)
+                                            Symbols.arrow
+                                                .foregroundStyle(.gray)
+                                        }
+                                    }
+                                })
+                                
+                            }
+                            
+                        }, header: {
+                            HStack {
+                                Text("Energy Activity")
+                                Spacer()
+                                NavigationLink(destination: ObservationListView()) {
+                                    Text("Show All")
+                                        .font(.system(size: 14))
+                                }
+                            }
+                        })
+                    }
                     
                     
                     Section(content: {
@@ -260,10 +269,7 @@ struct DashboardView: View {
                         HStack {
                             Text("Invoice")
                             Spacer()
-                            Button(action: {
-                                showInvoices = true
-                            },
-                            label: {
+                            NavigationLink(destination: InvoiceListView(), label: {
                                 Text("Show All")
                                     .font(.system(size: 14))
                             })
@@ -279,8 +285,7 @@ struct DashboardView: View {
                 }
                 
             }
-            //.navigationTitle("Hi \((session.user?.data.name.components(separatedBy: " ")[0])!)!")
-            .navigationTitle("Dashboard")
+            .navigationTitle(session.user?.data.id == selectedView ? "My Dashboard" : "Dashboard of \(dashboardName)")
             .toolbar {
                 if (showSwapToolbar) {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -332,6 +337,7 @@ struct DashboardView: View {
                         if (selectedViewType == .Instant) {
                             let timestamp = Int(Date.now.timeIntervalSince1970)
                             consumptionData.append(ConsumptionData(consumption: payload, timestamp: timestamp))
+                            lastConsumption = Consumption(id: 0, userID: 0, observationID: 0, value: payload, variance: "", timestamp: 0)
                         }
                     }
                 })
@@ -339,25 +345,20 @@ struct DashboardView: View {
                 storeFilled = true
 
             }
-            .alert("Data fetch failed", isPresented: $didFail, actions: {
-                Button("Ok") {}
-            }, message: {
-                Text(failMessage)
-            })
             .alert("Swap Dashboard", isPresented: $showSwap, actions: {
-                ForEach(affiliates.filter { $0.id != selectedView }) { affiliate in
-                    Button(affiliate.name) {
+                ForEach(affiliates) { affiliate in
+                    Button(action: {
                         selectedView = affiliate.id
+                        dashboardName = affiliate.name.components(separatedBy: " ")[0]
                         loadStore()
-                    }
+                    }, label: {
+                        Text(selectedView == affiliate.id ? "\("(Active) ") \(affiliate.name)" : affiliate.name)
+                    })
                 }
                 Button("Cancel", role: .cancel) {}
             }, message: {})
             .sheet(isPresented: $showObservation) {
                 ObservationView(observation: $observation, divisions: $activeDivisions)
-            }
-            .sheet(isPresented: $showInvoices) {
-                InvoiceListView()
             }
         }
     }

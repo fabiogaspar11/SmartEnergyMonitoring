@@ -13,14 +13,14 @@
 import Foundation
 
 struct Observation: Codable {
-    let observation: ObservationClass
-    let consumption: ConsumptionShort
+    var observation: ObservationClass
+    var consumption: ConsumptionShort
 }
 
 struct ConsumptionShort: Codable {
-    let id, userID, observationID: Int
-    let value, variance: String
-    let timestamp: Int
+    var id, userID, observationID: Int
+    var value, variance: String
+    var timestamp: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,10 +31,10 @@ struct ConsumptionShort: Codable {
 }
 
 struct ObservationClass: Codable {
-    let id, userID, consumptionID: Int
-    let expectedDivisions: [ExpectedDivision]
-    let createdAt: Int
-    let equipments: [Equipment]
+    var id, userID, consumptionID: Int
+    var expectedDivisions: [ExpectedDivision]
+    var createdAt: Int
+    var equipments: [Equipment]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -47,8 +47,8 @@ struct ObservationClass: Codable {
 }
 
 struct ExpectedDivision: Codable {
-    let id: Int
-    let name: String
+    var id: Int
+    var name: String
 }
 
 typealias Observations = [Observation]

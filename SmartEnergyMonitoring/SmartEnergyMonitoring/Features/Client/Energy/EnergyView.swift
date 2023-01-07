@@ -19,7 +19,7 @@ struct EnergyView: View {
     @State private var didFail = false
     @State private var failMessage = ""
     
-    @State private var filledStore = false
+    @State private var showHelp = false
     
     @EnvironmentObject var session: SessionManager
     
@@ -39,19 +39,27 @@ struct EnergyView: View {
                 Theme.background.edgesIgnoringSafeArea(.top)
                 
                 List {
-                    Section("To Do") {
-                        NavigationLink(destination: VerifyPredictionView(observation: $latestObservation, equipments: $equipments)) {
-                            HStack {
-                                Symbols.circle
-                                    .foregroundStyle(Theme.primary)
-                                Text("Verify Prediction")
-                                    .foregroundColor(Theme.text)
-                                Spacer()
-                                if (observationLoading) {
-                                    ProgressView()
+                    if (showHelp) {
+                        Text("In this section, you can deliver tasks to help us trace better your electrical profile, thus improving the overall system performance. We recommend you to perform the task in the todo list.")
+                    }
+                    if (latestObservation != nil) {
+                        Section {
+                            NavigationLink(destination: VerifyPredictionView(observation: $latestObservation, equipments: $equipments)) {
+                                HStack {
+                                    Symbols.circle
+                                        .foregroundStyle(Theme.primary)
+                                    Text("Verify Prediction")
+                                        .foregroundColor(Theme.text)
+                                    Spacer()
+                                    if (observationLoading) {
+                                        ProgressView()
+                                    }
                                 }
                             }
                         }
+                    }
+                    
+                    Section("Devices") {
                         ForEach(todoList) { equipment in
                             NavigationLink(destination: DataAcquisitionView(equipment: equipment)) {
                                 HStack {
@@ -65,9 +73,6 @@ struct EnergyView: View {
                                 }
                             }
                         }
-                    }
-                    
-                    Section("Done") {
                         ForEach(doneList) { equipment in
                             NavigationLink(destination: DataAcquisitionView(equipment: equipment)) {
                                 HStack {
@@ -85,14 +90,24 @@ struct EnergyView: View {
                     
                 }
             }
-            .navigationTitle("Energy")
+            .navigationTitle("Performance")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showHelp = true
+                    } label: {
+                        HStack {
+                            Symbols.help
+                            Text("Help")
+                        }
+                    }
+
+                }
+            }
             .onAppear() {
+                showHelp = false
                 Task {
                     do {
-                        observationLoading = true
-                        latestObservation = try await ObservationService.fetchLast(userId: (session.user?.data.id)!, accessToken: session.accessToken!)
-                        observationLoading = false
-                        
                         equipmentsLoading = true
                         equipments = try await EquipmentService.fetch(userId: (session.user?.data.id)!, accessToken: session.accessToken!)
                         equipmentsLoading = false
@@ -100,7 +115,10 @@ struct EnergyView: View {
                         todoList = (equipments?.data.filter{ $0.examples == 0 })!
                         doneList = (equipments?.data.filter{ $0.examples > 0 })!
                         
-                        filledStore = true
+                        observationLoading = true
+                        latestObservation = nil
+                        latestObservation = try await ObservationService.fetchLast(userId: (session.user?.data.id)!, accessToken: session.accessToken!)
+                        observationLoading = false
                     }
                     catch APIHelper.APIError.invalidRequestError(let errorMessage) {
                         failMessage = errorMessage
@@ -112,11 +130,6 @@ struct EnergyView: View {
                     }
                 }
             }
-            .alert("Data fetch failed", isPresented: $didFail, actions: {
-                Button("Ok") {}
-            }, message: {
-                Text(failMessage)
-            })
         }
     }
 }

@@ -8,13 +8,13 @@
 import Foundation
 
 struct EquipmentTypes: Codable {
-    let data: [EquipmentType]
+    var data: [EquipmentType]
 }
 
 struct EquipmentType: Codable, Identifiable {
-    let id: Int
-    let name: String
-    let activity: Activity
+    var id: Int
+    var name: String
+    var activity: Activity
 }
 
 enum Activity: String, Codable {

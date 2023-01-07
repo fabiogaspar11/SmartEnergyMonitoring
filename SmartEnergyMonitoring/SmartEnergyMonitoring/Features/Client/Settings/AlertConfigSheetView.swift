@@ -65,6 +65,8 @@ struct AlertConfigSheetView: View {
                             Text(selected?.divisionName ?? "")
                                 .foregroundStyle(.secondary)
                         }
+                    }
+                    Section {
                         Toggle("Notifications", isOn: $toggleNotify)
                             .tint(Theme.primary)
                         if (toggleNotify) {

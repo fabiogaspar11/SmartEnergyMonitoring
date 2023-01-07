@@ -100,7 +100,7 @@ struct EquipmentView: View {
             }
         }
         .sheet(isPresented: $showEdit, content: {
-            EquipmentEditView(equipment: equipment)
+            EquipmentEditView(equipment: $equipment)
         })
         .alert("Are you sure?", isPresented: $showDelete, actions: {
             Button("Delete", role: .destructive) {

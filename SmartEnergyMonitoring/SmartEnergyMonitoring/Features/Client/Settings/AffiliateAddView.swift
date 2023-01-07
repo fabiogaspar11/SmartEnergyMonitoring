@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AffiliateAddView: View {
+    var onCompletion: () -> Void
+    
     @State private var email = ""
     
     @State private var didFail = false
@@ -22,6 +24,7 @@ struct AffiliateAddView: View {
             do {
                 let encode = try JSONEncoder().encode(["email": email])
                 try await AffiliateService.add(userId: session.user!.data.id, accessToken: session.accessToken!, parameters: encode)
+                onCompletion()
                 dismiss()
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DivisionCreateView: View {
+    var onCompletition: () -> Void
     @State private var name = ""
     
     @State private var didFail = false
@@ -22,6 +23,7 @@ struct DivisionCreateView: View {
             do {
                 let encode = try JSONEncoder().encode(["name": name])
                 try await DivisionService.create(userId: session.user!.data.id, accessToken: session.accessToken!, parameters: encode)
+                onCompletition()
                 dismiss()
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {

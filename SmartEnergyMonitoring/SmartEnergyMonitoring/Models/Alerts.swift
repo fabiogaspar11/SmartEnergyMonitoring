@@ -8,12 +8,12 @@
 import Foundation
 
 struct Alerts: Codable {
-    let data: [Alert]
+    var data: [Alert]
 }
 
 struct Alert: Codable, Identifiable {
-    let id, userID: Int
-    let alert, timestamp: String
+    var id, userID: Int
+    var alert, timestamp: String
 
     enum CodingKeys: String, CodingKey {
         case id

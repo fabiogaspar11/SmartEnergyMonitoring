@@ -95,8 +95,8 @@ struct ProfileView: View {
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let bedTimeDate = dateFormatter.date(from: user!.noActivityEnd)!
-            let wakeTimeDate = dateFormatter.date(from: user!.noActivityStart)!
+            let bedTimeDate = dateFormatter.date(from: user!.noActivityStart)!
+            let wakeTimeDate = dateFormatter.date(from: user!.noActivityEnd)!
             
             dateFormatter.dateFormat = "HH:mm"
             

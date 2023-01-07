@@ -24,7 +24,7 @@ struct ObservationView: View {
                         HStack {
                             Text("Date")
                             Spacer()
-                            Text(unixTimestampToFormatedString(observation!.consumption.timestamp))
+                            Text(unixTimestampToFormatedString(observation?.consumption.timestamp))
                                 .foregroundStyle(.secondary)
                         }
                     }
@@ -43,7 +43,7 @@ struct ObservationView: View {
                 }
             }
             .onAppear() {
-                let formatedDate = unixTimestampToFormatedString(observation!.consumption.timestamp)
+                let formatedDate = unixTimestampToFormatedString(observation?.consumption.timestamp)
                 title = "Observation of " + formatedDate
             }
             .navigationBarItems(trailing:

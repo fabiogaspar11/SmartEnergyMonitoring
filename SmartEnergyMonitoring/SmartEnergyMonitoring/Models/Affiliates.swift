@@ -8,8 +8,8 @@
 import Foundation
 
 struct Affiliate: Codable, Identifiable {
-    let id: Int
-    let name, email, energyPrice: String
+    var id: Int
+    var name, email, energyPrice: String
 
     enum CodingKeys: String, CodingKey {
         case id, name, email

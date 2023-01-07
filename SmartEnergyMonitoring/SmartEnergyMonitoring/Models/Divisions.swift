@@ -8,10 +8,10 @@
 import Foundation
 
 struct Divisions: Codable {
-    let data: [Division]
+    var data: [Division]
 }
 
 struct Division: Codable, Identifiable {
-    let id: Int
-    let name: String
+    var id: Int
+    var name: String
 }

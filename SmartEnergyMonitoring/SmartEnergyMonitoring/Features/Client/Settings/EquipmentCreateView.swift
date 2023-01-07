@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EquipmentCreateView: View {
+    var onCompletion: () -> Void
+    
     @State var divisions: Divisions?
     @State var equipmentTypes: EquipmentTypes?
     
@@ -31,6 +33,7 @@ struct EquipmentCreateView: View {
                 let data = PostEquipment(name: name, activity: selectedActivity, consumption: Int(consumption ?? 0), equipmentTypeId: selectedType, divisionId: selectedDivision, standby: 0)
                 let encode = try JSONEncoder().encode(data)
                 try await EquipmentService.create(userId: session.user!.data.id, accessToken: session.accessToken!, parameters: encode)
+                onCompletion()
                 dismiss()
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {

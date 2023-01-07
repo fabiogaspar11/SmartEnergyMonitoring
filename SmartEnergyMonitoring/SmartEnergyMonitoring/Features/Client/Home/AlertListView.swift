@@ -64,23 +64,11 @@ struct AlertListView: View {
                 }
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                NavigationLink(destination: AlertConfigView(), label: {
-                    Symbols.settings
-                    Text("Config")
-                })
-            }
-            
-        }
         .alert("Data fetch failed", isPresented: $didFail, actions: {
             Button("Ok") {}
         }, message: {
             Text(failMessage)
         })
         .navigationTitle("Alerts")
-        .sheet(isPresented: $showConfig, content: {
-            AlertConfigView()
-        })
     }
 }

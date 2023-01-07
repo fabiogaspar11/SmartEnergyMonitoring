@@ -17,6 +17,28 @@ struct EquipmentListView: View {
     
     @EnvironmentObject var session: SessionManager
     
+    func fetchEquipments() {
+        Task {
+            do {
+                equipments = try await EquipmentService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
+                
+                equipments?.data.forEach { equipment in
+                    let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
+                    divisions.insert(division)
+                }
+                
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+            catch APIHelper.APIError.decodingError {
+                failMessage = "Decoding Error"
+                didFail = true
+            }
+        }
+    }
+    
     var body: some View {
         
         NavigationStack {
@@ -57,29 +79,11 @@ struct EquipmentListView: View {
                 }
             }
             .sheet(isPresented: $showCreate, content: {
-                EquipmentCreateView()
+                EquipmentCreateView(onCompletion: { fetchEquipments() })
             })
             .onAppear() {
                 
-                Task {
-                    do {
-                        equipments = try await EquipmentService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
-                        
-                        equipments?.data.forEach { equipment in
-                            let division = DivisionShort(id: equipment.division, name: equipment.divisionName)
-                            divisions.insert(division)
-                        }
-                        
-                    }
-                    catch APIHelper.APIError.invalidRequestError(let errorMessage) {
-                        failMessage = errorMessage
-                        didFail = true
-                    }
-                    catch APIHelper.APIError.decodingError {
-                        failMessage = "Decoding Error"
-                        didFail = true
-                    }
-                }
+                fetchEquipments()
                 
             }
             .alert("Data fetch failed", isPresented: $didFail, actions: {
@@ -90,11 +94,5 @@ struct EquipmentListView: View {
             
         }
         
-    }
-}
-
-struct EquipmentListView_Previews: PreviewProvider {
-    static var previews: some View {
-        EquipmentListView()
     }
 }

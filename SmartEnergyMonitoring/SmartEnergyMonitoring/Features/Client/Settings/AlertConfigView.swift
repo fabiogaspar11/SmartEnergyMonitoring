@@ -78,7 +78,7 @@ struct AlertConfigView: View {
                 }
             }
         }
-        .navigationTitle("Configuration")
+        .navigationTitle("Alerts")
         .onAppear() {
             fetchEquipments()
         }

@@ -19,13 +19,30 @@ struct AffiliateListView: View {
     
     @EnvironmentObject var session: SessionManager
     
-    func deleteAffiliate(affiliateId: Int) -> Void {
+    func deleteAffiliate(affiliateId: Int) {
         Task {
             do {
                 try await AffiliateService.delete(userId: session.user!.data.id, accessToken: session.accessToken!, affiliateId: affiliateId)
+                affiliates.remove(at: affiliates.firstIndex(where: { $0.id == affiliateId })!)
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {
                 failMessage = errorMessage
+                didFail = true
+            }
+        }
+    }
+    
+    func fetchAffiliates() {
+        Task {
+            do {
+                affiliates = try await AffiliateService.fetchMyAffiliates(userId: session.user!.data.id, accessToken: session.accessToken!)
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+            catch APIHelper.APIError.decodingError {
+                failMessage = "Decoding Error"
                 didFail = true
             }
         }
@@ -69,24 +86,10 @@ struct AffiliateListView: View {
             }
         }
         .sheet(isPresented: $showCreate, content: {
-            AffiliateAddView()
+            AffiliateAddView(onCompletion: { fetchAffiliates() })
         })
         .onAppear() {
-            
-            Task {
-                do {
-                    affiliates = try await AffiliateService.fetchMyAffiliates(userId: session.user!.data.id, accessToken: session.accessToken!)
-                }
-                catch APIHelper.APIError.invalidRequestError(let errorMessage) {
-                    failMessage = errorMessage
-                    didFail = true
-                }
-                catch APIHelper.APIError.decodingError {
-                    failMessage = "Decoding Error"
-                    didFail = true
-                }
-            }
-            
+            fetchAffiliates()
         }
         .alert("Data fetch failed", isPresented: $didFail, actions: {
             Button("Ok") {}

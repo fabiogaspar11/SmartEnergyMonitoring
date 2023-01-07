@@ -8,19 +8,19 @@
 import Foundation
 
 struct Equipments: Codable {
-    let data: [Equipment]
+    var data: [Equipment]
 }
 
 struct Equipment: Codable, Identifiable {
-    let id, userID: Int
+    var id, userID: Int
     var name: String
     var division: Int
-    let divisionName: String
+    var divisionName: String
     var type: Int
     var typeName, consumption, activity: String
     var equipmentTypeID, examples: Int
-    let initStatusOn: String?
-    let notifyWhenPassed: Int?
+    var initStatusOn: String?
+    var notifyWhenPassed: Int?
     var socket: Int
 
     enum CodingKeys: String, CodingKey {
@@ -40,8 +40,8 @@ struct Equipment: Codable, Identifiable {
 }
 
 struct DivisionShort: Codable, Identifiable, Hashable {
-    let id: Int
-    let name: String
+    var id: Int
+    var name: String
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -49,13 +49,13 @@ struct DivisionShort: Codable, Identifiable, Hashable {
 }
 
 struct EquipmentShort: Codable, Identifiable {
-    let id: Int
-    let name, consumption, type, activity, division: String
+    var id: Int
+    var name, consumption, type, activity, division: String
 }
 
 struct PostEquipment: Codable {
-    let name, activity: String
-    let consumption, equipmentTypeId, divisionId, standby: Int
+    var name, activity: String
+    var consumption, equipmentTypeId, divisionId, standby: Int
     
     enum CodingKeys: String, CodingKey {
         case name

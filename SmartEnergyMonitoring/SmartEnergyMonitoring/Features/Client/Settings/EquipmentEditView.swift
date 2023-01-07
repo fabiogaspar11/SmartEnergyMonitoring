@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EquipmentEditView: View {
-    @State var equipment: Equipment
+    @Binding var equipment: Equipment
     @State var divisions: Divisions?
     @State var equipmentTypes: EquipmentTypes?
     
@@ -32,6 +32,13 @@ struct EquipmentEditView: View {
                 let data = PostEquipment(name: name, activity: selectedActivity, consumption: Int(consumption), equipmentTypeId: selectedType, divisionId: selectedDivision, standby: 0)
                 let encode = try JSONEncoder().encode(data)
                 try await EquipmentService.update(userId: session.user!.data.id, accessToken: session.accessToken!, equipmentId: equipment.id, parameters: encode)
+                
+                equipment.name = name
+                equipment.activity = selectedActivity
+                equipment.consumption = String(format: "%.2f", consumption)
+                equipment.equipmentTypeID = selectedType
+                equipment.division = selectedDivision
+                
                 dismiss()
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {

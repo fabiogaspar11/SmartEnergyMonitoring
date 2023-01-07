@@ -27,7 +27,7 @@ struct MainView: View {
             EnergyView()
                 .tabItem {
                     Symbols.bolt
-                    Text("Energy")
+                    Text("Performance")
                 }
                 .environmentObject(session)
                 .environmentObject(mqtt)

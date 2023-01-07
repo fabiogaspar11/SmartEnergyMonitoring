@@ -13,7 +13,6 @@ struct VerifyPredictionView: View {
     
     @State private var divisions: [DivisionShort] = []
     
-    @State private var showActions = false
     @State private var requestLoading = false
     
     @State private var didFail = false
@@ -88,6 +87,25 @@ struct VerifyPredictionView: View {
                                 }
                             }
                         }
+                        
+                        Section {
+                            Button(action: {
+                                submitManualLabel()
+                            }, label: {
+                                HStack {
+                                    Symbols.check
+                                    Text("Correct")
+                                }
+                            })
+                            Button(role: .destructive, action: {
+                                dismiss()
+                            }, label: {
+                                HStack {
+                                    Symbols.xmark
+                                    Text("Wrong")
+                                }
+                            })
+                        }
                     }
                 }
                 
@@ -98,21 +116,6 @@ struct VerifyPredictionView: View {
         }, message: {
             Text(failMessage)
         })
-        .navigationBarItems(trailing:
-            Button(action: {
-                showActions = true
-            }, label: {
-                HStack {
-                    Symbols.options
-                    Text("Vote")
-                }
-            })
-            .confirmationDialog("Verify prediction", isPresented: $showActions, actions: {
-                Button("Correct") { submitManualLabel() }
-                Button("Wrong", role: .destructive) { dismiss() }
-                Button("Cancel", role: .cancel) { }
-            })
-        )
         .navigationTitle("Verify Prediction")
         .overlay(loadingOverlay)
     }

@@ -40,11 +40,33 @@ struct SettingsView: View {
                 
                 List {
                     
-                    NavigationLink("Profile", destination: ProfileView())
+                    NavigationLink(destination: ProfileView(), label: {
+                        HStack {
+                            Image(systemName: "person")
+                            Text("Profile")
+                        }
+                    })
                     
-                    NavigationLink("Affiliates", destination: AffiliateListView())
+                    NavigationLink(destination: AffiliateListView(), label: {
+                        HStack {
+                            Image(systemName: "person.fill.badge.plus")
+                            Text("Affiliates")
+                        }
+                    })
                     
-                    Toggle("Notifications", isOn: $notifications)
+                    NavigationLink(destination: AlertConfigView(), label: {
+                        HStack {
+                            Image(systemName: "paperplane")
+                            Text("Alerts")
+                        }
+                    })
+                    
+                    Toggle(isOn: $notifications, label: {
+                        HStack {
+                            Image(systemName: "bell")
+                            Text("Notifications")
+                        }
+                    })
                         .onChange(of: notifications, perform: { newValue in
                             toggleNotifications(value: newValue ? 1 : 0)
                         })
@@ -52,17 +74,33 @@ struct SettingsView: View {
                     
                     Section("Household") {
                         
-                        NavigationLink("Divisions", destination: DivisionListView())
+                        NavigationLink(destination: DivisionListView(), label: {
+                            HStack {
+                                Image(systemName: "square.split.bottomrightquarter")
+                                Text("Divisions")
+                            }
+                        })
                         
-                        NavigationLink("Devices", destination: EquipmentListView())
+                        NavigationLink(destination: EquipmentListView(), label: {
+                            HStack {
+                                Image(systemName: "powerplug")
+                                Text("Devices")
+                            }
+                        })
                         
                     }
                     
                     Section("Security") {
                         
-                        Button("Change Password") {
+                        Button(action: {
                             //TODO: Open sheet to change password
-                        }
+                        }, label: {
+                            HStack {
+                                Image(systemName: "key.fill")
+                                Text("Change Password")
+                            }
+                            
+                        })
                         
                     }
                     

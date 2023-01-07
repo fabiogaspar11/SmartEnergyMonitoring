@@ -42,4 +42,6 @@ enum Symbols {
     static let options = Image(systemName: "ellipsis.circle")
     static let edit = Image(systemName: "pencil.circle")
     static let delete = Image(systemName: "trash.circle")
+    static let check = Image(systemName: "checkmark")
+    static let xmark = Image(systemName: "xmark")
 }

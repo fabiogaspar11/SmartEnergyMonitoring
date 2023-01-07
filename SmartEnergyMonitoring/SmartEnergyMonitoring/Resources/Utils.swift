@@ -14,8 +14,9 @@ func stringDateToPrettyStringDate(_ string: String) -> String {
     return formatter.string(from: date!)
 }
 
-func unixTimestampToFormatedString(_ timestamp: Int) -> String {
-    let date = Date(timeIntervalSince1970: Double(timestamp))
+func unixTimestampToFormatedString(_ timestamp: Int?) -> String {
+    guard timestamp != nil else { return "" }
+    let date = Date(timeIntervalSince1970: Double(timestamp!))
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm"
     return formatter.string(from: date)

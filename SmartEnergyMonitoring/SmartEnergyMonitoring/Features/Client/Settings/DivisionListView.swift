@@ -19,13 +19,30 @@ struct DivisionListView: View {
     
     @EnvironmentObject var session: SessionManager
     
-    func deleteDivision(divisionId: Int) -> Void {
+    func deleteDivision(divisionId: Int) {
         Task {
             do {
                 try await DivisionService.delete(userId: session.user!.data.id, accessToken: session.accessToken!, divisionId: divisionId)
+                divisions?.data.remove(at: (divisions?.data.firstIndex(where: { $0.id == divisionId }))!)
             }
             catch APIHelper.APIError.invalidRequestError(let errorMessage) {
                 failMessage = errorMessage
+                didFail = true
+            }
+        }
+    }
+    
+    func fetchDivisions() {
+        Task {
+            do {
+                divisions = try await DivisionService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
+            }
+            catch APIHelper.APIError.invalidRequestError(let errorMessage) {
+                failMessage = errorMessage
+                didFail = true
+            }
+            catch APIHelper.APIError.decodingError {
+                failMessage = "Decoding Error"
                 didFail = true
             }
         }
@@ -69,19 +86,7 @@ struct DivisionListView: View {
         }
         .onAppear() {
             
-            Task {
-                do {
-                    divisions = try await DivisionService.fetch(userId: session.user!.data.id, accessToken: session.accessToken!)
-                }
-                catch APIHelper.APIError.invalidRequestError(let errorMessage) {
-                    failMessage = errorMessage
-                    didFail = true
-                }
-                catch APIHelper.APIError.decodingError {
-                    failMessage = "Decoding Error"
-                    didFail = true
-                }
-            }
+            fetchDivisions()
             
         }
         .alert("Data fetch failed", isPresented: $didFail, actions: {
@@ -97,7 +102,7 @@ struct DivisionListView: View {
             Text("Delete \(selected?.name ?? "") from your divisions")
         })
         .sheet(isPresented: $showCreate, content: {
-            DivisionCreateView()
+            DivisionCreateView(onCompletition: { fetchDivisions() })
         })
         
     }

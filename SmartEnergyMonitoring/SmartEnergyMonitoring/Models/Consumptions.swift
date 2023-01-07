@@ -8,14 +8,14 @@
 import Foundation
 
 struct Consumptions: Codable {
-    let data: [Consumption]
+    var data: [Consumption]
 }
 
 struct Consumption: Codable {
-    let id, userID: Int
-    let observationID: Int?
+    var id, userID: Int
+    var observationID: Int?
     var value, variance: String
-    let timestamp: Int
+    var timestamp: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -26,9 +26,9 @@ struct Consumption: Codable {
 }
 
 struct ConsumptionData: Identifiable {
-    let id = UUID()
-    let consumption: Double
-    let timestamp: Date
+    var id = UUID()
+    var consumption: Double
+    var timestamp: Date
     
     init(consumption: String, timestamp: Int) {
         self.consumption = Double(consumption.replacingOccurrences(of: ",", with: ""))!
@@ -37,8 +37,8 @@ struct ConsumptionData: Identifiable {
 }
 
 struct ConsumptionInterval: Codable {
-    let value: String
-    let timestamp: String
+    var value: String
+    var timestamp: String
     
     func toConsumption() -> Consumption {
         let formatter = DateFormatter()
