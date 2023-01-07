@@ -40,7 +40,7 @@ struct EnergyView: View {
                 
                 List {
                     if (showHelp) {
-                        Text("In this section, you can deliver tasks to help us trace better your electrical profile, thus improving the overall system performance. We recommend you to perform the task in the todo list.")
+                        Text("In this section, you can deliver tasks to help us trace better your electrical profile, thus improving the overall system performance. We recommend you to perform the tasks without checkmark.")
                     }
                     if (latestObservation != nil) {
                         Section {

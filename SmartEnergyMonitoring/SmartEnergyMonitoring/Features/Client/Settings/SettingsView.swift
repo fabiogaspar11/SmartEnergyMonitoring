@@ -49,7 +49,7 @@ struct SettingsView: View {
                     
                     NavigationLink(destination: AffiliateListView(), label: {
                         HStack {
-                            Image(systemName: "person.fill.badge.plus")
+                            Image(systemName: "person.badge.plus")
                             Text("Affiliates")
                         }
                     })
