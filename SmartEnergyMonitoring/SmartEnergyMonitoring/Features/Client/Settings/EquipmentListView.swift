@@ -55,7 +55,15 @@ struct EquipmentListView: View {
                             
                             ForEach(equipments?.data.filter { $0.division == division.id } ?? []) { equipment in
                                 
-                                NavigationLink(equipment.name, destination: EquipmentView(equipment: equipment))
+                                NavigationLink(destination: EquipmentView(equipment: equipment), label: {
+                                    if (equipment.socket == 1) {
+                                        Symbols.on
+                                    }
+                                    else if (equipment.socket == 0) {
+                                        Symbols.off
+                                    }
+                                    Text(equipment.name)
+                                })
                                 
                             }
                             

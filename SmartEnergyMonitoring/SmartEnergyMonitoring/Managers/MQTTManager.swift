@@ -45,7 +45,7 @@ final class MQTTManager: ObservableObject {
         }
 
         mqttClient = CocoaMQTT(clientID: "CocoaMQTT-\(userID)-" + String(ProcessInfo().processIdentifier), host: host, port: 1883)
-        mqttClient?.keepAlive = 60
+        mqttClient?.keepAlive = 65534
         mqttClient?.delegate = self
     }
 

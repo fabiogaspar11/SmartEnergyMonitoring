@@ -44,4 +44,6 @@ enum Symbols {
     static let delete = Image(systemName: "trash.circle")
     static let check = Image(systemName: "checkmark")
     static let xmark = Image(systemName: "xmark")
+    static let on = Image(systemName: "lightswitch.on")
+    static let off = Image(systemName: "lightswitch.off")
 }

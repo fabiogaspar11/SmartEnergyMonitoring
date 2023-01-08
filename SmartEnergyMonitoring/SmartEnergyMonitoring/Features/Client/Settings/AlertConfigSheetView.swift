@@ -37,7 +37,7 @@ struct AlertConfigSheetView: View {
                 patchLoading = true
                 let newNotifyWhenPassed = toggleNotify ? notifyWhenPassed : nil
                 let decoded = try JSONEncoder().encode(["notify_when_passed": newNotifyWhenPassed.description])
-                try await EquipmentService.patchNotification(userId: (session.user?.data.id)!, accessToken: session.accessToken!, equipmentId: selected!.id, parameters: decoded)
+                try await EquipmentService.patch(userId: (session.user?.data.id)!, accessToken: session.accessToken!, equipmentId: selected!.id, parameters: decoded)
                 showAlertConfig = false
                 patchLoading = false
             }

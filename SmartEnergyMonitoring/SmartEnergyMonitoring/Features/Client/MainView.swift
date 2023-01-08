@@ -47,6 +47,7 @@ struct MainView: View {
                     Text("Settings")
                 }
                 .environmentObject(session)
+                .environmentObject(mqtt)
             
         }
         .onAppear() {
