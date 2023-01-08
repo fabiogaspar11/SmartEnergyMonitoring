@@ -2,7 +2,7 @@
 //  HelpUsView.swift
 //  SmartEnergyMonitoring
 //
-//  Created by Daniel Soares Carreira on 11/12/2022.
+//  Created by Fábio Cordeiro Gaspar on 24/11/2022.
 //
 
 import SwiftUI

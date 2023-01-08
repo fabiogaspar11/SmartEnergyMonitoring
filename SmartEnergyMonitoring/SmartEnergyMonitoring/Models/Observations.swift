@@ -5,11 +5,6 @@
 //  Created by Fábio Cordeiro Gaspar on 24/11/2022.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let observations = try? newJSONDecoder().decode(Observations.self, from: jsonData)
-
 import Foundation
 
 struct Observation: Codable {
